@@ -1,13 +1,12 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import News from "@/components/News";
 
-export default function Home() {
+export default function Contacts() {
   return (
     <div className="layout__grid">
       <Header />
       <main className="layout__main">
-        <News />
+        <div className="container">КОНТАКТЫ</div>
       </main>
       <Footer />
     </div>

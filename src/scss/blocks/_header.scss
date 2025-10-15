@@ -1,0 +1,79 @@
+.header {
+  --header-color: var(--c-bg-color-1);
+  --header-bg-color: var(--c-bg-color-1);
+  --header-menu-bg-color: var(--c-bg-color-2);
+  --header-nav-bg-color: var(--c-text-color-5);
+
+  color: var(--header-color);
+  padding-block: 20px;
+  background-color: var(--header-bg-color);
+
+  &__container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    width: 200px;
+    height: 50px;
+    background-color: tomato;
+  }
+
+  &__nav-control {
+    margin-left: auto;
+    flex-shrink: 0;
+
+    @include media-breakpoint-up(lg) {
+      display: none;
+    }
+  }
+
+  &__menu {
+    position: fixed;
+    top: 90px;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    opacity: 0;
+    cursor: pointer;
+    visibility: hidden;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+
+    transform: translateX(100%);
+    transition-property: transform, visibility, opacity;
+    transition-duration: $animation-duration;
+    transition-timing-function: $animation-function;
+
+    &._active {
+      transform: translateX(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @include media-breakpoint-up(lg) {
+      position: static;
+      transform: translateX(0);
+      margin-left: auto;
+      opacity: 1;
+      width: fit-content;
+      visibility: visible;
+      justify-content: flex-end;
+      background-color: transparent;
+    }
+  }
+
+  &__nav {
+    width: 100%;
+    max-width: 396px;
+    background-color: var(--header-nav-bg-color);
+    height: 100%;
+    border-radius: 24px 0 0 24px;
+    @include media-breakpoint-up(lg) {
+      background-color: transparent;
+    }
+  }
+}

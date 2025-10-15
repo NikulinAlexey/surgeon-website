@@ -1,0 +1,12 @@
+.container {
+  --container-side-gap: 16px;
+  --container-max-width: 1296px;
+
+  margin: 0 auto;
+  padding-inline: var(--container-side-gap);
+  max-width: var(--container-max-width);
+
+  @include media-breakpoint-up(lg) {
+    --container-side-gap: 40px;
+  }
+}

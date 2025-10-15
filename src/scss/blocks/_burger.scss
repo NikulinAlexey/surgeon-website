@@ -1,0 +1,51 @@
+.burger {
+  --burger-bg-color: transparent;
+  --burger-size: 40px;
+  --burger-slice-height: calc(var(--burger-size) / 5);
+  --burger-slice-border-radius: calc(var(--burger-slice-height) / 2);
+  --burger-slice-color: var(--c-bg-color-4);
+
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: var(--burger-size);
+  height: var(--burger-size);
+  background-color: var(--burger-bg-color);
+  border: none;
+  border-radius: 6px;
+  overflow: hidden;
+  transition-property: opacity;
+  transition-duration: $animation-duration;
+  transition-timing-function: $animation-function;
+
+  &::before,
+  &::after {
+    content: "";
+  }
+
+  &__slice,
+  &::before,
+  &::after {
+    width: 100%;
+    border-radius: var(--burger-slice-border-radius);
+    height: var(--burger-slice-height);
+    background-color: var(--burger-slice-color);
+    transition: transform $animation-duration $animation-function;
+  }
+
+  &._active {
+    .burger__slice {
+      transform: scale(0);
+    }
+
+    &::before {
+      transform: translateY(calc(var(--burger-size) / 2 - 50%)) rotate(45deg);
+    }
+    &::after {
+      transform: translateY(calc(var(--burger-size) / -2 + 50%)) rotate(-45deg);
+    }
+  }
+}

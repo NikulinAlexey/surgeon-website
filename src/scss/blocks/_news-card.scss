@@ -1,0 +1,40 @@
+.news-card {
+  --news-card-color: var(--c-text-color-5);
+  --news-card-bg-color: var(--c-bg-color-1);
+  --news-card-padding: 24px;
+  --news-card-shadow: var(--c-shadow-primary);
+  --news-card-hover-shadow: var(--c-shadow-secondary);
+
+  color: var(--news-card-color);
+  background-color: var(--news-card-bg-color);
+  padding: var(--news-card-padding);
+  border-radius: 24px;
+
+  cursor: pointer;
+  box-shadow: var(--news-card-shadow);
+  transition: box-shadow 0.3s ease;
+
+  @include hover {
+    box-shadow: var(--news-card-hover-shadow);
+  }
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__img {
+    border-radius: 12px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2/1;
+    object-fit: cover;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}

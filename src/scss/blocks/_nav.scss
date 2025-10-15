@@ -1,0 +1,48 @@
+.nav {
+  --nav-color: var(--c-bg-color-1);
+
+  color: var(--nav-color);
+  display: flex;
+  justify-content: center;
+
+  &__body {
+    width: 100%;
+    cursor: default;
+    overflow-y: auto;
+
+    @include media-breakpoint-up(lg) {
+      width: fit-content;
+    }
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    @include media-breakpoint-up(lg) {
+      flex-direction: row;
+    }
+  }
+
+  &__item {
+    display: flex;
+  }
+
+  &__link {
+    text-align: center;
+    width: 100%;
+    padding: 32px;
+    transition-property: opacity;
+    transition-duration: $animation-duration;
+    transition-timing-function: $animation-function;
+
+    @include media-breakpoint-up(lg) {
+      text-align: left;
+      padding: 8px 16px;
+      color: var(--c-text-color-6);
+    }
+
+    @include hover {
+      opacity: 0.75;
+    }
+  }
+}

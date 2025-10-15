@@ -1,0 +1,18 @@
+// // core
+@import "../scss/global/reset";
+@import "../scss/global/fonts";
+@import "../scss/global/variables";
+@import "../scss/mixins/mixins";
+
+//blocks
+@import "./blocks/layout";
+@import "./blocks/button";
+@import "./blocks/section";
+@import "./blocks/container";
+@import "./blocks/text-gradient";
+@import "./blocks/header";
+@import "./blocks/footer";
+@import "./blocks/nav";
+@import "./blocks/burger";
+@import "./blocks/news";
+@import "./blocks/news-card";

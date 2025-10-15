@@ -1,0 +1,40 @@
+.section {
+  --section-bg-color: var(--c-bg-color-1);
+  --section-padding-block: 40px;
+
+  padding-block: var(--section-padding-block);
+
+  @include media-breakpoint-up(lg) {
+    --section-padding-block: 60px;
+  }
+
+  &__top {
+    display: flex;
+    margin-bottom: 24px;
+
+    @include media-breakpoint-up(xl) {
+      margin-bottom: 48px;
+    }
+  }
+
+  &__title {
+    @include font(24px, 26px, 700);
+
+    @include media-breakpoint-up(lg) {
+      @include font(36px, 40px, 700);
+    }
+  }
+
+  &__options {
+    margin-left: auto;
+    padding-left: 20px;
+  }
+
+  &__controlls {
+    display: flex;
+    gap: 8px;
+  }
+
+  &--offset-bottom {
+  }
+}

@@ -1,0 +1,15 @@
+.layout {
+  --layout-bg-color: var(--c-bg-color-5);
+
+  background-color: var(--layout-bg-color);
+
+  &__grid {
+    min-height: 100dvh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+  }
+
+  &__main {
+  }
+}

@@ -1,0 +1,8 @@
+.text-gradient {
+  --text-gradient-bg-color: var(--c-gradient-6);
+
+  background: var(--text-gradient-bg-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
