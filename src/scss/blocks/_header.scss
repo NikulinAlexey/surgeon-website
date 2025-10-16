@@ -46,7 +46,7 @@
     transform: translateX(100%);
     transition-property: transform, visibility, opacity;
     transition-duration: $animation-duration;
-    transition-timing-function: $animation-function;
+    transition-timing-function: $animation-timing-function;
 
     &._active {
       transform: translateX(0);

@@ -33,7 +33,7 @@
     padding: 32px;
     transition-property: opacity;
     transition-duration: $animation-duration;
-    transition-timing-function: $animation-function;
+    transition-timing-function: $animation-timing-function;
 
     @include media-breakpoint-up(lg) {
       text-align: left;

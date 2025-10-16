@@ -1,9 +1,4 @@
 .button {
-  --button-color: var(--c-text-color-1);
-  --button-bg-color: var(--c-bg-color-7);
-  --button-border-color: transparent;
-  --button-padding: 12px 24px;
-
   @include font(16px, 16px);
 
   display: inline-flex;
@@ -15,18 +10,11 @@
   background-color: var(--button-bg-color);
   border: 1px solid var(--button-border-color);
   cursor: pointer;
+  box-shadow: var(--button-box-shadow);
   transition-property: transform, opacity, color, background-color, border-color,
-    fill, stroke;
+    fill, stroke, box-shadow;
   transition-duration: $animation-duration;
-  transition-timing-function: $animation-function;
-
-  @include hover {
-    transform: scale(1.03);
-  }
-
-  &:active {
-    transform: scale(0.97);
-  }
+  transition-timing-function: $animation-timing-function;
 
   &:disabled,
   &._disabled {
@@ -38,5 +26,26 @@
     --button-padding: 16px;
 
     border-radius: 50%;
+  }
+
+  &--theme-light-outline {
+    --button-bg-color: transparent;
+    --button-border-color: var(--c-border-color-6);
+    --button-color: var(--c-text-color-7);
+  }
+
+  &--lift {
+
+    @include hover {
+    --button-box-shadow: var(--c-box-shadow-3);
+
+      transform: scale(1.03);
+    }
+
+    &:active {
+    --button-box-shadow: var(--c-box-shadow-4);
+
+      transform: scale(0.97);
+    }
   }
 }

@@ -1,3 +1,4 @@
+@import "../scss/mixins/mixins";
 // Breakpoints
 $xs: 480px;
 $sm: 680px;
@@ -6,11 +7,11 @@ $lg: 992px;
 $xl: 1240px;
 $xxl: 1420px;
 
-$font-basic: "Inter", sans-serif;
-$font-secondary: Arial;
+$basic-family: "Open-Sans", sans-serif;
+$secondary-family: Arial;
 
 $animation-duration: 0.3s;
-$animation-function: ease;
+$animation-timing-function: ease;
 
 :root {
   --c-accent-color: #f59e0b;
@@ -45,8 +46,10 @@ $animation-function: ease;
   --c-border-color-6: #00715d;
 
   // Shadows
-  --c-shadow-primary: 0 8px 20px #d0d0d012;
-  --c-shadow-secondary: 0 4px 10px rgba(0, 0, 0, 0.1);
+  --c-shadow-1: 0 8px 20px #d0d0d012;
+  --c-shadow-2: 0 4px 10px rgba(0, 0, 0, 0.1);
+  --c-shadow-3: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --c-shadow-4: 0 2px 6px rgba(0, 0, 0, 0.1);
 
   --c-gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --c-gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
