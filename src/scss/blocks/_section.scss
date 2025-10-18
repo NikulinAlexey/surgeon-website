@@ -20,6 +20,10 @@
   &__title {
     @include font(24px, 26px, 700);
 
+    transition-property: font-size;
+    transition-duration: $animation-duration;
+    transition-timing-function: $animation-timing-function;
+
     @include media-breakpoint-up(lg) {
       @include font(36px, 40px, 700);
     }

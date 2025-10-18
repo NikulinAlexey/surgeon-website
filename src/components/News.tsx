@@ -41,22 +41,27 @@ export default function News() {
           <div className="news__options section__options">
             <ul className="news__controlls section__controlls">
               <li className="news__control-item">
-                <Button className="news__control-button button button--circle button--theme-light-outline button--lift">
-                  <SvgIcon name="shevron" size="24" aria-hidden />
+                <Button className="news__control-button button button--circle button--size-medium button--theme-light-outline button--lift">
+                  <SvgIcon
+                    name="shevron"
+                    rotateAngle="-180"
+                    size="14"
+                    aria-hidden
+                  />
                 </Button>
               </li>
               <li className="news__control-item">
-                <Button className="news__control-button button button--circle button--theme-light-outline button--lift">
-                  <SvgIcon name="shevron" size="24" aria-hidden />
+                <Button className="news__control-button button button--circle button--size-medium button--theme-light-outline button--lift">
+                  <SvgIcon name="shevron" size="14" aria-hidden />
                 </Button>
               </li>
             </ul>
           </div>
         </div>
         <div className="news__body">
-          <ul className="news__list">
+          <ul className="grid">
             {newsCards.map(({ id, ...props }) => (
-              <li className="news__item" key={id}>
+              <li className="grid__item" key={id}>
                 <NewsCard {...props} />
               </li>
             ))}

@@ -31,7 +31,9 @@ export default function NewsCard({
         <div className="news-card__text">
           <h3 className="news-card__title">{title}</h3>
           <p className="news-card__description">{description}</p>
-          <span className="news-card__footer">{date}</span>
+          <span className="news-card__footer">
+            <span className="news-card__date">{date}</span>
+          </span>
         </div>
       </Link>
     </article>

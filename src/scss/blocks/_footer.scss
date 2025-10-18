@@ -1,4 +1,6 @@
 .footer {
-  --footer-bg-color: var(--c-bg-color-2);
+  --footer-bg-color: var(--c-bg-color-1);
+
   background-color: var(--footer-bg-color);
+  padding-block: 20px;
 }

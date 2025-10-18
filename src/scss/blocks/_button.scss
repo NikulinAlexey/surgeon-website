@@ -12,7 +12,7 @@
   cursor: pointer;
   box-shadow: var(--button-box-shadow);
   transition-property: transform, opacity, color, background-color, border-color,
-    fill, stroke, box-shadow;
+    fill, stroke, box-shadow, padding;
   transition-duration: $animation-duration;
   transition-timing-function: $animation-timing-function;
 
@@ -23,9 +23,15 @@
   }
 
   &--circle {
-    --button-padding: 16px;
-
     border-radius: 50%;
+  }
+
+  &--size-medium {
+    --button-padding: 8px;
+
+    @include media-breakpoint-up(lg) {
+      --button-padding: 12px;
+    }
   }
 
   &--theme-light-outline {
@@ -35,15 +41,14 @@
   }
 
   &--lift {
-
     @include hover {
-    --button-box-shadow: var(--c-box-shadow-3);
+      --button-box-shadow: var(--c-box-shadow-3);
 
       transform: scale(1.03);
     }
 
     &:active {
-    --button-box-shadow: var(--c-box-shadow-4);
+      --button-box-shadow: var(--c-box-shadow-4);
 
       transform: scale(0.97);
     }
