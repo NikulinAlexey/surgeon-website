@@ -3,12 +3,15 @@
 @import "../scss/global/fonts";
 @import "../scss/global/variables";
 
-//blocks
+//ui
 @import "./blocks/layout";
 @import "./blocks/button";
 @import "./blocks/section";
 @import "./blocks/container";
+@import "./blocks/review-from";
 @import "./blocks/text-gradient";
+
+// sections
 @import "./blocks/header";
 @import "./blocks/footer";
 @import "./blocks/nav";
@@ -17,3 +20,5 @@
 @import "./blocks/news-card";
 @import "./blocks/icon";
 @import "./blocks/review";
+@import "./blocks/hero";
+@import "./blocks/reviews";

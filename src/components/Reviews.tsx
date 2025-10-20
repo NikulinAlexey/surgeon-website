@@ -1,6 +1,7 @@
 import SvgIcon from "./ui/SvgIcon";
 import Button from "./ui/Button";
 import Review from "./ui/Review";
+import ReviewForm from "./ui/ReviewForm";
 
 export interface Review {
   id: string;
@@ -12,7 +13,6 @@ export interface Review {
   treatment?: string;
   isVerified?: boolean; // верифицированный отзыв
 }
-
 
 const mockReviews: Review[] = [
   {
@@ -33,6 +33,15 @@ const mockReviews: Review[] = [
     date: "2024-01-10",
     doctor: "Петров С.И.",
     isVerified: false,
+  },
+  {
+    id: "3",
+    patientName: "Иван Иванов",
+    rating: 5,
+    text: "Хороший специалист, но немного долго ждал приема.",
+    date: "2024-01-10",
+    doctor: "Петров С.И.",
+    isVerified: true,
   },
 ];
 
@@ -78,6 +87,9 @@ export default function Reviews() {
               </li>
             ))}
           </ul>
+          <div>
+            <ReviewForm onSubmit={() => console.log("sumbit review")} />
+          </div>
         </div>
       </div>
     </section>

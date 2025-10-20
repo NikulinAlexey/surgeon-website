@@ -43,6 +43,8 @@ function HeaderComponent() {
     setIsBurgerClicked(false);
   }, []);
 
+  console.log(headerHeight);
+
   useEffect(() => {
     if (headerRef && headerRef.current) {
       setHeaderHeight(headerRef.current.offsetHeight);

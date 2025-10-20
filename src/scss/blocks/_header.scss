@@ -5,6 +5,8 @@
   --header-menu-bg-color: var(--c-bg-color-2);
   --header-nav-bg-color: var(--c-text-color-5);
 
+  position: sticky;
+  top: 0;
   color: var(--header-color);
   padding-block: 20px;
   background-color: var(--header-bg-color);

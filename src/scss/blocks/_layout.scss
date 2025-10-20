@@ -1,6 +1,7 @@
 .layout {
   --layout-bg-color: var(--c-bg-color-5);
 
+  position: relative;
   background-color: var(--layout-bg-color);
 
   &__grid {

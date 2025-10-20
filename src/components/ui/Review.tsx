@@ -1,15 +1,6 @@
 // components/Review/Review.tsx
 import { cn } from "@/lib/clsx";
-import { ReviewProps } from "../Reviews";
-import { Review } from "@/types";
-
-export interface ReviewProps {
-  review: Review;
-  className?: string;
-  onEdit?: (review: Review) => void;
-  onDelete?: (reviewId: string) => void;
-  isEditable?: boolean;
-}
+import { ReviewProps } from "@/types";
 
 export default function Review({
   review,
