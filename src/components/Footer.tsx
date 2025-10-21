@@ -25,7 +25,7 @@ const footerSections = {
   contacts: {
     title: "Контакты",
     info: [
-      { type: "address", value: "г. Москва, ул. Медицинская, д. 15" },
+      { type: "address", value: "г. Архангельск, ул. Медицинская, д. 15" },
       { type: "phone", value: "+7 (495) 123-45-67", href: "tel:+74951234567" },
       {
         type: "email",

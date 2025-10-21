@@ -2,6 +2,15 @@ import NewsCard from "./NewsCard";
 import SvgIcon from "./ui/SvgIcon";
 import Button from "./ui/Button";
 
+import { useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+
+// Импорт базовых стилей
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 const newsCards = [
   {
     title: "Сэр Александр Флеминг",
@@ -33,6 +42,7 @@ const newsCards = [
 ];
 
 export default function News() {
+  const swiper = useSwiper();
   return (
     <section className="news section" id="news">
       <div className="news__container container">
@@ -41,7 +51,10 @@ export default function News() {
           <div className="news__options section__options">
             <ul className="news__controlls section__controlls">
               <li className="news__control-item">
-                <Button className="news__control-button button button--circle button--size-medium button--theme-light-outline button--lift">
+                <Button
+                  onClick={() => swiper.slidePrev()}
+                  className="news__control-button button button--circle button--size-medium button--theme-light-outline button--lift"
+                >
                   <SvgIcon
                     name="shevron"
                     rotateAngle="-180"
@@ -51,7 +64,10 @@ export default function News() {
                 </Button>
               </li>
               <li className="news__control-item">
-                <Button className="news__control-button button button--circle button--size-medium button--theme-light-outline button--lift">
+                <Button
+                  onClick={() => swiper.slideNext()}
+                  className="news__control-button button button--circle button--size-medium button--theme-light-outline button--lift"
+                >
                   <SvgIcon name="shevron" size="14" aria-hidden />
                 </Button>
               </li>
@@ -59,13 +75,24 @@ export default function News() {
           </div>
         </div>
         <div className="news__body">
-          <ul className="grid">
-            {newsCards.map(({ id, ...props }) => (
-              <li className="grid__item" key={id}>
-                <NewsCard {...props} />
-              </li>
-            ))}
-          </ul>
+          <Swiper
+            modules={[Navigation, Pagination]}
+            navigation
+            pagination={{ clickable: true }}
+            spaceBetween={50}
+            slidesPerView={2}
+            className="slider"
+          >
+            <ul className="grid">
+              {newsCards.map(({ id, ...props }) => (
+                <SwiperSlide className="slider__item" key={id}>
+                  <li className="grid__item">
+                    <NewsCard {...props} />
+                  </li>
+                </SwiperSlide>
+              ))}
+            </ul>
+          </Swiper>
         </div>
       </div>
     </section>
