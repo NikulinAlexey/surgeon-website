@@ -7,8 +7,8 @@ $lg: 992px;
 $xl: 1240px;
 $xxl: 1420px;
 
-$basic-family: "Open-Sans", sans-serif;
-$secondary-family: Arial;
+$basic-family: "Montserrat", sans-serif;
+$secondary-family: "Open-Sans", sans-serif;
 
 $animation-duration: 0.3s;
 $animation-timing-function: ease;
@@ -29,6 +29,7 @@ $animation-timing-function: ease;
   --c-text-color-7: #00715d;
   --c-text-color-8: #101828;
   --c-text-color-9: #3b82f6;
+  --c-text-color-10: #384f68;
 
   // Background colors
   --c-bg-color-1: #ffffff;
@@ -39,6 +40,7 @@ $animation-timing-function: ease;
   --c-bg-color-6: #435e96;
   --c-bg-color-7: #00715d;
   --c-bg-color-8: #3b82f6;
+  --c-bg-color-9: #384f68;
 
   // Border colors
   --c-border-color-1: #fafbff;
@@ -48,6 +50,9 @@ $animation-timing-function: ease;
   --c-border-color-5: #0b2f7c;
   --c-border-color-6: #00715d;
   --c-border-color-7: #3b82f6;
+  --c-border-color-8: #384f68;
+  --c-border-color-9: #ffffff;
+
 
   // Shadows
   --c-shadow-1: 0 8px 20px #d0d0d012;

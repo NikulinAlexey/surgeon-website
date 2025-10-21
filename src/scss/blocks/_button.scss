@@ -32,12 +32,16 @@
     @include media-breakpoint-up(lg) {
       --button-padding: 12px;
     }
+
+        @include media-breakpoint-up(xl) {
+      --button-padding: 20px;
+    }
   }
 
   &--theme-light-outline {
-    --button-bg-color: transparent;
-    --button-border-color: var(--c-border-color-6);
-    --button-color: var(--c-text-color-7);
+    --button-bg-color: var(--c-bg-color-9);
+    --button-border-color: var(--c-border-color-9);
+    --button-color: var(--c-text-color-1);
   }
 
   &--lift {

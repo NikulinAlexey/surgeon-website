@@ -1,0 +1,18 @@
+// Улучшенный миксин с максимальной высотой как fallback
+@mixin line-clamp-advanced($lines: 2, $line-height: 1.5) {
+  // Современный способ (поддерживается в 95% браузеров)
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  // Fallback для старых браузеров
+  max-height: calc(#{$lines} * #{$line-height} * 1em);
+
+  // Для однострочного обрезания
+  @if $lines == 1 {
+    white-space: nowrap;
+    max-height: none;
+  }
+}

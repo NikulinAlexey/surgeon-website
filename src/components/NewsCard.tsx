@@ -23,8 +23,8 @@ export default function NewsCard({
             className="news-card__img"
             src={img}
             alt=""
-            width={100}
-            height={80}
+            width={400}
+            height={400}
             quality={100}
           />
         </div>

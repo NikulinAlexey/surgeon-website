@@ -69,14 +69,14 @@ const newsCards = [
   },
 ];
 
-export default function News() {
+export default function Articles() {
   const swiperRef = useRef<SwiperType>(null);
 
   return (
     <section className="news section" id="news">
       <div className="news__container container">
         <div className="news__top section__top">
-          <h2 className="news__title section__title">Новости</h2>
+          <h2 className="news__title section__title">Статьи</h2>
           <div className="news__options section__options">
             <ul className="news__controlls section__controlls">
               <li className="news__control-item">

@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import News from "@/components/News";
 import Reviews from "@/components/Reviews";
 import Hero from "@/components/Hero";
+import Articles from "@/components/Articles";
   
 export default function Home() {
   return (
@@ -11,8 +12,9 @@ export default function Home() {
       <Header />
       <main className="layout__main">
         <Hero />
-        <Reviews />
+        <Articles />
         <News />
+        <Reviews />
       </main>
       <Footer />
     </div>

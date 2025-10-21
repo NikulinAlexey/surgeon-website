@@ -1,5 +1,5 @@
 .section {
-  --section-bg-color: var(--c-bg-color-1);
+  --section-bg-color: var(--c-bg-color-9);
   --section-padding-block: 40px;
 
   padding-block: var(--section-padding-block);
@@ -18,14 +18,18 @@
   }
 
   &__title {
-    @include font(24px, 26px, 700);
+    @include font(24px, 24px, 700);
 
     transition-property: font-size;
     transition-duration: $animation-duration;
     transition-timing-function: $animation-timing-function;
 
     @include media-breakpoint-up(lg) {
-      @include font(36px, 40px, 700);
+      @include font(34px, 34px, 700);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include font(56px, 56px, 700);
     }
   }
 
