@@ -33,7 +33,7 @@
       --button-padding: 12px;
     }
 
-        @include media-breakpoint-up(xl) {
+    @include media-breakpoint-up(xl) {
       --button-padding: 20px;
     }
   }
@@ -56,5 +56,14 @@
 
       transform: scale(0.97);
     }
+  }
+
+  &--2 {
+    --button-padding: 20px 40px;
+    --button-bg-color: transparent;
+    --button-color: #a8bfef;
+    --button-border-color: #a8bfef;
+    border-radius: 12px;
+    border-width: 3px;
   }
 }

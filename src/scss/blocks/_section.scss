@@ -3,6 +3,7 @@
   --section-padding-block: 40px;
 
   padding-block: var(--section-padding-block);
+  box-shadow: 0px 10px 30px 0px rgb(0, 0, 0, 0.1) inset;
 
   @include media-breakpoint-up(lg) {
     --section-padding-block: 60px;
