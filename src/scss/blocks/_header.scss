@@ -1,21 +1,23 @@
 .header {
-  --header-height: 0;
   --header-color: var(--c-bg-color-1);
   --header-bg-color: var(--c-bg-color-9);
   --header-menu-bg-color: var(--c-bg-color-2);
-  --header-nav-bg-color: var(--c-text-color-5);
+  --header-nav-bg-color: var(--c-bg-color-10);
 
-  // position: sticky;
-  // top: 0;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
   color: var(--header-color);
   padding-block: 20px;
-  // box-shadow: 0px 10px 20px 0px rgb(0, 0, 0, 0.1);
   background-color: var(--header-bg-color);
+  box-shadow: var(--c-shadow-3);
 
   &__container {
     display: flex;
     align-items: center;
   }
+
   &__logo {
     width: 200px;
     height: 50px;
@@ -33,33 +35,36 @@
 
   &__menu {
     position: fixed;
-    top: var(--header-height);
+    top: calc(var(--header-height) * 1px);
+    left: 0;
     right: 0;
     bottom: 0;
     width: 100%;
-    display: flex;
+    max-width: 100vw;
+    z-index: 10;
     opacity: 0;
     cursor: pointer;
     visibility: hidden;
+    display: flex;
     flex-direction: column;
     align-items: flex-end;
     background-color: transparent;
     backdrop-filter: blur(10px);
-
-    transform: translateX(100%);
-    transition-property: transform, visibility, opacity;
+    transition-property: visibility, opacity;
     transition-duration: $animation-duration;
     transition-timing-function: $animation-timing-function;
 
     &._active {
-      transform: translateX(0);
       opacity: 1;
       visibility: visible;
+
+      .header__nav {
+        transform: translateX(0);
+      }
     }
 
     @include media-breakpoint-up(lg) {
       position: static;
-      transform: translateX(0);
       margin-left: auto;
       opacity: 1;
       width: fit-content;
@@ -75,14 +80,14 @@
     background-color: var(--header-nav-bg-color);
     height: 100%;
     border-radius: 24px 0 0 24px;
+    transform: translateX(100%);
+    transition-property: transform, visibility, opacity;
+    transition-duration: $animation-duration;
+    transition-timing-function: $animation-timing-function;
+
     @include media-breakpoint-up(lg) {
       background-color: transparent;
+      transform: none;
     }
-  }
-
-  &--scrolled {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   }
 }

@@ -5,4 +5,19 @@
     height: 100%;
     min-height: 100%;
   }
+
+  // подтянуть переменную --c-container-padding-inline
+  &--wide-before-xl {
+    --slider-wide-inline-offset: var(--c-container-padding-inline);
+
+    margin-inline: calc(var(--slider-wide-inline-offset) * -1);
+    scroll-padding: var(--slider-wide-inline-offset);
+    padding-inline: var(--slider-wide-inline-offset);
+
+    @include media-breakpoint-up(xl) {
+      margin-inline: 0;
+      scroll-padding: 0;
+      padding-inline: 0;
+    }
+  }
 }

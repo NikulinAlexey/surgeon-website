@@ -1,0 +1,39 @@
+.decorated-bg {
+  /* CSS переменные для цветов и расположения */
+  --grid-color: rgba(52, 152, 219, 0.1);
+  --grid-position-top: -50%;
+  --grid-position-left: -50%;
+  --grid-size: 200%;
+
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: var(--grid-position-top);
+    left: var(--grid-position-left);
+    width: var(--grid-size);
+    height: var(--grid-size);
+    background-image: linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask: radial-gradient(circle at center, black, transparent 70%);
+    z-index: 0;
+    animation: gridMove 20s linear infinite;
+  }
+
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(50px, 50px) rotate(360deg);
+  }
+}

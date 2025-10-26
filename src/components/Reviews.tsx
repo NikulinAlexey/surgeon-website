@@ -8,11 +8,6 @@ import { Swiper as SwiperType } from "swiper";
 import { Navigation } from "swiper/modules";
 import { useRef } from "react";
 
-// Импорт базовых стилей
-// import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-
 export interface Review {
   id: string;
   patientName: string;

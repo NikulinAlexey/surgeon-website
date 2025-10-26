@@ -1,14 +1,12 @@
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Header } from "@/components/Header";
 
 export default function Contacts() {
   return (
-    <div className="layout__grid">
+    <>
       <Header />
-      <main className="layout__main">
-        <div className="container">КОНТАКТЫ</div>
-      </main>
+      <main className="layout__main">Contacts</main>
       <Footer />
-    </div>
+    </>
   );
 }

@@ -1,4 +1,3 @@
-import NewsCard from "./NewsCard";
 import SvgIcon from "./ui/SvgIcon";
 import Button from "./ui/Button";
 
@@ -6,11 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import { Navigation } from "swiper/modules";
 import { useRef } from "react";
-
-// Импорт базовых стилей
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import ContentCard from "./ContentCard";
 
 const newsCards = [
   {
@@ -21,6 +16,7 @@ const newsCards = [
     id: "qweasdasdasdasф2dasd",
     link: "example.com",
     date: "18.04.1997",
+    slug: "novaya-medicina-2024",
   },
   {
     title: "Хороший доктор",
@@ -30,6 +26,7 @@ const newsCards = [
     id: "qweasdasdasdasd132",
     link: "example.com",
     date: "18.04.1997",
+    slug: "novaya-medicina-2024",
   },
   {
     title: "Хороший доктор",
@@ -39,6 +36,7 @@ const newsCards = [
     id: "qweasdas3dedasd32d",
     link: "example.com",
     date: "18.04.1997",
+    slug: "novaya-medicina-2024",
   },
   {
     title: "Хороший доктор",
@@ -48,6 +46,7 @@ const newsCards = [
     id: "qweasdasdasdasdasd",
     link: "example.com",
     date: "18.04.1997",
+    slug: "novaya-medicina-2024",
   },
   {
     title: "Хороший доктор",
@@ -57,6 +56,7 @@ const newsCards = [
     id: "qweasdasdasdasd1й2",
     link: "example.com",
     date: "18.04.1997",
+    slug: "novaya-medicina-2024",
   },
   {
     title: "Хороший доктор",
@@ -66,6 +66,7 @@ const newsCards = [
     id: "qweasdas3dedasda2d",
     link: "example.com",
     date: "18.04.1997",
+    slug: "novaya-medicina-2024",
   },
 ];
 
@@ -73,16 +74,16 @@ export default function Articles() {
   const swiperRef = useRef<SwiperType>(null);
 
   return (
-    <section className="news section" id="news">
-      <div className="news__container container">
-        <div className="news__top section__top">
-          <h2 className="news__title section__title">Статьи</h2>
-          <div className="news__options section__options">
-            <ul className="news__controlls section__controlls">
-              <li className="news__control-item">
+    <section className="articles section" id="articles">
+      <div className="articles__container container">
+        <div className="articles__top section__top">
+          <h2 className="articles__title section__title">Статьи</h2>
+          <div className="articles__options section__options">
+            <ul className="articles__controlls section__controlls">
+              <li className="articles__control-item">
                 <Button
                   onClick={() => swiperRef.current?.slidePrev()}
-                  className="news__control-button button button--circle button--size-medium button--theme-light-outline button--lift"
+                  className="articles__control-button button button--circle button--size-medium button--theme-light-outline button--lift"
                 >
                   <SvgIcon
                     name="shevron"
@@ -92,10 +93,10 @@ export default function Articles() {
                   />
                 </Button>
               </li>
-              <li className="news__control-item">
+              <li className="articles__control-item">
                 <Button
                   onClick={() => swiperRef.current?.slideNext()}
-                  className="news__control-button button button--circle button--size-medium button--theme-light-outline button--lift"
+                  className="articles__control-button button button--circle button--size-medium button--theme-light-outline button--lift"
                 >
                   <SvgIcon name="shevron" size="14" aria-hidden />
                 </Button>
@@ -103,23 +104,36 @@ export default function Articles() {
             </ul>
           </div>
         </div>
-        <div className="news__body">
+        <div className="articles__body">
           <Swiper
             modules={[Navigation]}
-            // navigation
             loop
             spaceBetween={16}
-            slidesPerView={3}
+            slidesPerView={1.2}
+            breakpoints={{
+              480: {
+                slidesPerView: 1.6,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 2.2,
+                spaceBetween: 20,
+              },
+              992: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+            }}
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
             }}
-            className="slider"
+            className="slider slider--wide-before-xl"
           >
             <ul className="grid">
               {newsCards.map(({ id, ...props }) => (
                 <SwiperSlide className="slider__item" key={id}>
                   <li className="grid__item">
-                    <NewsCard {...props} />
+                    <ContentCard type="articles" {...props} />
                   </li>
                 </SwiperSlide>
               ))}

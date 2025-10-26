@@ -2,17 +2,15 @@
   --layout-bg-color: var(--c-bg-color-9);
   --layout-color: var(--c-text-color-1);
 
-  // position: relative;
   color: var(--layout-color);
   background-color: var(--layout-bg-color);
-
-  &__grid {
-    min-height: 100dvh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 100%;
-  }
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100dvh;
+  height: 100%;
 
   &__main {
+    flex-grow: 1;
   }
 }

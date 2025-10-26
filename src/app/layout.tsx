@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import "../scss/main.scss";
 
 export const metadata: Metadata = {
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className="layout">{children}</body>
+      <body className="page">
+        <div className="layout">{children}</div>
+      </body>
     </html>
   );
 }

@@ -1,9 +1,9 @@
 .burger {
   --burger-bg-color: transparent;
-  --burger-size: 40px;
-  --burger-slice-height: calc(var(--burger-size) / 5);
+  --burger-size: 44px;
+  --burger-slice-height: calc(var(--burger-size) / 6);
   --burger-slice-border-radius: calc(var(--burger-slice-height) / 2);
-  --burger-slice-color: var(--c-bg-color-4);
+  --burger-slice-color: var(--c-bg-color-1);
 
   position: relative;
   cursor: pointer;
@@ -30,6 +30,7 @@
   &::before,
   &::after {
     width: 100%;
+    pointer-events: none;
     border-radius: var(--burger-slice-border-radius);
     height: var(--burger-slice-height);
     background-color: var(--burger-slice-color);

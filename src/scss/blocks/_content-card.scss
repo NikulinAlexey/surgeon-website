@@ -1,0 +1,65 @@
+.content-card {
+  --content-card-color: var(--c-text-color-5);
+  --content-card-bg-color: var(--c-bg-color-1);
+  --content-card-padding: clamp(10px, 6%, 24px);
+  --content-card-shadow: var(--c-shadow-1);
+  --content-card-hover-shadow: var(--c-shadow-2);
+  --content-card-date-color: var(--c-text-color-2);
+  --content-card-title-color: var(--c-text-color-8);
+  --content-card-description-color: var(--c-text-color-8);
+
+  color: var(--content-card-color);
+  background-color: var(--content-card-bg-color);
+  padding: var(--content-card-padding);
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--content-card-shadow);
+  transition: box-shadow 0.3s ease;
+  transition-property: box-shadow;
+
+  @include hover {
+    box-shadow: var(--content-card-hover-shadow);
+  }
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__header {
+    height: auto;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__title {
+    @include font(22px, 28px, 700);
+    color: var(--content-card-title-color);
+  }
+
+  &__description {
+    @include font(16px, 24px);
+    @include line-clamp-advanced(4, 24px);
+
+    color: var(--content-card-description-color);
+  }
+
+  &__date {
+    color: var(--content-card-date-color);
+  }
+}

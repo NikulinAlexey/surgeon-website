@@ -14,7 +14,8 @@ $animation-duration: 0.3s;
 $animation-timing-function: ease;
 
 :root {
---header-height: 0;
+  --header-height: 0;
+
   --c-accent-color: #f59e0b;
   --c-success-color: #10b981;
   --c-error-color: #ef4444;
@@ -42,6 +43,7 @@ $animation-timing-function: ease;
   --c-bg-color-7: #00715d;
   --c-bg-color-8: #3b82f6;
   --c-bg-color-9: #384f68;
+  --c-bg-color-10: #293c51;
 
   // Border colors
   --c-border-color-1: #fafbff;
@@ -53,7 +55,6 @@ $animation-timing-function: ease;
   --c-border-color-7: #3b82f6;
   --c-border-color-8: #384f68;
   --c-border-color-9: #ffffff;
-
 
   // Shadows
   --c-shadow-1: 0 8px 20px #d0d0d012;
@@ -75,6 +76,14 @@ $animation-timing-function: ease;
     #ff9a9e 100%
   );
   --c-gradient-6: linear-gradient(262deg, #000 23.31%, #00715d 101.07%);
+
+  --c-section-padding-block: 40px;
+  --c-container-padding-inline: 16px;
+
+  @include media-breakpoint-up(lg) {
+    --c-section-padding-block: 60px;
+    --c-container-padding-inline: 40px;
+  }
 }
 
 // @media (prefers-color-scheme: dark) {

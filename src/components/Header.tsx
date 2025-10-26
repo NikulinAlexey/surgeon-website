@@ -2,14 +2,7 @@
 "use client";
 import Link from "next/link";
 import { cn } from "@/lib/clsx";
-import {
-  useState,
-  CSSProperties,
-  memo,
-  useCallback,
-  useRef,
-  useEffect,
-} from "react";
+import { useState, memo, useCallback, useRef, useEffect } from "react";
 import Burger from "./ui/Burger";
 
 interface NavItem {
@@ -25,7 +18,6 @@ const navArray: NavItem[] = [
 
 function HeaderComponent() {
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
-  const [headerHeight, setHeaderHeight] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
 
   // Мемоизированные обработчики
@@ -35,19 +27,24 @@ function HeaderComponent() {
     }
   }, []);
 
-  const handleNavClick = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-  }, []);
-
   const handleLinkClick = useCallback(() => {
     setIsBurgerClicked(false);
   }, []);
 
-  console.log(headerHeight);
+  useEffect(() => {
+    const body = document.body;
+
+    isBurgerClicked
+      ? body.classList.add("_locked")
+      : body.classList.remove("_locked");
+  }, [isBurgerClicked]);
 
   useEffect(() => {
     if (headerRef && headerRef.current) {
-      setHeaderHeight(headerRef.current.offsetHeight);
+      document.documentElement.style.setProperty(
+        "--header-height",
+        `${headerRef.current.offsetHeight}`
+      );
     }
   }, []);
 
@@ -57,7 +54,6 @@ function HeaderComponent() {
       className={cn("header", {
         _active: isBurgerClicked,
       })}
-      style={{ "--header-height": `${headerHeight}px` } as CSSProperties}
     >
       <div className="header__container container">
         <Link href="/" className="header__logo logo">
@@ -72,7 +68,7 @@ function HeaderComponent() {
           onClick={handleMenuClick}
           className={cn("header__menu", { _active: isBurgerClicked })}
         >
-          <div className="header__nav nav" onClick={handleNavClick}>
+          <div className="header__nav nav">
             <div className="nav__body">
               <ul className="nav__list">
                 {navArray.map(({ link, title }, index) => (

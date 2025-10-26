@@ -3,11 +3,9 @@ export default function Hero({
   description = "Современная диагностика, квалифицированные врачи и индивидуальный подход к каждому пациенту",
 }) {
   return (
-    <section className={`section hero`}>
-      <div className="hero__background"></div>
-      <div className="hero__overlay"></div>
-      <div className="hero__container">
-        <div className="hero__content">
+    <section className="hero section decorated-bg">
+      <div className="hero__container container">
+        <div className="hero__body">
           <h1 className="hero__title">{title}</h1>
           <p className="hero__description">{description}</p>
         </div>
