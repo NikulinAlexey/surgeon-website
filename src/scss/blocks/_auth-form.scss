@@ -1,0 +1,87 @@
+.auth-form {
+  &__field {
+    margin-bottom: 20px;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+
+  &__input:focus {
+    outline: none;
+    border-color: #3498db;
+  }
+
+  &__input--error {
+    border-color: #e74c3c;
+  }
+
+  &__error {
+    display: block;
+    margin-top: 4px;
+    color: #e74c3c;
+    font-size: 14px;
+  }
+
+  &__field--checkbox {
+    display: flex;
+    align-items: center;
+  }
+
+  &__checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  &__submit {
+    width: 100%;
+    padding: 12px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  &__submit:hover:not(:disabled) {
+    background: #2980b9;
+  }
+
+  &__submit:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+  }
+
+  &__links {
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  &__link {
+    background: none;
+    border: none;
+    color: #3498db;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  &__link:hover {
+    color: #2980b9;
+  }
+}

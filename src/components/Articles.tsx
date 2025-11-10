@@ -6,6 +6,7 @@ import { Swiper as SwiperType } from "swiper";
 import { Navigation } from "swiper/modules";
 import { useRef } from "react";
 import ContentCard from "./ContentCard";
+import { SWIPER_CONFIGS } from "@/config/swiper-configs";
 
 const newsCards = [
   {
@@ -106,24 +107,7 @@ export default function Articles() {
         </div>
         <div className="articles__body">
           <Swiper
-            modules={[Navigation]}
-            loop
-            spaceBetween={16}
-            slidesPerView={1.2}
-            breakpoints={{
-              480: {
-                slidesPerView: 1.6,
-                spaceBetween: 20,
-              },
-              768: {
-                slidesPerView: 2.2,
-                spaceBetween: 20,
-              },
-              992: {
-                slidesPerView: 3,
-                spaceBetween: 20,
-              },
-            }}
+            {...SWIPER_CONFIGS.cards}
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
             }}

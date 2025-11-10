@@ -1,0 +1,45 @@
+.cms-content {
+  max-width: 800px;
+  line-height: 1.7;
+  color: #333;
+}
+
+.cms-content h1 { font-size: 2.5rem; margin: 2rem 0 1rem; }
+.cms-content h2 { font-size: 2rem; margin: 1.75rem 0 0.875rem; }
+.cms-content h3 { font-size: 1.5rem; margin: 1.5rem 0 0.75rem; }
+.cms-content h4 { font-size: 1.25rem; margin: 1.25rem 0 0.625rem; }
+
+.cms-content p { margin-bottom: 1.25rem; }
+
+.cms-content ul, 
+.cms-content ol { 
+  margin: 1.25rem 0;
+  padding-left: 2rem;
+}
+
+.cms-content li { margin-bottom: 0.5rem; }
+
+.cms-content a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cms-content a:hover {
+  color: #1d4ed8;
+}
+
+.cms-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+.cms-content blockquote {
+  border-left: 4px solid #e5e7eb;
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #6b7280;
+}

@@ -6,7 +6,6 @@
     min-height: 100%;
   }
 
-  // подтянуть переменную --c-container-padding-inline
   &--wide-before-xl {
     --slider-wide-inline-offset: var(--c-container-padding-inline);
 

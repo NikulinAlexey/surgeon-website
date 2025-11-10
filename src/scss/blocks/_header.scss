@@ -19,9 +19,8 @@
   }
 
   &__logo {
-    width: 200px;
-    height: 50px;
-    background-color: tomato;
+    width: 62px;
+    height: 62px;
   }
 
   &__nav-control {
@@ -43,6 +42,7 @@
     max-width: 100vw;
     z-index: 10;
     opacity: 0;
+    flex-shrink: 0;
     cursor: pointer;
     visibility: hidden;
     display: flex;
@@ -88,6 +88,7 @@
     @include media-breakpoint-up(lg) {
       background-color: transparent;
       transform: none;
+      max-width: none;
     }
   }
 }

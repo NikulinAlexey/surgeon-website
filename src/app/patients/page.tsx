@@ -1,11 +1,13 @@
 import Footer from "@/components/Footer";
 import { Header } from "@/components/Header";
 
-export default function Patients() {
+export default function PatientsPage() {
   return (
     <>
       <Header />
-      <main className="layout__main">Patients</main>
+      <main className="layout__main">
+        <div className="container">Patients</div>
+      </main>
       <Footer />
     </>
   );

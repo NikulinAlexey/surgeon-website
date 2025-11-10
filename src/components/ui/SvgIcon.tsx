@@ -9,7 +9,7 @@ interface SvgIconProps {
 export default function SvgIcon({
   name,
   size = "24",
-  rotateAngle,
+  rotateAngle = "0",
   ...props
 }: SvgIconProps) {
   return (

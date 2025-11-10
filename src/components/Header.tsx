@@ -4,6 +4,7 @@ import Link from "next/link";
 import { cn } from "@/lib/clsx";
 import { useState, memo, useCallback, useRef, useEffect } from "react";
 import Burger from "./ui/Burger";
+import SvgIcon from "./ui/SvgIcon";
 
 interface NavItem {
   title: string;
@@ -14,6 +15,7 @@ const navArray: NavItem[] = [
   { title: "Пациентам", link: "/patients" },
   { title: "Специалистам", link: "/specialists" },
   { title: "Контакты", link: "/contacts" },
+  { title: "Конференции", link: "/conferences" },
 ];
 
 function HeaderComponent() {
@@ -57,7 +59,7 @@ function HeaderComponent() {
     >
       <div className="header__container container">
         <Link href="/" className="header__logo logo">
-          <span className="logo__text">Logo</span>
+          <SvgIcon name="logo-icon" size="62" aria-hidden />
         </Link>
 
         <div className="header__nav-control">
@@ -83,6 +85,14 @@ function HeaderComponent() {
                   </li>
                 ))}
               </ul>
+              <div className="nav__profile">
+                <Link
+                  href="/auth"
+                  className="nav__button button button--theme-medium-outline"
+                >
+                  Войти
+                </Link>
+              </div>
             </div>
           </div>
         </div>

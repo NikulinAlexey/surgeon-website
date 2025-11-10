@@ -9,17 +9,25 @@
     width: 100%;
     cursor: default;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
 
     @include media-breakpoint-up(lg) {
       width: fit-content;
+      padding: 0;
+      flex-direction: row;
+      align-items: center;
     }
   }
   &__list {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 
     @include media-breakpoint-up(lg) {
       flex-direction: row;
+      flex-grow: 0;
     }
   }
 
@@ -42,6 +50,19 @@
 
     @include hover {
       opacity: 0.75;
+    }
+  }
+
+  &__profile {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__button {
+    width: 100%;
+
+    @include media-breakpoint-up(lg) {
+      margin-left: 60px;
     }
   }
 }

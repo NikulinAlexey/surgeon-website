@@ -14,14 +14,20 @@
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
 
+// pages
+@import "./blocks/auth-page";
+@import "./blocks/profile";
+
 // sections
 @import "./blocks/header";
 @import "./blocks/hero";
 @import "./blocks/news";
+@import "./blocks/article";
 @import "./blocks/reviews";
 @import "./blocks/footer";
 
 // ui
+@import "./blocks/cms-content";
 @import "./blocks/button";
 @import "./blocks/review-from";
 @import "./blocks/text-gradient";
@@ -32,4 +38,5 @@
 @import "./blocks/content-card";
 @import "./blocks/icon";
 @import "./blocks/review";
+@import "./blocks/auth-form";
 @import "./blocks/decorated-bg";
