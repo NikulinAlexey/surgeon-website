@@ -17,7 +17,6 @@ const config = {
     id: {
       generator: (name, file) => {
         const iconName = path.basename(file.path, ".svg");
-        console.log(`📄 Processing icon: ${iconName}`);
         return `icon-${iconName}`;
       },
     },
@@ -30,20 +29,11 @@ const spriter = new SVGSpriter(config);
 const iconsDir = path.join(process.cwd(), "src", "assets", "icons");
 const outputDir = path.join(process.cwd(), "public", "sprite");
 
-// Проверяем существование папки с иконками
-if (!fs.existsSync(iconsDir)) {
-  console.log(`❌ Icons directory not found: ${iconsDir}`);
-  console.log(`📁 Current working directory: ${process.cwd()}`);
-  process.exit(1);
-}
-
 // Читаем все SVG файлы
 const iconFiles = fs
   .readdirSync(iconsDir)
   .filter((file) => file.endsWith(".svg"));
 
-console.log(`📁 Icons directory: ${iconsDir}`);
-console.log(`🔍 Found ${iconFiles.length} SVG files:`, iconFiles);
 
 if (iconFiles.length === 0) {
   console.log("❌ No SVG icons found in", iconsDir);
@@ -53,11 +43,9 @@ if (iconFiles.length === 0) {
 // Добавляем каждый SVG в спрайт
 iconFiles.forEach((file) => {
   const filePath = path.join(iconsDir, file);
-  console.log(`➡️ Adding: ${file}`);
 
   try {
     const svgContent = fs.readFileSync(filePath, "utf8");
-    console.log(`✅ Read ${file}, size: ${svgContent.length} bytes`);
 
     spriter.add(filePath, file, svgContent);
   } catch (error) {
@@ -82,6 +70,7 @@ spriter.compile((error, result) => {
   fs.writeFileSync(path.join(outputDir, "sprite.svg"), sprite.contents);
 
   console.log(`✅ SVG sprite generated with ${iconFiles.length} icons`);
-  console.log(`📁 Output: ${path.join(outputDir, "sprite.svg")}`);
-  console.log(`📏 Sprite size: ${sprite.contents.length} bytes`);
+  console.log(
+    `📏 Sprite size: ${sprite.contents.length / 1024} KB`
+  );
 });

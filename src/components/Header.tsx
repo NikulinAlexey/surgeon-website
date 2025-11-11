@@ -85,6 +85,12 @@ function HeaderComponent() {
                   </li>
                 ))}
               </ul>
+              <div className="nav__tel">
+                <Link className="nav__tel-link" href="tel:88120000000">
+                  <SvgIcon className="nav__tel-icon" name="phone" size="18" />
+                  <span>8 (812) 000-00-00</span>
+                </Link>
+              </div>
               <div className="nav__profile">
                 <Link
                   href="/auth"

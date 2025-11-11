@@ -20,6 +20,7 @@
       align-items: center;
     }
   }
+
   &__list {
     display: flex;
     flex-direction: column;
@@ -56,6 +57,22 @@
   &__profile {
     display: flex;
     justify-content: center;
+  }
+
+  &__tel {
+    padding-inline: 24px;
+  }
+
+  &__tel-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__tel-icon {
+    width: 24px;
+    height: 24px;
+    transform: scaleX(-1);
   }
 
   &__button {
