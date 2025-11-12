@@ -12,6 +12,7 @@ interface NavItem {
 }
 
 const navArray: NavItem[] = [
+  { title: "О нас", link: "/about" },
   { title: "Пациентам", link: "/patients" },
   { title: "Специалистам", link: "/specialists" },
   { title: "Контакты", link: "/contacts" },
