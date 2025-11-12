@@ -1,27 +1,23 @@
 "use client";
-import Footer from "@/components/Footer";
-import { Header } from "@/components/Header";
 import { useState } from "react";
 
-type AuthMode = "login" | "register" | "forgot-password";
+type AuthMode = "login" | "forgot-password";
 
 interface AuthFormData {
   email: string;
   password: string;
-  confirmPassword?: string;
-  rememberMe?: boolean;
+  rememberMe: boolean;
 }
 
 export default function AuthPage() {
-  const [authMode, setAuthMode] = useState<AuthMode>("login");
-  const [formData, setFormData] = useState<AuthFormData>({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    rememberMe: false,
-  });
-  const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState<Partial<AuthFormData>>({});
+   const [authMode, setAuthMode] = useState<AuthMode>("login");
+   const [formData, setFormData] = useState<AuthFormData>({
+     email: "",
+     password: "",
+     rememberMe: false,
+   });
+   const [isLoading, setIsLoading] = useState(false);
+   const [errors, setErrors] = useState<Partial<AuthFormData>>({});
 
   const validateForm = (): boolean => {
     const newErrors: Partial<AuthFormData> = {};
@@ -33,18 +29,9 @@ export default function AuthPage() {
       newErrors.email = "Некорректный email";
     }
 
-    // Password validation
-    if (!formData.password) {
+    // Password validation for login
+    if (authMode === "login" && !formData.password) {
       newErrors.password = "Пароль обязателен";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Пароль должен быть не менее 6 символов";
-    }
-
-    // Confirm password validation for register
-    if (authMode === "register") {
-      if (formData.password !== formData.confirmPassword) {
-        newErrors.confirmPassword = "Пароли не совпадают";
-      }
     }
 
     setErrors(newErrors);
@@ -73,14 +60,11 @@ export default function AuthPage() {
       console.log("Форма успешно отправлена");
 
       // Сброс формы после успешной отправки
-      if (authMode !== "forgot-password") {
-        setFormData({
-          email: "",
-          password: "",
-          confirmPassword: "",
-          rememberMe: false,
-        });
-      }
+      setFormData({
+        email: "",
+        password: "",
+        rememberMe: false,
+      });
     } catch (error) {
       console.error("Ошибка при отправке формы:", error);
     } finally {
@@ -112,8 +96,6 @@ export default function AuthPage() {
     switch (authMode) {
       case "login":
         return "Войти";
-      case "register":
-        return "Зарегистрироваться";
       case "forgot-password":
         return "Восстановить пароль";
       default:
@@ -123,14 +105,12 @@ export default function AuthPage() {
 
   return (
     <>
-      <Header />
       <main className="layout__main">
         <div className="container">
           <div className="auth-page">
             <div className="auth-page__header">
               <h1 className="auth-page__title">
                 {authMode === "login" && "Вход"}
-                {authMode === "register" && "Регистрация"}
                 {authMode === "forgot-password" && "Восстановление пароля"}
               </h1>
 
@@ -146,10 +126,8 @@ export default function AuthPage() {
                 </button>
                 <button
                   type="button"
-                  className={`auth-page__tab ${
-                    authMode === "register" ? "auth-page__tab--active" : ""
-                  }`}
-                  onClick={() => setAuthMode("register")}
+                  className="auth-page__tab auth-page__tab--link"
+                  onClick={() => window.location.href = "/register"}
                 >
                   Регистрация
                 </button>
@@ -178,7 +156,7 @@ export default function AuthPage() {
                 )}
               </div>
 
-              {authMode !== "forgot-password" && (
+              {authMode === "login" && (
                 <div className="auth-form__field">
                   <label htmlFor="password" className="auth-form__label">
                     Пароль
@@ -197,31 +175,6 @@ export default function AuthPage() {
                   />
                   {errors.password && (
                     <span className="auth-form__error">{errors.password}</span>
-                  )}
-                </div>
-              )}
-
-              {authMode === "register" && (
-                <div className="auth-form__field">
-                  <label htmlFor="confirmPassword" className="auth-form__label">
-                    Подтвердите пароль
-                  </label>
-                  <input
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleInputChange}
-                    className={`auth-form__input ${
-                      errors.confirmPassword ? "auth-form__input--error" : ""
-                    }`}
-                    placeholder="Повторите пароль"
-                    disabled={isLoading}
-                  />
-                  {errors.confirmPassword && (
-                    <span className="auth-form__error">
-                      {errors.confirmPassword}
-                    </span>
                   )}
                 </div>
               )}
@@ -276,7 +229,6 @@ export default function AuthPage() {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }
@@ -285,6 +237,6 @@ export default function AuthPage() {
 // export async function generateMetadata() {
 //   return {
 //     title: "Вход | Доктор Хаус",
-//     description: "Войдите в свой аккаунт или зарегистрируйтесь",
+//     description: "Войдите в свой аккаунт",
 //   };
 // }

@@ -1,3 +1,5 @@
+"use client";
+
 import SvgIcon from "./ui/SvgIcon";
 import Button from "./ui/Button";
 

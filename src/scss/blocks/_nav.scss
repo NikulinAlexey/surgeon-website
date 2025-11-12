@@ -28,6 +28,7 @@
 
     @include media-breakpoint-up(lg) {
       flex-direction: row;
+      flex-wrap: wrap;
       flex-grow: 0;
     }
   }

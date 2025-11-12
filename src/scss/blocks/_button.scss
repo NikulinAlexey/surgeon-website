@@ -61,11 +61,19 @@
   }
 
   &--theme-medium-outline {
-    --button-padding: 20px 40px;
-    --button-bg-color: transparent;
     --button-color: #a8bfef;
     --button-border-color: #a8bfef;
-    --button-border-radius: 12px;
-    --button-border-width: 3px;
+    --button-bg-color: transparent;
+    --button-border-radius: 8px;
+    --button-padding: 10px 20px;
+    --button-border-width: 2px;
+
+    @include font(14px, 14px);
+
+    @include media-breakpoint-up(xl) {
+      --button-padding: 20px 40px;
+      --button-border-width: 3px;
+      --button-border-radius: 12px;
+    }
   }
 }
