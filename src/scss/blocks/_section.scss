@@ -19,18 +19,18 @@
   }
 
   &__title {
-    @include font(24px, 24px, 700);
+    @include font(24px, 24px, 700, $basic-family);
 
     transition-property: font-size;
     transition-duration: $animation-duration;
     transition-timing-function: $animation-timing-function;
 
     @include media-breakpoint-up(lg) {
-      @include font(34px, 34px, 700);
+      @include font(34px, 34px, 700, $basic-family);
     }
 
     @include media-breakpoint-up(xl) {
-      @include font(56px, 56px, 700);
+      @include font(56px, 56px, 700, $basic-family);
     }
   }
 

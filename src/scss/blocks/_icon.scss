@@ -5,7 +5,4 @@
   fill: currentColor;
   flex-shrink: 0;
   transform: rotate(var(--icon-rotate-angle));
-  transition-property: fill;
-  transition-duration: $animation-duration;
-  transition-timing-function: $animation-timing-function;
 }

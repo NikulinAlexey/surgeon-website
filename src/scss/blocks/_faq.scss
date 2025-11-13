@@ -1,0 +1,62 @@
+.faq {
+  --faq-trigger-bg-color: var(--c-bg-color-1);
+  --faq-item-color: var(--c-text-color-10);
+  --faq-item-bg-color: var(--c-bg-color-1);
+
+  &__item {
+    color: var(--faq-item-color);
+    border-radius: 16px;
+    background-color: var(--faq-item-bg-color);
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+  }
+
+  &__accordion {
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 8px;
+
+    @include media-breakpoint-up(lg) {
+      gap: 16px;
+    }
+  }
+
+  &__trigger {
+  @include font(18px, 18px, 600);
+
+    width: 100%;
+    padding: 20px 24px;
+    background: white;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--c-text-color-10);
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background: #f9fafb;
+    }
+  }
+
+  &__trigger-text {
+    flex: 1;
+  }
+
+  &__icon {
+    transition: transform 0.3s ease;
+
+    .faq__item._active & {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__answer {
+    padding: 20px 24px;
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+  }
+}

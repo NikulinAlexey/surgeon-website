@@ -1,5 +1,5 @@
 .button {
-  @include font(16px, 16px);
+  @include font(16px, 16px, 400, $basic-family);
 
   display: inline-flex;
   justify-content: center;
@@ -9,8 +9,8 @@
   color: var(--button-color);
   background-color: var(--button-bg-color);
   border: var(--button-border-width, 1px) var(--button-border-style, solid)
-    var(--button-border-color, black);
-  border-radius: var(--button-border-radius);
+    var(--button-border-color, transparent);
+  border-radius: var(--button-border-radius, 0);
   cursor: pointer;
   box-shadow: var(--button-box-shadow);
   transition-property: transform, opacity, color, background-color, border-color,
@@ -68,7 +68,7 @@
     --button-padding: 10px 20px;
     --button-border-width: 2px;
 
-    @include font(14px, 14px);
+    @include font(14px, 14px, 400, $basic-family);
 
     @include media-breakpoint-up(xl) {
       --button-padding: 20px 40px;
