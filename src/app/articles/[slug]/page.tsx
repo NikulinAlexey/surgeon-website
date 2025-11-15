@@ -27,6 +27,19 @@ export default function ArticlePage({ params }: ArticlePageProps) {
   );
 }
 
+// Для статического экспорта - генерация параметров
+export async function generateStaticParams() {
+  // Здесь получаем все возможные slug статей
+  // const articles = await getAllArticles();
+  // return articles.map((item) => ({ slug: item.slug }));
+
+  // Пока фиктивные данные
+  return [
+    { slug: 'article-1' },
+    { slug: 'article-2' },
+  ];
+}
+
 // Для SEO - генерация метаданных
 export async function generateMetadata({ params }: ArticlePageProps) {
   const { slug } = params;

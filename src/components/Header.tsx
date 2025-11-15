@@ -37,9 +37,11 @@ function HeaderComponent() {
   useEffect(() => {
     const body = document.body;
 
-    isBurgerClicked
-      ? body.classList.add("_locked")
-      : body.classList.remove("_locked");
+    if (isBurgerClicked) {
+      body.classList.add("_locked");
+    } else {
+      body.classList.remove("_locked");
+    }
   }, [isBurgerClicked]);
 
   useEffect(() => {

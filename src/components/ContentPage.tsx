@@ -2,18 +2,14 @@ import Image from "next/image";
 
 interface ContentPageprops {
   img: string;
-  type: "news" | "articles";
   title: string;
   description: string;
   date: string;
-  slug: string;
 }
 export default function ContentPage({
   title,
   img,
   date,
-  type,
-  slug,
   description,
 }: ContentPageprops) {
   return (
