@@ -1,23 +1,28 @@
 .auth-page {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 40px 0;
+  --auth-page-width: clamp(360px, 440px, 100vw);
+  --auth-page-title-color: var(--c-text-color-1);
+
+  display: flex;
+  height: 100dvh;
+  margin: auto;
+
+  &__container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    width: var(--auth-page-width);
+  }
 
   &__header {
     text-align: center;
-    margin-bottom: 32px;
   }
 
   &__title {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: #333;
-  }
+    @include font(24px, 24px, 600);
 
-  &__tabs {
-    display: flex;
-    border-bottom: 1px solid #e1e5e9;
+    color: var(--auth-page-title-color);
   }
 
   &__tab {

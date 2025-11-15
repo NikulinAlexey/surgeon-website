@@ -23,7 +23,7 @@
   }
 
   &__trigger {
-  @include font(18px, 18px, 600);
+    @include font(18px, 18px, 600);
 
     width: 100%;
     padding: 20px 24px;
@@ -47,10 +47,11 @@
   }
 
   &__icon {
+    transform: rotate(90deg);
     transition: transform 0.3s ease;
 
     .faq__item._active & {
-      transform: rotate(180deg);
+      transform: rotate(-90deg);
     }
   }
 

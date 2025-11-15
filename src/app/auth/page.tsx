@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import FormField from "@/components/ui/FormField";
 
 type AuthMode = "login" | "forgot-password";
 
@@ -10,14 +12,15 @@ interface AuthFormData {
 }
 
 export default function AuthPage() {
-   const [authMode, setAuthMode] = useState<AuthMode>("login");
-   const [formData, setFormData] = useState<AuthFormData>({
-     email: "",
-     password: "",
-     rememberMe: false,
-   });
-   const [isLoading, setIsLoading] = useState(false);
-   const [errors, setErrors] = useState<Partial<AuthFormData>>({});
+  const router = useRouter();
+  const [authMode, setAuthMode] = useState<AuthMode>("login");
+  const [formData, setFormData] = useState<AuthFormData>({
+    email: "",
+    password: "",
+    rememberMe: false,
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState<Partial<AuthFormData>>({});
 
   const validateForm = (): boolean => {
     const newErrors: Partial<AuthFormData> = {};
@@ -106,77 +109,48 @@ export default function AuthPage() {
   return (
     <>
       <main className="layout__main">
-        <div className="container">
-          <div className="auth-page">
+        <div className="auth-page">
+          <div className="auth-page__container">
             <div className="auth-page__header">
               <h1 className="auth-page__title">
                 {authMode === "login" && "Вход"}
                 {authMode === "forgot-password" && "Восстановление пароля"}
               </h1>
-
-              <div className="auth-page__tabs">
-                <button
-                  type="button"
-                  className={`auth-page__tab ${
-                    authMode === "login" ? "auth-page__tab--active" : ""
-                  }`}
-                  onClick={() => setAuthMode("login")}
-                >
-                  Вход
-                </button>
-                <button
-                  type="button"
-                  className="auth-page__tab auth-page__tab--link"
-                  onClick={() => window.location.href = "/register"}
-                >
-                  Регистрация
-                </button>
-              </div>
             </div>
 
             <form className="auth-form" onSubmit={handleSubmit}>
-              <div className="auth-form__field">
-                <label htmlFor="email" className="auth-form__label">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className={`auth-form__input ${
-                    errors.email ? "auth-form__input--error" : ""
-                  }`}
-                  placeholder="your@email.com"
-                  disabled={isLoading}
-                />
-                {errors.email && (
-                  <span className="auth-form__error">{errors.email}</span>
-                )}
-              </div>
+              <FormField
+                label="Email"
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                error={errors.email}
+                placeholder="your@email.com"
+                disabled={isLoading}
+                onReset={() => {
+                  setFormData((prev) => ({ ...prev, email: "" }));
+                  setErrors((prev) => ({ ...prev, email: undefined }));
+                }}
+              />
 
               {authMode === "login" && (
-                <div className="auth-form__field">
-                  <label htmlFor="password" className="auth-form__label">
-                    Пароль
-                  </label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    className={`auth-form__input ${
-                      errors.password ? "auth-form__input--error" : ""
-                    }`}
-                    placeholder="Введите пароль"
-                    disabled={isLoading}
-                  />
-                  {errors.password && (
-                    <span className="auth-form__error">{errors.password}</span>
-                  )}
-                </div>
+                <FormField
+                  label="Пароль"
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  error={errors.password}
+                  placeholder="Введите пароль"
+                  disabled={isLoading}
+                  onReset={() => {
+                    setFormData((prev) => ({ ...prev, password: "" }));
+                    setErrors((prev) => ({ ...prev, password: undefined }));
+                  }}
+                />
               )}
 
               {authMode === "login" && (
@@ -221,7 +195,7 @@ export default function AuthPage() {
                     className="auth-form__link"
                     onClick={() => setAuthMode("login")}
                   >
-                    Вернуться к входу
+                    Вернуться ко входу
                   </button>
                 </div>
               )}
@@ -232,11 +206,3 @@ export default function AuthPage() {
     </>
   );
 }
-
-// Для SEO - генерация метаданных
-// export async function generateMetadata() {
-//   return {
-//     title: "Вход | Доктор Хаус",
-//     description: "Войдите в свой аккаунт",
-//   };
-// }

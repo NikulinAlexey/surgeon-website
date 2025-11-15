@@ -1,0 +1,53 @@
+.error-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+
+  &__container {
+    text-align: center;
+    max-width: 600px;
+  }
+
+  &__title {
+    font-size: 120px;
+    font-weight: bold;
+    color: var(--c-text-color-9);
+    margin-bottom: 20px;
+    line-height: 1;
+  }
+
+  &__message {
+    font-size: 24px;
+    color: var(--c-text-color-1);
+    margin-bottom: 10px;
+  }
+
+  &__description {
+    font-size: 16px;
+    color: var(--c-text-color-2);
+    margin-bottom: 30px;
+  }
+
+  &__link,
+  &__button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--c-primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: var(--c-primary-color-hover);
+    }
+  }
+
+  &__button {
+    border: none;
+    cursor: pointer;
+  }
+}

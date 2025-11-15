@@ -1,0 +1,83 @@
+.field {
+  // border
+  --field-border-color: transparent;
+  --field-border-color-focus: var(--c-text-color-9);
+  --field-border-color-error: var(--c-error-color);
+
+  // hint
+  --field-hint-color: var(--c-text-color-1);
+
+  //label
+  --field-label-color: var(--c-text-color-1);
+
+  // reset
+  --field-reset-color: var(--c-text-color-10);
+
+  margin-bottom: 20px;
+
+  &__label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: var(--field-label-color);
+  }
+
+  &__input-wrapper {
+    position: relative;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 12px 40px 12px 16px;
+    border: 1px solid var(--field-border-color);
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+
+    &:focus {
+      outline: none;
+      border-color: var(--field-border-color-focus);
+    }
+  }
+
+  &__reset {
+    @include font(24px, 24px);
+
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    aspect-ratio: 1;
+    background: none;
+    border: none;
+    color: var(--field-reset-color);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__hint {
+    display: block;
+    color: var(--field-hint-color);
+    margin-top: 4px;
+    font-size: 14px;
+    min-height: 1lh;
+  }
+
+  &--error {
+    --border-color: var(--field-border-color-error);
+    --form-field-hint-color: var(--c-error-color);
+  }
+}
