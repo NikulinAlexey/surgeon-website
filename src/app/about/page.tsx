@@ -39,7 +39,7 @@ export default function AboutPage() {
                     </p>
                   </div>
                   <div className="about-page__image">
-                    <img src="/images/clinic.jpg" alt="Клиника урологии" />
+                    <img src="/surgeon-website/images/clinic.jpg" alt="Клиника урологии" />
                   </div>
                 </div>
               </div>
@@ -99,7 +99,7 @@ export default function AboutPage() {
                 <div className="about-page__team-grid">
                   <div className="about-page__doctor-card">
                     <div className="about-page__doctor-photo">
-                      <img src="/images/doctor1.jpg" alt="Врач 1" />
+                      <img src="/surgeon-website/images/doctor1.jpg" alt="Врач 1" />
                     </div>
                     <h3>Иванов Иван Иванович</h3>
                     <p className="about-page__doctor-specialty">Главный уролог, кандидат медицинских наук</p>
@@ -107,7 +107,7 @@ export default function AboutPage() {
                   </div>
                   <div className="about-page__doctor-card">
                     <div className="about-page__doctor-photo">
-                      <img src="/images/doctor2.jpg" alt="Врач 2" />
+                      <img src="/surgeon-website/images/doctor2.jpg" alt="Врач 2" />
                     </div>
                     <h3>Петров Петр Петрович</h3>
                     <p className="about-page__doctor-specialty">Уролог-андролог</p>
@@ -115,7 +115,7 @@ export default function AboutPage() {
                   </div>
                   <div className="about-page__doctor-card">
                     <div className="about-page__doctor-photo">
-                      <img src="/images/doctor3.jpg" alt="Врач 3" />
+                      <img src="/surgeon-website/images/doctor3.jpg" alt="Врач 3" />
                     </div>
                     <h3>Сидорова Анна Михайловна</h3>
                     <p className="about-page__doctor-specialty">Уролог-гинеколог</p>
