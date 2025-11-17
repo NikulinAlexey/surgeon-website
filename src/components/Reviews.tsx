@@ -93,7 +93,7 @@ export default function Reviews() {
               <li className="reviews__control-item">
                 <Button
                   onClick={() => swiperRef.current?.slidePrev()}
-                  className="reviews__control-button button button--circle button--size-medium button--theme-light-outline button--lift"
+                  className="reviews__control-button button button--circle button--size-medium button--theme-light-outline button--lifted"
                 >
                   <SvgIcon
                     name="shevron"
@@ -106,7 +106,7 @@ export default function Reviews() {
               <li className="reviews__control-item">
                 <Button
                   onClick={() => swiperRef.current?.slideNext()}
-                  className="reviews__control-button button button--circle button--size-medium button--theme-light-outline button--lift"
+                  className="reviews__control-button button button--circle button--size-medium button--theme-light-outline button--lifted"
                 >
                   <SvgIcon name="shevron" size="14" aria-hidden />
                 </Button>

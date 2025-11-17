@@ -86,7 +86,7 @@ export default function Articles() {
               <li className="articles__control-item">
                 <Button
                   onClick={() => swiperRef.current?.slidePrev()}
-                  className="articles__control-button button button--circle button--size-medium button--theme-light-outline button--lift"
+                  className="articles__control-button button button--circle button--size-medium button--theme-light-outline button--lifted"
                 >
                   <SvgIcon
                     name="shevron"
@@ -99,7 +99,7 @@ export default function Articles() {
               <li className="articles__control-item">
                 <Button
                   onClick={() => swiperRef.current?.slideNext()}
-                  className="articles__control-button button button--circle button--size-medium button--theme-light-outline button--lift"
+                  className="articles__control-button button button--circle button--size-medium button--theme-light-outline button--lifted"
                 >
                   <SvgIcon name="shevron" size="14" aria-hidden />
                 </Button>

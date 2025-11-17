@@ -83,7 +83,7 @@ export default function News() {
               <li className="news__control-item">
                 <Button
                   onClick={() => swiperRef.current?.slidePrev()}
-                  className="news__control-button button button--circle button--size-medium button--theme-light-outline button--lift"
+                  className="news__control-button button button--circle button--size-medium button--theme-light-outline button--lifted"
                 >
                   <SvgIcon
                     name="shevron"
@@ -96,7 +96,7 @@ export default function News() {
               <li className="news__control-item">
                 <Button
                   onClick={() => swiperRef.current?.slideNext()}
-                  className="news__control-button button button--circle button--size-medium button--theme-light-outline button--lift"
+                  className="news__control-button button button--circle button--size-medium button--theme-light-outline button--lifted"
                 >
                   <SvgIcon name="shevron" size="14" aria-hidden />
                 </Button>

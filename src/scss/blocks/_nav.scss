@@ -23,13 +23,15 @@
 
   &__list {
     display: flex;
+    gap: 8px;
     flex-direction: column;
-    flex-grow: 1;
+    margin-bottom: auto;
 
     @include media-breakpoint-up(lg) {
       flex-direction: row;
       flex-wrap: wrap;
-      flex-grow: 0;
+      margin-bottom: 0;
+      gap: 16px;
     }
   }
 
@@ -40,14 +42,14 @@
   &__link {
     text-align: center;
     width: 100%;
-    padding: 32px;
+    padding: 16px;
     transition-property: opacity;
     transition-duration: $animation-duration;
     transition-timing-function: $animation-timing-function;
 
     @include media-breakpoint-up(lg) {
       text-align: left;
-      padding: 8px 16px;
+      padding: 12px;
     }
 
     @include hover {
@@ -61,7 +63,14 @@
   }
 
   &__tel {
-    padding-inline: 24px;
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+    margin-top: 48px;
+
+    @include media-breakpoint-up(lg) {
+      margin-top: 0;
+    }
   }
 
   &__tel-link {
@@ -73,7 +82,6 @@
   &__tel-icon {
     width: 24px;
     height: 24px;
-    transform: scaleX(-1);
   }
 
   &__button {
