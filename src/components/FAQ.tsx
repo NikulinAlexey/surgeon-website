@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { cn } from "@/lib/clsx";
 import SvgIcon from "./ui/SvgIcon";
+import Section from "./Section";
 
 interface FAQItem {
   id: string;
@@ -56,13 +57,8 @@ export default function FAQ() {
   };
 
   return (
-    <section className="faq section" id="faq">
-      <div className="faq__container container">
-        <div className="faq__top section__top">
-          <h2 className="faq__title section__title">
-            Часто задаваемые вопросы
-          </h2>
-        </div>
+    <Section id="faq" title="Часто задаваемые вопросы">
+      <div className="faq">
         <div className="faq__body">
           <ul className="faq__accordion">
             {faqData.map((item) => (
@@ -91,6 +87,6 @@ export default function FAQ() {
           </ul>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

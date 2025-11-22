@@ -12,6 +12,8 @@ export default function Home() {
       <Header />
       <main className="layout__main">
         <Hero />
+
+        {/* секции страницы */}
         <News />
         <Reviews />
         <FAQ />

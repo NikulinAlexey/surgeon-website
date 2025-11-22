@@ -62,6 +62,12 @@ export default function AuthPage() {
 
       console.log("Форма успешно отправлена");
 
+      // Перенаправление на главную страницу после успешного входа
+      if (authMode === "login") {
+        router.push("/");
+        return;
+      }
+
       // Сброс формы после успешной отправки
       setFormData({
         email: "",

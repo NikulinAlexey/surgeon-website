@@ -33,10 +33,6 @@
     text-overflow: ellipsis;
   }
 
-  &--circle {
-    border-radius: 50%;
-  }
-
   &--lifted {
     @include hover {
       --button-box-shadow: var(--c-box-shadow-3);
@@ -93,9 +89,21 @@
     --button-border-color: var(--c-text-color-9);
   }
 
+  &--theme-outline-inverted {
+    --button-bg-color: transparent;
+    --button-color: var(--c-text-color-9);
+    --button-border-color: var(--c-text-color-9);
+  }
+
   &--theme-ghost {
     --button-bg-color: transparent;
     --button-color: var(--c-text-color-6);
     --button-border-color: transparent;
+  }
+
+  &--shape-circle {
+    border-radius: 50%;
+    padding: 14px;
+    aspect-ratio: 1;
   }
 }

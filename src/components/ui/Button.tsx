@@ -1,5 +1,4 @@
-import { cn } from "@/lib/clsx";
-import { cva } from "class-variance-authority";
+import { cva, VariantProps } from "class-variance-authority";
 
 const buttonVariants = cva("button", {
   variants: {
@@ -14,17 +13,21 @@ const buttonVariants = cva("button", {
       md: "button--size-md",
       lg: "button--size-lg",
     },
+    shape: {
+      circle: "button--shape-circle",
+    },
+    lifted: {
+      true: "button--lifted",
+    },
     disabled: {
-      true: "opacity-50 cursor-not-allowed",
+      true: "_disabled",
     },
   },
 });
-interface ButtonProps extends buttonVariants {
+interface ButtonProps extends VariantProps<typeof buttonVariants> {
   children?: React.ReactNode;
   text?: string;
-  size?: "sm" | "md" | "lg";
   className?: string;
-  disabled: boolean;
   onClick?: () => void;
 }
 
@@ -32,15 +35,23 @@ export default function Button({
   children,
   className,
   text,
+  variant,
   size = "sm",
+  shape,
+  lifted,
+  disabled,
   onClick,
   ...props
 }: ButtonProps) {
   return (
     <button
       onClick={onClick}
+      disabled={disabled || undefined}
       className={buttonVariants({
+        variant,
         size,
+        shape,
+        lifted,
         disabled,
         className,
       })}

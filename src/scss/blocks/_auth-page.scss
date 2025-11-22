@@ -3,8 +3,9 @@
   --auth-page-title-color: var(--c-text-color-1);
 
   display: flex;
-  height: 100dvh;
+  height: 100%;
   margin: auto;
+  padding-block: 40px;
 
   &__container {
     margin: auto;

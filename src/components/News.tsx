@@ -1,11 +1,9 @@
-import SvgIcon from "./ui/SvgIcon";
-import Button from "./ui/Button";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import { useRef } from "react";
 import ContentCard from "./ContentCard";
 import { SWIPER_CONFIGS } from "@/config/swiper-configs";
+import Section from "./Section";
 
 const newsCards = [
   {
@@ -74,56 +72,31 @@ export default function News() {
   const swiperRef = useRef<SwiperType>(null);
 
   return (
-    <section className="news section" id="news">
-      <div className="news__container container">
-        <div className="news__top section__top">
-          <h2 className="news__title section__title">Новости</h2>
-          <div className="news__options section__options">
-            <ul className="news__controlls section__controlls">
-              <li className="news__control-item">
-                <Button
-                  onClick={() => swiperRef.current?.slidePrev()}
-                  className="news__control-button button button--circle button--size-medium button--theme-light-outline button--lifted"
-                >
-                  <SvgIcon
-                    name="shevron"
-                    rotateAngle="-180"
-                    size="14"
-                    aria-hidden
-                  />
-                </Button>
+    <Section
+      id="news"
+      title="Новости"
+      controls={{
+        onPrevClick: () => swiperRef.current?.slidePrev(),
+        onNextClick: () => swiperRef.current?.slideNext(),
+      }}
+    >
+      <Swiper
+        {...SWIPER_CONFIGS.cards}
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
+        className="slider slider--wide-before-xl"
+      >
+        <ul className="grid">
+          {newsCards.map(({ id, ...props }) => (
+            <SwiperSlide className="slider__item" key={id}>
+              <li className="grid__item">
+                <ContentCard type="news" {...props} />
               </li>
-              <li className="news__control-item">
-                <Button
-                  onClick={() => swiperRef.current?.slideNext()}
-                  className="news__control-button button button--circle button--size-medium button--theme-light-outline button--lifted"
-                >
-                  <SvgIcon name="shevron" size="14" aria-hidden />
-                </Button>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="news__body">
-          <Swiper
-            {...SWIPER_CONFIGS.cards}
-            onSwiper={(swiper) => {
-              swiperRef.current = swiper;
-            }}
-            className="slider slider--wide-before-xl"
-          >
-            <ul className="grid">
-              {newsCards.map(({ id, ...props }) => (
-                <SwiperSlide className="slider__item" key={id}>
-                  <li className="grid__item">
-                    <ContentCard type="news" {...props} />
-                  </li>
-                </SwiperSlide>
-              ))}
-            </ul>
-          </Swiper>
-        </div>
-      </div>
-    </section>
+            </SwiperSlide>
+          ))}
+        </ul>
+      </Swiper>
+    </Section>
   );
 }

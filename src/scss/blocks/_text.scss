@@ -1,0 +1,141 @@
+// Блок типографики
+.text {
+  font-family: $basic-family;
+  line-height: 1.5;
+  transition-property: font-size, color;
+  transition-duration: $animation-duration;
+  transition-timing-function: $animation-timing-function;
+
+  &--xs {
+    @include font(12px, 16px, 700, $basic-family);
+
+    @include media-breakpoint-up(lg) {
+      @include font(14px, 18px, 700, $basic-family);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include font(16px, 20px, 700, $basic-family);
+    }
+  }
+
+  &--sm {
+    @include font(14px, 18px, 700, $basic-family);
+
+    @include media-breakpoint-up(lg) {
+      @include font(16px, 20px, 700, $basic-family);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include font(20px, 24px, 700, $basic-family);
+    }
+  }
+
+  &--md {
+    @include font(16px, 20px, 700, $basic-family);
+
+    @include media-breakpoint-up(lg) {
+      @include font(18px, 22px, 700, $basic-family);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include font(24px, 28px, 700, $basic-family);
+    }
+  }
+
+  &--lg {
+    @include font(18px, 22px, 700, $basic-family);
+
+    @include media-breakpoint-up(lg) {
+      @include font(20px, 24px, 700, $basic-family);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include font(28px, 32px, 700, $basic-family);
+    }
+  }
+  // Размеры
+  &--xl {
+    @include font(20px, 24px, 700, $basic-family);
+
+    @include media-breakpoint-up(lg) {
+      @include font(24px, 28px, 700, $basic-family);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include font(34px, 38px, 700, $basic-family);
+    }
+  }
+
+  // Ваш максимальный заголовок
+  &--xxl {
+    @include font(24px, 24px, 700, $basic-family);
+
+    @include media-breakpoint-up(lg) {
+      @include font(34px, 34px, 700, $basic-family);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include font(56px, 56px, 700, $basic-family);
+    }
+  }
+
+  // Модификаторы веса
+  &--bold {
+    font-weight: 700;
+  }
+  &--semibold {
+    font-weight: 600;
+  }
+  &--regular {
+    font-weight: 400;
+  }
+  &--light {
+    font-weight: 300;
+  }
+
+  // Модификаторы цвета
+  &--muted {
+    color: #6c757d;
+  }
+  &--primary {
+    color: #3498db;
+  }
+  &--white {
+    color: white;
+  }
+  &--error {
+    color: #e74c3c;
+  }
+  &--success {
+    color: #27ae60;
+  }
+
+  // Модификаторы выравнивания
+  &--center {
+    text-align: center;
+  }
+  &--right {
+    text-align: right;
+  }
+  &--left {
+    text-align: left;
+  }
+
+  // Модификаторы преобразования
+  &--uppercase {
+    text-transform: uppercase;
+  }
+  &--lowercase {
+    text-transform: lowercase;
+  }
+  &--capitalize {
+    text-transform: capitalize;
+  }
+
+  // Утилиты
+  &--truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
