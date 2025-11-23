@@ -47,8 +47,14 @@
   }
 
   &__icon {
+    @include block-size(36px);
+
     transform: rotate(90deg);
     transition: transform 0.3s ease;
+
+    @include media-breakpoint-up(lg) {
+      @include block-size(44px);
+    }
 
     .faq__item._active & {
       transform: rotate(-90deg);

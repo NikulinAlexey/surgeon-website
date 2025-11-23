@@ -1,9 +1,3 @@
-<svg viewBox="0 0 20 20" id="arrow">
-  <path
-    transform="rotate(90,10,10)"
-    fill-rule="evenodd"
-    clip-rule="evenodd"
-    d="M18.225 16c-.455 0-.912-.176-1.258-.533L9.999 8.35l-6.962 7.118a1.756 1.756 0 0 1-2.514.005 1.828 1.828 0 0 1-.005-2.555l8.223-8.405c.666-.683 1.85-.683 2.519 0l8.223 8.405a1.83 1.83 0 0 1-.005 2.555c-.346.352-.8.528-1.253.528"
-    fill="currentColor"
-  />
+<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 31L27 22.5L19 14" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
