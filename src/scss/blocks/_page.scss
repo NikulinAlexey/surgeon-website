@@ -3,14 +3,15 @@
   height: 100%;
 
   &._locked {
-    position: fixed;
-    top: var(--layout-top, 0); // сохраняем позицию скролла
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden; // блокируем скролл
+    overflow: hidden;
+    touch-action: none; // блокируем touch-жесты
+    -ms-touch-action: none;
 
-    // Для iOS Safari
-    -webkit-overflow-scrolling: touch;
+    // Для фиксации позиции на iOS
+    position: relative;
+    height: 100vh;
+
+    // Предотвращаем bounce-эффект на iOS
+    overscroll-behavior: none;
   }
 }
