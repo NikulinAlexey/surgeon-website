@@ -7,6 +7,7 @@ const buttonVariants = cva("button", {
       secondary: "button--theme-secondary",
       ghost: "button--theme-ghost",
       outline: "button--theme-outline",
+      "outline-inverted": "button--theme-outline-inverted",
     },
     size: {
       sm: "button--size-sm",
@@ -28,6 +29,7 @@ interface ButtonProps extends VariantProps<typeof buttonVariants> {
   children?: React.ReactNode;
   text?: string;
   className?: string;
+  type?: "button" | "submit" | "reset";
   onClick?: () => void;
 }
 
@@ -41,10 +43,12 @@ export default function Button({
   lifted,
   disabled,
   onClick,
+  type = "button",
   ...props
 }: ButtonProps) {
   return (
     <button
+      type={type}
       onClick={onClick}
       disabled={disabled || undefined}
       className={buttonVariants({

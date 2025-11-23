@@ -81,7 +81,7 @@ export default function Articles() {
       title="Статьи"
       id="articles"
       controls={{
-        onPrevClick: () => () => swiperRef.current?.slidePrev(),
+        onPrevClick: () => swiperRef.current?.slidePrev(),
         onNextClick: () => swiperRef.current?.slideNext(),
       }}
     >

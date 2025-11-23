@@ -68,10 +68,10 @@
 
   // Ваш максимальный заголовок
   &--xxl {
-    @include font(24px, 24px, 700, $basic-family);
+    @include font(36px, 36px, 700, $basic-family);
 
     @include media-breakpoint-up(lg) {
-      @include font(34px, 34px, 700, $basic-family);
+      @include font(46px, 46px, 700, $basic-family);
     }
 
     @include media-breakpoint-up(xl) {

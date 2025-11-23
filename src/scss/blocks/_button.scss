@@ -85,25 +85,24 @@
 
   &--theme-outline {
     --button-bg-color: transparent;
-    --button-color: var(--c-text-color-9);
-    --button-border-color: var(--c-text-color-9);
+    --button-color: var(--c-text-color-1);
+    --button-border-color: var(--c-border-color-9);
   }
 
   &--theme-outline-inverted {
-    --button-bg-color: transparent;
-    --button-color: var(--c-text-color-9);
-    --button-border-color: var(--c-text-color-9);
+    --button-bg-color: var(--c-bg-color-1);
+    --button-color: var(--c-text-color-10);
+    --button-border-color: var(--c-border-color-8);
   }
 
   &--theme-ghost {
     --button-bg-color: transparent;
-    --button-color: var(--c-text-color-6);
+    --button-color: var(--c-text-color-10);
     --button-border-color: transparent;
   }
 
   &--shape-circle {
     border-radius: 50%;
-    padding: 14px;
-    aspect-ratio: 1;
+    padding: 10px;
   }
 }

@@ -6,29 +6,8 @@ const BASE_CONFIG: Partial<SwiperProps> = {
   modules: [Navigation],
   loop: true,
   spaceBetween: 16,
-
-  // Основные настройки touch
-  touchEventsTarget: 'container', // свайп по всей зоне контейнера
-  touchStartPreventDefault: false,
-  touchMoveStopPropagation: false, // меняем на false
-  simulateTouch: false, // отключаем симуляцию touch для мыши, чтобы избежать прилипания
-  threshold: 10,
-  shortSwipes: true,
-  longSwipes: true,
-  followFinger: true,
-
-  // Отключаем grabCursor для мыши (он вызывает "прилипание")
-  grabCursor: false,
-
-  // Настройки для лучшей работы с мышью
-  mousewheel: false,
-  freeMode: false,
-
-  // Предотвращаем конфликты
-  resistance: true,
+  touchEventsTarget: "container", // свайп по всей зоне контейнера
   resistanceRatio: 0.85,
-  touchAngle: 45,
-  touchRatio: 1,
 };
 
 // Конфиги для разных типов слайдеров

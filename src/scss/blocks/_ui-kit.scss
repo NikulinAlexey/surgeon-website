@@ -1,6 +1,8 @@
 .ui-kit {
+  --ui-kit-bg-color: var(--c-bg-color-11);
   padding-block: 40px;
   display: grid;
   grid-template-columns: 100%;
   gap: 24px;
+  background-color: var(--ui-kit-bg-color);
 }

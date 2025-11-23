@@ -28,7 +28,12 @@ export default function Section({
           <div className="section__options">
             {controls && (
               <>
-                <Button shape="circle" lifted onClick={controls.onPrevClick}>
+                <Button
+                  variant="outline"
+                  shape="circle"
+                  lifted
+                  onClick={controls.onPrevClick}
+                >
                   <SvgIcon
                     name="shevron"
                     rotateAngle="-180"
@@ -36,7 +41,12 @@ export default function Section({
                     aria-hidden
                   />
                 </Button>
-                <Button shape="circle" lifted onClick={controls.onNextClick}>
+                <Button
+                  variant="outline"
+                  shape="circle"
+                  lifted
+                  onClick={controls.onNextClick}
+                >
                   <SvgIcon name="shevron" size="14" aria-hidden />
                 </Button>
               </>
