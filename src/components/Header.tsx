@@ -63,7 +63,7 @@ function HeaderComponent() {
     >
       <div className="header__container container">
         <Link href="/" className="header__logo logo">
-          <SvgIcon name="logo-icon" size="62" aria-hidden />
+          <SvgIcon name="logo-icon" aria-hidden />
         </Link>
 
         <div className="header__nav-control">
@@ -92,7 +92,7 @@ function HeaderComponent() {
               <div className="nav__tel">
                 <Link className="nav__tel-link" href="tel:88120000000">
                   <SvgIcon className="nav__tel-icon" name="phone" size="18" />
-                  <span>8 (812) 000-00-00</span>
+                  <span className="nav__tel-text">8 (812) 000-00-00</span>
                 </Link>
               </div>
               <div className="nav__profile">

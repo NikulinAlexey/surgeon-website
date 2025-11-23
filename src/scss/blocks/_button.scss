@@ -10,6 +10,7 @@
   height: fit-content;
   padding: var(--button-padding);
   color: var(--button-color);
+  flex-shrink: 0;
   background-color: var(--button-bg-color);
   border: var(--button-border-width, 1px) var(--button-border-style, solid)
     var(--button-border-color, transparent);
@@ -103,6 +104,8 @@
 
   &--shape-circle {
     border-radius: 50%;
-    padding: 10px;
+    padding: 0;
+    width: 44px;
+    height: 44px;
   }
 }

@@ -11,13 +11,13 @@ interface SvgIconProps {
 export default function SvgIcon({
   name,
   className,
-  size = "24",
+  size,
   rotateAngle = "0",
   ...props
 }: SvgIconProps) {
   return (
     <svg
-      className={cn(className, "icon")}
+      className={cn("icon", className)}
       style={{ "--icon-rotate-angle": `${rotateAngle}deg` } as CSSProperties}
       width={size}
       height={size}

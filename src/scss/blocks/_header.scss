@@ -19,8 +19,13 @@
   }
 
   &__logo {
-    width: 62px;
-    height: 62px;
+    width: 44px;
+    height: 44px;
+
+    @include media-breakpoint-up(lg) {
+      width: 62px;
+      height: 62px;
+    }
   }
 
   &__nav-control {

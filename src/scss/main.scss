@@ -18,18 +18,12 @@
 // ui
 @import "./blocks/cms-content";
 @import "./blocks/button";
+@import "./blocks/icon";
 @import "./blocks/review-from";
 @import "./blocks/text-gradient";
 @import "./blocks/slider";
-@import "./blocks/burger";
-@import "./blocks/nav";
 @import "./blocks/grid";
-@import "./blocks/content-card";
-@import "./blocks/icon";
-@import "./blocks/review";
-@import "./blocks/auth-form";
 @import "./blocks/decorated-bg";
-@import "./blocks/form-field";
 @import "./blocks/error-page";
 
 // pages
@@ -39,11 +33,18 @@
 @import "./blocks/about";
 @import "./blocks/ui-kit";
 
-// sections
+// components
 @import "./blocks/header";
 @import "./blocks/hero";
 @import "./blocks/news";
 @import "./blocks/article";
 @import "./blocks/reviews";
 @import "./blocks/faq";
+@import "./blocks/burger";
+@import "./blocks/nav";
+@import "./blocks/auth-form";
+@import "./blocks/review";
+@import "./blocks/form-field";
+@import "./blocks/content-card";
+
 @import "./blocks/footer";
