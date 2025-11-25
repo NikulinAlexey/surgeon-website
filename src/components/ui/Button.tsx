@@ -1,6 +1,6 @@
 import { cva, VariantProps } from "class-variance-authority";
 
-const buttonVariants = cva("button", {
+export const buttonVariants = cva("button", {
   variants: {
     variant: {
       primary: "button--theme-primary",

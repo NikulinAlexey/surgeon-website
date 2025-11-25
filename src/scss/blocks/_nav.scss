@@ -5,17 +5,22 @@
   display: flex;
   justify-content: center;
 
+  @include media-breakpoint-up(lg) {
+    justify-content: flex-end;
+  }
+
   &__body {
     width: 100%;
-    cursor: default;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    gap: 8px;
     padding: 16px;
 
     @include media-breakpoint-up(lg) {
-      width: fit-content;
       padding: 0;
+      gap: 16px;
+      overflow-y: visible;
       flex-direction: row;
       align-items: center;
     }
@@ -28,29 +33,34 @@
     margin-bottom: auto;
 
     @include media-breakpoint-up(lg) {
-      flex-direction: row;
-      flex-wrap: wrap;
+      flex-flow: row wrap;
+      flex-shrink: 1;
+      flex-grow: 1;
       margin-bottom: 0;
-      gap: 16px;
+      column-gap: 16px;
+      column-gap: 8px;
+      padding-inline: 40px;
     }
   }
 
   &__item {
     display: flex;
+    justify-content: center;
   }
 
   &__link {
     display: flex;
     text-align: center;
     justify-content: center;
+    flex-shrink: 0;
+    gap: 8px;
     padding: 16px;
-    flex-grow: 1;
     transition-property: opacity;
     transition-duration: $animation-duration;
     transition-timing-function: $animation-timing-function;
 
     @include media-breakpoint-up(lg) {
-      text-align: left;
+      align-items: center;
       padding: 12px;
     }
 
@@ -59,40 +69,13 @@
     }
   }
 
+  &__icon {
+    @include block-size(24px);
+  }
+
   &__profile {
+    flex-shrink: 0;
     display: flex;
     justify-content: center;
-  }
-
-  &__tel {
-    padding: 12px;
-    margin-top: 48px;
-
-    @include media-breakpoint-up(lg) {
-      margin-top: 0;
-    }
-  }
-
-  &__tel-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  &__tel-icon {
-    width: 24px;
-    height: 24px;
-  }
-
-  &__tel-text {
-    text-wrap: nowrap;
-  }
-
-  &__button {
-    width: 100%;
-
-    @include media-breakpoint-up(lg) {
-      margin-left: 60px;
-    }
   }
 }

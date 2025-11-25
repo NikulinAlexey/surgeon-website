@@ -1,7 +1,8 @@
-import { cn } from "@/lib/clsx";
 import Link from "next/link";
+import { VariantProps } from "class-variance-authority";
+import { buttonVariants } from "./Button";
 
-interface ButtonProps {
+interface ButtonLinkProps extends VariantProps<typeof buttonVariants> {
   children?: React.ReactNode;
   text?: string;
   href: string;
@@ -12,10 +13,25 @@ export default function ButtonLink({
   children,
   className,
   text,
+  variant,
+  size = "sm",
+  shape,
+  lifted,
+  disabled,
   ...props
-}: ButtonProps) {
+}: ButtonLinkProps) {
   return (
-    <Link className={cn("button", className)} {...props}>
+    <Link
+      className={buttonVariants({
+        variant,
+        size,
+        shape,
+        lifted,
+        disabled,
+        className,
+      })}
+      {...props}
+    >
       {children}
       {text && <span className="button__text">{text}</span>}
     </Link>

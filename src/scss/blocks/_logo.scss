@@ -1,0 +1,12 @@
+.logo {
+  --logo-width: 44px;
+  --logo-height: 44px;
+
+  flex-shrink: 0;
+  @include block-size(var(--logo-width), var(--logo-height));
+
+  @include media-breakpoint-up(lg) {
+    --logo-width: 62px;
+    --logo-height: 62px;
+  }
+}

@@ -1,5 +1,6 @@
 // components/Header/Header.tsx
 "use client";
+
 import Link from "next/link";
 import { cn } from "@/lib/clsx";
 import { useState, memo, useCallback, useRef, useEffect } from "react";
@@ -21,6 +22,7 @@ const navArray: NavItem[] = [
 ];
 
 function HeaderComponent() {
+  const isLoggedIn = true;
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
@@ -66,7 +68,7 @@ function HeaderComponent() {
           <SvgIcon name="logo-icon" aria-hidden />
         </Link>
 
-        <div className="header__nav-control">
+        <div className="header__burger">
           <Burger onClick={handleMenuClick} isBurgerClicked={isBurgerClicked} />
         </div>
 
@@ -81,7 +83,7 @@ function HeaderComponent() {
                   <li className="nav__item" key={index}>
                     <Link
                       href={link}
-                      className="nav__link"
+                      className="nav__link text text--sm text--regular"
                       onClick={handleLinkClick}
                     >
                       <span className="nav__text">{title}</span>
@@ -89,18 +91,19 @@ function HeaderComponent() {
                   </li>
                 ))}
               </ul>
-              <div className="nav__tel">
-                <Link className="nav__tel-link" href="tel:88120000000">
-                  <SvgIcon className="nav__tel-icon" name="phone" size="18" />
-                  <span className="nav__tel-text">8 (812) 000-00-00</span>
-                </Link>
-              </div>
+              <Link
+                className="nav__link text text--sm text--regular"
+                href="tel:88120000000"
+              >
+                <SvgIcon className="nav__icon" name="phone" />
+                <span className="nav__text">8 (812) 000-00-00</span>
+              </Link>
               <div className="nav__profile">
-                <ButtonLink
-                  text="Войти"
-                  href="/auth"
-                  className="nav__button button button--theme-medium-outline"
-                />
+                {isLoggedIn ? (
+                  <ButtonLink text="ЛК" href="/profile" />
+                ) : (
+                  <ButtonLink text="Войти" href="/auth" />
+                )}
               </div>
             </div>
           </div>

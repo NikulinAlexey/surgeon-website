@@ -26,7 +26,7 @@
     }
 
     @include media-breakpoint-up(xl) {
-      @include font(20px, 24px, 700, $basic-family);
+      @include font(18px, 22px, 700, $basic-family);
     }
   }
 
@@ -38,7 +38,7 @@
     }
 
     @include media-breakpoint-up(xl) {
-      @include font(24px, 28px, 700, $basic-family);
+      @include font(20px, 24px, 700, $basic-family);
     }
   }
 
@@ -50,7 +50,7 @@
     }
 
     @include media-breakpoint-up(xl) {
-      @include font(28px, 32px, 700, $basic-family);
+      @include font(22px, 26px, 700, $basic-family);
     }
   }
   // Размеры
@@ -58,24 +58,24 @@
     @include font(20px, 24px, 700, $basic-family);
 
     @include media-breakpoint-up(lg) {
-      @include font(24px, 28px, 700, $basic-family);
+      @include font(22px, 26px, 700, $basic-family);
     }
 
     @include media-breakpoint-up(xl) {
-      @include font(34px, 38px, 700, $basic-family);
+      @include font(24px, 28px, 700, $basic-family);
     }
   }
 
   // Ваш максимальный заголовок
   &--xxl {
-    @include font(36px, 36px, 700, $basic-family);
+    @include font(24px, 28px, 700, $basic-family);
 
     @include media-breakpoint-up(lg) {
-      @include font(46px, 46px, 700, $basic-family);
+      @include font(28px, 32px, 700, $basic-family);
     }
 
     @include media-breakpoint-up(xl) {
-      @include font(56px, 56px, 700, $basic-family);
+      @include font(32px, 36px, 700, $basic-family);
     }
   }
 

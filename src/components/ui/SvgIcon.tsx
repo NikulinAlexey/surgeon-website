@@ -11,7 +11,7 @@ interface SvgIconProps {
 export default function SvgIcon({
   name,
   className,
-  size = '24',
+  size,
   rotateAngle = "0",
   ...props
 }: SvgIconProps) {
@@ -19,8 +19,8 @@ export default function SvgIcon({
     <svg
       className={cn("icon", className)}
       style={{ "--icon-rotate-angle": `${rotateAngle}deg` } as CSSProperties}
-      width={size}
-      height={size}
+      width={size || 24}
+      height={size || 24}
       {...props}
     >
       <use xlinkHref={`/surgeon-website/sprite/sprite.svg#icon-${name}`} />
