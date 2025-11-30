@@ -19,7 +19,7 @@
   box-shadow: var(--button-box-shadow);
   transition-property: transform, opacity, color, background-color, border-color,
     fill, stroke, box-shadow, padding;
-  transition-duration: $animation-duration;
+  transition-duration: $animation-speed;
   transition-timing-function: $animation-timing-function;
 
   &:disabled,

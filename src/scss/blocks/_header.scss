@@ -55,7 +55,7 @@
     background-color: transparent;
     backdrop-filter: blur(10px);
     transition-property: visibility, opacity;
-    transition-duration: $animation-duration;
+    transition-duration: $animation-speed;
     transition-timing-function: $animation-timing-function;
 
     &._active {
@@ -86,7 +86,7 @@
     border-radius: 24px 0 0 24px;
     transform: translateX(var(--header-nav-translate-x));
     transition-property: transform, visibility, opacity;
-    transition-duration: $animation-duration;
+    transition-duration: $animation-speed;
     transition-timing-function: $animation-timing-function;
 
     @include media-breakpoint-up(lg) {

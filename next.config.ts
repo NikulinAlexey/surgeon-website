@@ -10,7 +10,7 @@ const nextConfig = {
   },
   sassOptions: {
     includePaths: ["./src/scss"],
-    silenceDeprecations: ['import'],
+    silenceDeprecations: ['import', 'legacy-js-api'],
   },
 };
 

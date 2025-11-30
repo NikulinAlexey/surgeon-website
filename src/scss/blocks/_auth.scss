@@ -1,0 +1,9 @@
+.auth {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 20;
+
+  @include media-breakpoint-up(lg) {
+    gap: 40px;
+  }
+}

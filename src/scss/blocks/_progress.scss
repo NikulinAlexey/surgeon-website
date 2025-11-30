@@ -1,0 +1,58 @@
+.progress {
+  --progress-bar-bg-color: var(--c-bg-color-1);
+  --progress-result-value-bg-color: var(--c-bg-color-9);
+  --progress-bar-height: 14px;
+  --progress-result-value-border-radius: 0;
+
+  width: 100%;
+
+  &__label {
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 8px;
+    width: 100%;
+  }
+
+  &__result {
+    padding: 2px;
+    width: 100%;
+    height: var(--progress-bar-height);
+    background-color: var(--progress-bar-bg-color);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    overflow: hidden;
+    transition: all $animation-speed $animation-timing-function;
+
+    &::-webkit-progress-bar {
+      background-color: var(--progress-bar-bg-color);
+    }
+
+    &::-webkit-progress-value {
+      background-color: var(--progress-result-value-bg-color);
+      border-radius: var(--progress-result-value-border-radius);
+    }
+
+    &::-moz-progress-bar {
+      background-color: var(--progress-result-value-bg-color);
+    }
+
+    // Для Edge и других браузеров
+    &::-ms-fill {
+      background-color: var(--progress-result-value-bg-color);
+      border: none;
+    }
+
+    // Убрать стандартную анимацию в Firefox
+    &:-moz-loading {
+      background-color: var(--progress-bar-bg-color);
+    }
+  }
+
+  &._running {
+    --progress-result-value-border-radius: 0
+      calc(var(--progress-bar-height) / 2) calc(var(--progress-bar-height) / 2)
+      0;
+  }
+}

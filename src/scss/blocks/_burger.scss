@@ -17,7 +17,7 @@
   border: none;
   overflow: hidden;
   transition-property: opacity;
-  transition-duration: $animation-duration;
+  transition-duration: $animation-speed;
   transition-timing-function: $animation-timing-function;
 
   &::before,
@@ -33,7 +33,7 @@
     border-radius: var(--burger-slice-border-radius);
     height: var(--burger-slice-height);
     background-color: var(--burger-slice-color);
-    transition: transform $animation-duration $animation-timing-function;
+    transition: transform $animation-speed $animation-timing-function;
   }
 
   &._active {

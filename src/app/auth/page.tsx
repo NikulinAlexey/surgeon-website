@@ -1,14 +1,14 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import FormField from "@/components/ui/FormField";
+import Field from "@/components/ui/Field";
+import Link from "next/link";
 
 type AuthMode = "login" | "forgot-password";
 
 interface AuthFormData {
   email: string;
   password: string;
-  rememberMe: boolean;
 }
 
 export default function AuthPage() {
@@ -17,7 +17,6 @@ export default function AuthPage() {
   const [formData, setFormData] = useState<AuthFormData>({
     email: "",
     password: "",
-    rememberMe: false,
   });
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Partial<AuthFormData>>({});
@@ -72,7 +71,6 @@ export default function AuthPage() {
       setFormData({
         email: "",
         password: "",
-        rememberMe: false,
       });
     } catch (error) {
       console.error("Ошибка при отправке формы:", error);
@@ -82,10 +80,10 @@ export default function AuthPage() {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
 
     // Clear error when user starts typing
@@ -113,102 +111,90 @@ export default function AuthPage() {
   };
 
   return (
-    <>
-      <main className="layout__main">
-        <div className="auth-page">
-          <div className="auth-page__container">
-            <div className="auth-page__header">
-              <h1 className="auth-page__title">
+    <main className="layout__main">
+      <div className="section">
+        <div className="container">
+          <div className="auth">
+            <div className="auth__header">
+              <h1 className="text text--xxl text-bold">
                 {authMode === "login" && "Вход"}
                 {authMode === "forgot-password" && "Восстановление пароля"}
               </h1>
             </div>
 
-            <form className="auth-form" onSubmit={handleSubmit}>
-              <FormField
-                label="Email"
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                error={errors.email}
-                placeholder="your@email.com"
-                disabled={isLoading}
-                onReset={() => {
-                  setFormData((prev) => ({ ...prev, email: "" }));
-                  setErrors((prev) => ({ ...prev, email: undefined }));
-                }}
-              />
-
-              {authMode === "login" && (
-                <FormField
-                  label="Пароль"
-                  type="password"
-                  id="password"
-                  name="password"
-                  value={formData.password}
+            <div className="auth__body">
+              <form className="auth-form" onSubmit={handleSubmit}>
+                <Field
+                  label="Email"
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
                   onChange={handleInputChange}
-                  error={errors.password}
-                  placeholder="Введите пароль"
+                  error={errors.email}
+                  placeholder="your@email.com"
                   disabled={isLoading}
-                  onReset={() => {
-                    setFormData((prev) => ({ ...prev, password: "" }));
-                    setErrors((prev) => ({ ...prev, password: undefined }));
-                  }}
                 />
-              )}
 
-              {authMode === "login" && (
-                <div className="auth-form__field auth-form__field--checkbox">
-                  <label className="auth-form__checkbox-label">
-                    <input
-                      type="checkbox"
-                      name="rememberMe"
-                      checked={formData.rememberMe}
-                      onChange={handleInputChange}
-                      disabled={isLoading}
-                    />
-                    <span>Запомнить меня</span>
-                  </label>
-                </div>
-              )}
+                {authMode === "login" && (
+                  <Field
+                    label="Пароль"
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    error={errors.password}
+                    placeholder="Введите пароль"
+                    disabled={isLoading}
+                  />
+                )}
 
-              <button
-                type="submit"
-                className="auth-form__submit"
-                disabled={isLoading}
-              >
-                {getSubmitButtonText()}
-              </button>
+                <button
+                  type="submit"
+                  className="auth__submit"
+                  disabled={isLoading}
+                >
+                  {getSubmitButtonText()}
+                </button>
 
-              {authMode === "login" && (
-                <div className="auth-form__links">
-                  <button
-                    type="button"
-                    className="auth-form__link"
-                    onClick={() => setAuthMode("forgot-password")}
-                  >
-                    Забыли пароль?
-                  </button>
-                </div>
-              )}
+                {authMode === "login" && (
+                  <div className="auth__links">
+                    <button
+                      type="button"
+                      className="auth__link"
+                      onClick={() => setAuthMode("forgot-password")}
+                    >
+                      Забыли пароль?
+                    </button>
+                  </div>
+                )}
 
-              {authMode === "forgot-password" && (
-                <div className="auth-form__links">
-                  <button
-                    type="button"
-                    className="auth-form__link"
-                    onClick={() => setAuthMode("login")}
-                  >
-                    Вернуться ко входу
-                  </button>
-                </div>
-              )}
-            </form>
+                {authMode === "forgot-password" && (
+                  <div className="auth__links">
+                    <button
+                      type="button"
+                      className="auth__link"
+                      onClick={() => setAuthMode("login")}
+                    >
+                      Вернуться ко входу
+                    </button>
+                  </div>
+                )}
+              </form>
+            </div>
+
+            <div className="auth__footer">
+              <p className="auth__footer-text">
+                Ещё не зарегистрированы?{" "}
+                <Link href={`/register`} className="auth__footer-link">
+                  Регистрация
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }

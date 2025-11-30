@@ -1,7 +1,7 @@
 import { cn } from "@/lib/clsx";
 import React from "react";
 
-interface FormFieldProps {
+interface FieldProps {
   label: string;
   type: string;
   id: string;
@@ -15,7 +15,7 @@ interface FormFieldProps {
   onReset?: () => void;
 }
 
-export default function FormField({
+export default function Field({
   label,
   type,
   id,
@@ -27,7 +27,7 @@ export default function FormField({
   placeholder,
   disabled = false,
   onReset,
-}: FormFieldProps) {
+}: FieldProps) {
   return (
     <div
       className={cn("field", {

@@ -1,4 +1,7 @@
 "use client";
+import Field from "@/components/ui/Field";
+import Progress from "@/components/ui/Progress";
+import Link from "next/link";
 import { useState } from "react";
 
 interface RegisterFormData {
@@ -13,6 +16,21 @@ interface RegisterFormData {
   agreePersonalData: boolean;
   agreeCommunication: boolean;
 }
+
+const REGISTER_STEPS = [
+  {
+    title: "Личные данные",
+    fields: ["firstName", "lastName", "patronymic", "phone", "email"],
+  },
+  {
+    title: "Контакты",
+    fields: ["password", "confirmPassword", "birthDate"],
+  },
+  {
+    title: "Соглашения",
+    fields: ["agreePersonalData", "agreeCommunication"],
+  },
+];
 
 export default function RegisterPage() {
   const [registerStep, setRegisterStep] = useState(1);
@@ -135,258 +153,190 @@ export default function RegisterPage() {
   };
 
   return (
-    <>
-      <main className="layout__main">
+    <main className="layout__main">
+      <div className="section">
         <div className="container">
-          <div className="auth-page">
-            <div className="auth-page__header">
-              <h1 className="auth-page__title">Регистрация</h1>
-
-              <div className="auth-page__tabs">
-                <button
-                  type="button"
-                  className="auth-page__tab auth-page__tab--link"
-                  onClick={() => window.location.href = "/auth"}
-                >
-                  Вход
-                </button>
-              </div>
+          <div className="auth">
+            <div className="auth__header">
+              <h1 className="text text--xxl text-bold">Добро пожаловать</h1>
             </div>
 
-            <form className="auth-form" onSubmit={handleSubmit}>
-              <div className="auth-form__progress">
-                <div className="auth-form__progress-bar">
-                  <div
-                    className="auth-form__progress-fill"
-                    style={{ width: `${(registerStep / 4) * 100}%` }}
-                  ></div>
-                </div>
-                <div className="auth-form__progress-text">
-                  Шаг {registerStep} из 4
-                </div>
-              </div>
+            <div className="auth__body">
+              <form className="auth__form" onSubmit={handleSubmit}>
+                <Progress
+                  stepsLenght={REGISTER_STEPS.length}
+                  currentStep={registerStep}
+                />
 
-              {registerStep === 1 && (
                 <div className="auth-form__section">
-                  <h3 className="auth-form__section-title">Личные данные</h3>
-                  <div className="auth-form__field">
-                    <label htmlFor="firstName" className="auth-form__label">
-                      Имя
-                    </label>
-                    <input
-                      type="text"
-                      id="firstName"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleInputChange}
-                      className="auth-form__input"
-                      placeholder="Введите имя"
-                      disabled={isLoading}
-                    />
-                  </div>
-                  <div className="auth-form__field">
-                    <label htmlFor="lastName" className="auth-form__label">
-                      Фамилия
-                    </label>
-                    <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleInputChange}
-                      className="auth-form__input"
-                      placeholder="Введите фамилию"
-                      disabled={isLoading}
-                    />
-                  </div>
-                  <div className="auth-form__field">
-                    <label htmlFor="patronymic" className="auth-form__label">
-                      Отчество <span style={{ fontWeight: 'normal', color: '#666' }}>(необязательно)</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="patronymic"
-                      name="patronymic"
-                      value={formData.patronymic}
-                      onChange={handleInputChange}
-                      className="auth-form__input"
-                      placeholder="Введите отчество"
-                      disabled={isLoading}
-                    />
-                  </div>
-                </div>
-              )}
-
-              {registerStep === 2 && (
-                <div className="auth-form__section">
-                  <h3 className="auth-form__section-title">Контактная информация</h3>
-                  <div className="auth-form__field">
-                    <label htmlFor="phone" className="auth-form__label">
-                      Телефон
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="auth-form__input"
-                      placeholder="+7 (999) 999-99-99"
-                      disabled={isLoading}
-                    />
-                  </div>
-                  <div className="auth-form__field">
-                    <label htmlFor="email" className="auth-form__label">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className={`auth-form__input ${
-                        errors.email ? "auth-form__input--error" : ""
-                      }`}
-                      placeholder="your@email.com"
-                      disabled={isLoading}
-                    />
-                    {errors.email && (
-                      <span className="auth-form__error">{errors.email}</span>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {registerStep === 3 && (
-                <div className="auth-form__section">
-                  <h3 className="auth-form__section-title">Учетные данные</h3>
-                  <div className="auth-form__field">
-                    <label htmlFor="password" className="auth-form__label">
-                      Пароль
-                    </label>
-                    <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleInputChange}
-                      className={`auth-form__input ${
-                        errors.password ? "auth-form__input--error" : ""
-                      }`}
-                      placeholder="Введите пароль"
-                      disabled={isLoading}
-                    />
-                    {errors.password && (
-                      <span className="auth-form__error">{errors.password}</span>
-                    )}
-                  </div>
-                  <div className="auth-form__field">
-                    <label htmlFor="confirmPassword" className="auth-form__label">
-                      Подтвердите пароль
-                    </label>
-                    <input
-                      type="password"
-                      id="confirmPassword"
-                      name="confirmPassword"
-                      value={formData.confirmPassword}
-                      onChange={handleInputChange}
-                      className={`auth-form__input ${
-                        errors.confirmPassword ? "auth-form__input--error" : ""
-                      }`}
-                      placeholder="Повторите пароль"
-                      disabled={isLoading}
-                    />
-                    {errors.confirmPassword && (
-                      <span className="auth-form__error">
-                        {errors.confirmPassword}
-                      </span>
-                    )}
-                  </div>
-                  <div className="auth-form__field">
-                    <label htmlFor="birthDate" className="auth-form__label">
-                      Дата рождения <span style={{ fontWeight: 'normal', color: '#666' }}>(необязательно)</span>
-                    </label>
-                    <input
-                      type="date"
-                      id="birthDate"
-                      name="birthDate"
-                      value={formData.birthDate}
-                      onChange={handleInputChange}
-                      className="auth-form__input"
-                      disabled={isLoading}
-                    />
-                  </div>
-                </div>
-              )}
-
-              {registerStep === 4 && (
-                <div className="auth-form__section">
-                  <h3 className="auth-form__section-title">Согласия</h3>
-                  <div className="auth-form__field auth-form__field--checkbox">
-                    <label className="auth-form__checkbox-label">
-                      <input
-                        type="checkbox"
-                        name="agreePersonalData"
-                        checked={formData.agreePersonalData}
+                  <h2 className="auth-form__title text">
+                    {REGISTER_STEPS[registerStep].title}
+                  </h2>
+                  {registerStep === 1 && (
+                    <>
+                      <Field
+                        label="Имя"
+                        id="firstName"
+                        name="firstName"
+                        type="text"
+                        placeholder="Введите имя"
+                        disabled={isLoading}
+                        value={formData.firstName}
+                        onChange={handleInputChange}
+                      />
+                      <Field
+                        label="Фамилия"
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                        placeholder="Введите фамилию"
+                        disabled={isLoading}
+                      />
+                      <Field
+                        label="Отчество (необязательно)"
+                        type="text"
+                        id="patronymic"
+                        name="patronymic"
+                        value={formData.patronymic ? formData.patronymic : ""}
+                        onChange={handleInputChange}
+                        placeholder="Введите отчество"
+                        disabled={isLoading}
+                      />
+                    </>
+                  )}
+                  {registerStep === 2 && (
+                    <>
+                      <Field
+                        label="Email"
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        error={errors.email}
+                        placeholder="Введите email"
+                        disabled={isLoading}
+                      />
+                      <Field
+                        label="Телефон"
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        error={errors.phone}
+                        placeholder="Введите телефон"
+                        disabled={isLoading}
+                      />
+                    </>
+                  )}
+                  {registerStep === 3 && (
+                    <>
+                      <Field
+                        label="Пароль"
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleInputChange}
+                        error={errors.password}
+                        placeholder="Введите пароль"
+                        disabled={isLoading}
+                      />
+                      <Field
+                        label="Подтвердите пароль"
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        value={formData.confirmPassword}
+                        onChange={handleInputChange}
+                        error={errors.confirmPassword}
+                        placeholder="Повторите пароль"
+                        disabled={isLoading}
+                      />
+                      <Field
+                        label="Дата рождения"
+                        type="date"
+                        id="birthDate"
+                        name="birthDate"
+                        value={formData.birthDate ? formData.birthDate : ""}
                         onChange={handleInputChange}
                         disabled={isLoading}
                       />
-                      <span>
-                        Я согласен на обработку{" "}
-                        <a href="#" target="_blank" rel="noopener noreferrer">
-                          персональных данных
-                        </a>
-                      </span>
-                    </label>
-                  </div>
-                  <div className="auth-form__field auth-form__field--checkbox">
-                    <label className="auth-form__checkbox-label">
-                      <input
-                        type="checkbox"
-                        name="agreeCommunication"
-                        checked={formData.agreeCommunication}
-                        onChange={handleInputChange}
-                        disabled={isLoading}
-                      />
-                      <span>
-                        Я согласен на коммуникацию посредством цифровых способов связи
-                      </span>
-                    </label>
-                  </div>
+                      <div className="auth-form__field auth-form__field--checkbox">
+                        <label className="auth-form__checkbox-label">
+                          <input
+                            type="checkbox"
+                            name="agreePersonalData"
+                            checked={formData.agreePersonalData}
+                            onChange={handleInputChange}
+                            disabled={isLoading}
+                          />
+                          <span>
+                            Я согласен на обработку{" "}
+                            <a
+                              href="#"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              персональных данных
+                            </a>
+                          </span>
+                        </label>
+                      </div>
+                      <div className="auth-form__field auth-form__field--checkbox">
+                        <label className="auth-form__checkbox-label">
+                          <input
+                            type="checkbox"
+                            name="agreeCommunication"
+                            checked={formData.agreeCommunication}
+                            onChange={handleInputChange}
+                            disabled={isLoading}
+                          />
+                          <span>
+                            Я согласен на коммуникацию посредством цифровых
+                            способов связи
+                          </span>
+                        </label>
+                      </div>
+                    </>
+                  )}
                 </div>
-              )}
 
-              {registerStep > 1 && (
+                {registerStep > 1 && (
+                  <button
+                    type="button"
+                    className="auth-form__back"
+                    onClick={handleBack}
+                    disabled={isLoading}
+                  >
+                    Назад
+                  </button>
+                )}
+
                 <button
-                  type="button"
-                  className="auth-form__back"
-                  onClick={handleBack}
+                  type="submit"
+                  className="auth-form__submit"
                   disabled={isLoading}
                 >
-                  Назад
+                  {getSubmitButtonText()}
                 </button>
-              )}
+              </form>
+            </div>
 
-              <button
-                type="submit"
-                className="auth-form__submit"
-                disabled={isLoading}
-              >
-                {getSubmitButtonText()}
-              </button>
-            </form>
+            <div className="auth__footer">
+              <p className="auth__footer-text">
+                Уже есть аккаунт?{" "}
+                <Link href={`/auth`} className="auth__footer-link">
+                  Войти
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }
-
-// Для SEO - генерация метаданных
-// export async function generateMetadata() {
-//   return {
-//     title: "Регистрация | Доктор Хаус",
-//     description: "Зарегистрируйтесь в системе",
-//   };
-// }

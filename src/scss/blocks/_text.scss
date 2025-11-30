@@ -3,7 +3,7 @@
   font-family: $basic-family;
   line-height: 1.5;
   transition-property: font-size, color;
-  transition-duration: $animation-duration;
+  transition-duration: $animation-speed;
   transition-timing-function: $animation-timing-function;
 
   &--xs {

@@ -6,11 +6,15 @@ export default function Ui() {
       title: "Типографика",
       link: "typography",
     },
+    {
+      title: "Кнопки",
+      link: "buttons",
+    },
   ];
   return (
     <main className="layout__main">
-      <div className="ui-kit container">
-        <ul>
+      <div className="container">
+        <ul className="ui-kit">
           {pages.map((page, index) => (
             <li key={index}>
               <Link href={`/ui-kit/${page.link}`}>{page.title}</Link>

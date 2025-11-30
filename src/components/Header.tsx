@@ -22,7 +22,7 @@ const navArray: NavItem[] = [
 ];
 
 function HeaderComponent() {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 

@@ -1,4 +1,4 @@
-@import '../mixins/mixins';
+@import "../mixins/mixins";
 // Breakpoints
 $xs: 480px;
 $sm: 680px;
@@ -10,12 +10,12 @@ $xxl: 1420px;
 $basic-family: "Montserrat", sans-serif;
 $secondary-family: "Open-Sans", sans-serif;
 
-$animation-duration: 0.3s;
+$animation-speed: 0.3s;
 $animation-timing-function: ease;
 
 :root {
   --header-height: 0;
-  --base-path: '/surgeon-website';
+  --base-path: "/surgeon-website";
 
   --c-accent-color: #f59e0b;
   --c-success-color: #10b981;
