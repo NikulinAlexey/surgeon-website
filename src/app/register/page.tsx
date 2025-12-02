@@ -154,9 +154,9 @@ export default function RegisterPage() {
 
   return (
     <main className="layout__main">
-      <div className="section">
-        <div className="container">
-          <div className="auth">
+      <div className="auth section">
+        <div className="auth__container container">
+          <div className="auth__layout">
             <div className="auth__header">
               <h1 className="text text--xxl text-bold">Добро пожаловать</h1>
             </div>

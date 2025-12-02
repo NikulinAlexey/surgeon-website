@@ -12,6 +12,9 @@ const nextConfig = {
     includePaths: ["./src/scss"],
     silenceDeprecations: ['import', 'legacy-js-api'],
   },
+  turbopack: {
+    root: './',
+  },
 };
 
 module.exports = nextConfig;

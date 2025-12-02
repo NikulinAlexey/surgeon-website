@@ -1,9 +1,13 @@
 .auth {
-  display: grid;
-  grid-template-columns: 100%;
-  gap: 20;
+  &__layout {
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 20px;
+    max-width: 400px;
+    margin: auto;
+  }
 
-  @include media-breakpoint-up(lg) {
-    gap: 40px;
+  &__form {
+    width: 100%;
   }
 }

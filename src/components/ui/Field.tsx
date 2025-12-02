@@ -48,16 +48,23 @@ export default function Field({
           placeholder={placeholder}
           disabled={disabled}
         />
-        {onReset && value && (
-          <button
-            type="button"
-            onClick={onReset}
-            className="field__reset"
-            disabled={disabled}
-          >
-            ×
-          </button>
-        )}
+        <div className="field__actions">
+          {onReset && value && (
+            <button
+              type="button"
+              onClick={onReset}
+              className="field__action"
+              disabled={disabled}
+            >
+              ×
+            </button>
+          )}
+          {type === "password" && value && (
+            <button type="button" className="field__action" disabled={disabled}>
+              👀
+            </button>
+          )}
+        </div>
       </div>
       <span className="field__hint">{error}</span>
       {hint && <span className="field__hint">{hint}</span>}

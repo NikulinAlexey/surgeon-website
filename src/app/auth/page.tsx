@@ -112,9 +112,9 @@ export default function AuthPage() {
 
   return (
     <main className="layout__main">
-      <div className="section">
-        <div className="container">
-          <div className="auth">
+      <div className="auth section">
+        <div className="auth__container container">
+          <div className="auth__layout">
             <div className="auth__header">
               <h1 className="text text--xxl text-bold">
                 {authMode === "login" && "Вход"}
@@ -123,7 +123,7 @@ export default function AuthPage() {
             </div>
 
             <div className="auth__body">
-              <form className="auth-form" onSubmit={handleSubmit}>
+              <form className="auth__form" onSubmit={handleSubmit}>
                 <Field
                   label="Email"
                   type="email"
