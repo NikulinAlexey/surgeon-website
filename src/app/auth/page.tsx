@@ -112,85 +112,89 @@ export default function AuthPage() {
 
   return (
     <main className="layout__main">
-      <div className="auth section">
-        <div className="auth__container container">
-          <div className="auth__layout">
-            <div className="auth__header">
-              <h1 className="text text--xxl text-bold">
-                {authMode === "login" && "Вход"}
-                {authMode === "forgot-password" && "Восстановление пароля"}
-              </h1>
-            </div>
+      <div className="section">
+        <div className="container">
+          <div className="auth">
+            <div className="auth__container">
+              <div className="auth__layout">
+                <div className="auth__header">
+                  <h1 className="text text--xxl text-bold">
+                    {authMode === "login" && "Рады видеть!"}
+                    {authMode === "forgot-password" && "Восстановление пароля"}
+                  </h1>
+                </div>
 
-            <div className="auth__body">
-              <form className="auth__form" onSubmit={handleSubmit}>
-                <Field
-                  label="Email"
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  error={errors.email}
-                  placeholder="your@email.com"
-                  disabled={isLoading}
-                />
+                <div className="auth__body">
+                  <form className="auth__form" onSubmit={handleSubmit}>
+                    <Field
+                      label="Email"
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      error={errors.email}
+                      placeholder="your@email.com"
+                      disabled={isLoading}
+                    />
 
-                {authMode === "login" && (
-                  <Field
-                    label="Пароль"
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    error={errors.password}
-                    placeholder="Введите пароль"
-                    disabled={isLoading}
-                  />
-                )}
+                    {authMode === "login" && (
+                      <Field
+                        label="Пароль"
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleInputChange}
+                        error={errors.password}
+                        placeholder="Введите пароль"
+                        disabled={isLoading}
+                      />
+                    )}
 
-                <button
-                  type="submit"
-                  className="auth__submit"
-                  disabled={isLoading}
-                >
-                  {getSubmitButtonText()}
-                </button>
-
-                {authMode === "login" && (
-                  <div className="auth__links">
                     <button
-                      type="button"
-                      className="auth__link"
-                      onClick={() => setAuthMode("forgot-password")}
+                      type="submit"
+                      className="auth__submit"
+                      disabled={isLoading}
                     >
-                      Забыли пароль?
+                      {getSubmitButtonText()}
                     </button>
-                  </div>
-                )}
 
-                {authMode === "forgot-password" && (
-                  <div className="auth__links">
-                    <button
-                      type="button"
-                      className="auth__link"
-                      onClick={() => setAuthMode("login")}
-                    >
-                      Вернуться ко входу
-                    </button>
-                  </div>
-                )}
-              </form>
-            </div>
+                    {authMode === "login" && (
+                      <div className="auth__links">
+                        <button
+                          type="button"
+                          className="auth__link"
+                          onClick={() => setAuthMode("forgot-password")}
+                        >
+                          Забыли пароль?
+                        </button>
+                      </div>
+                    )}
 
-            <div className="auth__footer">
-              <p className="auth__footer-text">
-                Ещё не зарегистрированы?{" "}
-                <Link href={`/register`} className="auth__footer-link">
-                  Регистрация
-                </Link>
-              </p>
+                    {authMode === "forgot-password" && (
+                      <div className="auth__links">
+                        <button
+                          type="button"
+                          className="auth__link"
+                          onClick={() => setAuthMode("login")}
+                        >
+                          Вернуться ко входу
+                        </button>
+                      </div>
+                    )}
+                  </form>
+                </div>
+
+                <div className="auth__footer">
+                  <p className="auth__footer-text">
+                    Ещё не зарегистрированы?{" "}
+                    <Link href={`/register`} className="auth__footer-link">
+                      Регистрация
+                    </Link>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

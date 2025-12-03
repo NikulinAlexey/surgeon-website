@@ -3,13 +3,19 @@ import { cn } from "@/lib/clsx";
 interface ProgressProps {
   stepsLenght: number;
   currentStep: number;
+  className?: string;
 }
-export default function Progress({ stepsLenght, currentStep }: ProgressProps) {
+export default function Progress({
+  stepsLenght,
+  currentStep,
+  className,
+}: ProgressProps) {
   const currentPercent = (currentStep / stepsLenght) * 100;
+  const isProgressRunning = currentStep > 0 && currentStep < stepsLenght;
   return (
     <div
-      className={cn("progress", {
-        _running: currentStep > 0 && currentStep < stepsLenght,
+      className={cn(className, "progress", {
+        _running: isProgressRunning,
       })}
     >
       <label className="progress__label">

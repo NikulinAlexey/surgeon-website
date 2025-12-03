@@ -1,7 +1,7 @@
 "use client";
 
 import Footer from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { Header } from "@/components/header/Header";
 import { ProfileForm } from "@/components/profile/ProfileForm";
 import { SpecialistInfo } from "@/components/profile/SpecialistInfo";
 import { SpecialistSection } from "@/components/profile/SpecialistSection";

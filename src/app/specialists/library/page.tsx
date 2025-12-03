@@ -1,8 +1,8 @@
 "use client";
-import Articles from "@/components/Articles";
+import Articles from "@/components/articles/Articles";
 
 import Footer from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { Header } from "@/components/header/Header";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";

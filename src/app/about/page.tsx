@@ -1,6 +1,6 @@
 // components/Header/Header.tsx
 "use client";
-import { Header } from "@/components/Header";
+import { Header } from "@/components/header/Header";
 import Footer from "@/components/Footer";
 
 export default function AboutPage() {

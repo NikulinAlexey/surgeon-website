@@ -4,9 +4,9 @@
 import Link from "next/link";
 import { cn } from "@/lib/clsx";
 import { useState, memo, useCallback, useRef, useEffect } from "react";
-import Burger from "./ui/Burger";
-import SvgIcon from "./ui/SvgIcon";
-import ButtonLink from "./ui/ButtonLink";
+import Burger from "./Burger";
+import SvgIcon from "../ui/SvgIcon";
+import ButtonLink from "../ui/ButtonLink";
 
 interface NavItem {
   title: string;

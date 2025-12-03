@@ -1,12 +1,12 @@
 "use client";
 
-import SvgIcon from "./ui/SvgIcon";
+import SvgIcon from "../ui/SvgIcon";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import { useRef } from "react";
 import { SWIPER_CONFIGS } from "@/config/swiper-configs";
-import Section from "./Section";
+import Section from "../Section";
 import Link from "next/link";
 
 const libraryItems = [
