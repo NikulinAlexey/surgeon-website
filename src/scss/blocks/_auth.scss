@@ -1,5 +1,8 @@
 .auth {
   --auth-container-max-width: 500px;
+  --auth-color: var(--c-text-color-1);
+  --c-auth-text-color: var(--c-text-color-2);
+  --auth-link-color: var(--c-text-color-1);
 
   &__container {
     max-width: var(--auth-container-max-width);
@@ -9,11 +12,11 @@
   &__layout {
     display: grid;
     grid-template-columns: 100%;
-    gap: 20px;
+    gap: 10px;
     margin: auto;
 
     @include media-breakpoint-up(lg) {
-      gap: 40px;
+      gap: 28px;
     }
   }
 
@@ -22,13 +25,38 @@
   }
 
   &__footer {
-    display: flex;
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 10px;
     justify-content: center;
   }
 
   &__actions {
-    display: flex;
+    display: grid;
+    grid-template-columns: 100%;
     gap: 10px;
     width: 100%;
+    max-width: 100%;
+
+    @include media-breakpoint-up(lg) {
+      grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    }
+  }
+
+  &__text {
+    @include font(14px, 14px);
+
+    text-align: center;
+    color: var(--c-auth-text-color);
+  }
+
+  &__link {
+    color: var(--auth-link-color);
+    cursor: pointer;
+    transition: opacity $animation-speed $animation-timing-function;
+
+    @include hover {
+      opacity: 0.8;
+    }
   }
 }

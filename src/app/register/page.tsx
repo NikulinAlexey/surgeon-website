@@ -1,8 +1,10 @@
 "use client";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import Field from "@/components/ui/Field";
 import Progress from "@/components/ui/Progress";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface RegisterFormData {
@@ -34,7 +36,8 @@ const REGISTER_STEPS = [
 ];
 
 export default function RegisterPage() {
-  const [registerStep, setRegisterStep] = useState(1);
+  const router = useRouter();
+  const [registerStep, setRegisterStep] = useState(0);
   const [formData, setFormData] = useState<RegisterFormData>({
     firstName: "",
     lastName: "",
@@ -76,10 +79,10 @@ export default function RegisterPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent | React.MouseEvent) => {
+    if ("preventDefault" in e) e.preventDefault();
 
-    if (registerStep < 4) {
+    if (registerStep < 2) {
       setRegisterStep(registerStep + 1);
       return;
     }
@@ -102,6 +105,8 @@ export default function RegisterPage() {
 
       console.log("Регистрация успешна");
 
+      router.push("/auth");
+
       // Сброс формы после успешной отправки
       setFormData({
         firstName: "",
@@ -115,7 +120,7 @@ export default function RegisterPage() {
         agreePersonalData: false,
         agreeCommunication: false,
       });
-      setRegisterStep(1);
+      setRegisterStep(0);
     } catch (error) {
       console.error("Ошибка при регистрации:", error);
     } finally {
@@ -124,7 +129,7 @@ export default function RegisterPage() {
   };
 
   const handleBack = () => {
-    if (registerStep > 1) {
+    if (registerStep > 0) {
       setRegisterStep(registerStep - 1);
     }
   };
@@ -150,175 +155,191 @@ export default function RegisterPage() {
       return "Загрузка...";
     }
 
-    return registerStep === 4 ? "Зарегистрироваться" : "Далее";
+    return registerStep === 2 ? "Зарегистрироваться" : "Далее";
   };
 
   return (
     <main className="layout__main">
+      <Progress
+        className="auth__progress"
+        stepsLenght={REGISTER_STEPS.length}
+        currentStep={registerStep + 1}
+      />
       <div className="section">
         <div className="container">
           <div className="auth">
             <div className="auth__container">
               <div className="auth__layout">
-                <div className="auth__header">
+                <div
+                  className="auth__header"
+                  role="banner"
+                  aria-label="Заголовок формы"
+                >
                   <h1 className="text text--xxl text-bold">Добро пожаловать</h1>
                 </div>
 
-                <Progress
-                  className="auth__progress"
-                  stepsLenght={REGISTER_STEPS.length}
-                  currentStep={registerStep}
-                />
-
-                <div className="auth__body">
+                <div className="auth__body" role="main">
                   <form className="form" onSubmit={handleSubmit}>
-                    <div className="form__section">
-                      <h2 className="form__title text">
-                        {REGISTER_STEPS[registerStep].title}
-                      </h2>
-                      {registerStep === 1 && (
-                        <>
-                          <Field
-                            label="Имя"
-                            id="firstName"
-                            name="firstName"
-                            type="text"
-                            placeholder="Введите имя"
-                            disabled={isLoading}
-                            value={formData.firstName}
-                            onChange={handleInputChange}
-                          />
-                          <Field
-                            label="Фамилия"
-                            type="text"
-                            id="lastName"
-                            name="lastName"
-                            value={formData.lastName}
-                            onChange={handleInputChange}
-                            placeholder="Введите фамилию"
-                            disabled={isLoading}
-                          />
-                          <Field
-                            label="Отчество (необязательно)"
-                            type="text"
-                            id="patronymic"
-                            name="patronymic"
-                            value={
-                              formData.patronymic ? formData.patronymic : ""
-                            }
-                            onChange={handleInputChange}
-                            placeholder="Введите отчество"
-                            disabled={isLoading}
-                          />
-                        </>
-                      )}
-                      {registerStep === 2 && (
-                        <>
-                          <Field
-                            label="Email"
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                            error={errors.email}
-                            placeholder="Введите email"
-                            disabled={isLoading}
-                          />
-                          <Field
-                            label="Телефон"
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleInputChange}
-                            error={errors.phone}
-                            placeholder="Введите телефон"
-                            disabled={isLoading}
-                          />
-                        </>
-                      )}
-                      {registerStep === 3 && (
-                        <>
-                          <Field
-                            label="Пароль"
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleInputChange}
-                            error={errors.password}
-                            placeholder="Введите пароль"
-                            disabled={isLoading}
-                          />
-                          <Field
-                            label="Подтвердите пароль"
-                            type="password"
-                            id="confirmPassword"
-                            name="confirmPassword"
-                            value={formData.confirmPassword}
-                            onChange={handleInputChange}
-                            error={errors.confirmPassword}
-                            placeholder="Повторите пароль"
-                            disabled={isLoading}
-                          />
-                          <Field
-                            label="Дата рождения"
-                            type="date"
-                            id="birthDate"
-                            name="birthDate"
-                            value={formData.birthDate ? formData.birthDate : ""}
-                            onChange={handleInputChange}
-                            disabled={isLoading}
-                          />
-                          <div className="auth-form__field auth-form__field--checkbox">
-                            <label className="auth-form__checkbox-label">
-                              <input
-                                type="checkbox"
-                                name="agreePersonalData"
-                                checked={formData.agreePersonalData}
+                    <div className="form__container">
+                      <div className="form__layout">
+                        <h2 className="form__title text text--lg">
+                          {REGISTER_STEPS[registerStep].title}
+                        </h2>
+                        <fieldset className="form__fieldset">
+                          {registerStep === 0 && (
+                            <>
+                              <Field
+                                label="Имя"
+                                id="firstName"
+                                name="firstName"
+                                type="text"
+                                placeholder="Введите имя"
+                                disabled={isLoading}
+                                value={formData.firstName}
+                                onChange={handleInputChange}
+                              />
+                              <Field
+                                label="Фамилия"
+                                type="text"
+                                id="lastName"
+                                name="lastName"
+                                value={formData.lastName}
+                                onChange={handleInputChange}
+                                placeholder="Введите фамилию"
+                                disabled={isLoading}
+                              />
+                              <Field
+                                label="Отчество (необязательно)"
+                                type="text"
+                                id="patronymic"
+                                name="patronymic"
+                                value={
+                                  formData.patronymic ? formData.patronymic : ""
+                                }
+                                onChange={handleInputChange}
+                                placeholder="Введите отчество"
+                                disabled={isLoading}
+                              />
+                            </>
+                          )}
+                          {registerStep === 1 && (
+                            <>
+                              <Field
+                                label="Email"
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                error={errors.email}
+                                placeholder="Введите email"
+                                disabled={isLoading}
+                              />
+                              <Field
+                                label="Телефон"
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                value={formData.phone}
+                                onChange={handleInputChange}
+                                error={errors.phone}
+                                placeholder="Введите телефон"
+                                disabled={isLoading}
+                              />
+                            </>
+                          )}
+                          {registerStep === 2 && (
+                            <>
+                              <Field
+                                label="Пароль"
+                                type="password"
+                                id="password"
+                                name="password"
+                                value={formData.password}
+                                onChange={handleInputChange}
+                                error={errors.password}
+                                placeholder="Введите пароль"
+                                disabled={isLoading}
+                              />
+                              <Field
+                                label="Подтвердите пароль"
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                value={formData.confirmPassword}
+                                onChange={handleInputChange}
+                                error={errors.confirmPassword}
+                                placeholder="Повторите пароль"
+                                disabled={isLoading}
+                              />
+                              <Field
+                                label="Дата рождения"
+                                type="date"
+                                id="birthDate"
+                                name="birthDate"
+                                value={
+                                  formData.birthDate ? formData.birthDate : ""
+                                }
                                 onChange={handleInputChange}
                                 disabled={isLoading}
                               />
-                              <span>
-                                Я согласен на обработку{" "}
-                                <a
-                                  href="#"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  персональных данных
-                                </a>
-                              </span>
-                            </label>
-                          </div>
-                          <div className="auth-form__field auth-form__field--checkbox">
-                            <label className="auth-form__checkbox-label">
-                              <input
-                                type="checkbox"
-                                name="agreeCommunication"
-                                checked={formData.agreeCommunication}
-                                onChange={handleInputChange}
-                                disabled={isLoading}
-                              />
-                              <span>
-                                Я согласен на коммуникацию посредством цифровых
-                                способов связи
-                              </span>
-                            </label>
-                          </div>
-                        </>
-                      )}
+                              <div className="form__checkboxes">
+                                <Checkbox
+                                  label={
+                                    <>
+                                      Я согласен на обработку{" "}
+                                      <a
+                                        className="checkbox__link"
+                                        href="#"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                      >
+                                        персональных данных
+                                      </a>
+                                    </>
+                                  }
+                                  name="agreePersonalData"
+                                  checked={formData.agreePersonalData}
+                                  onChange={(checked) =>
+                                    setFormData((prev) => ({
+                                      ...prev,
+                                      agreePersonalData: checked,
+                                    }))
+                                  }
+                                  disabled={isLoading}
+                                />
+                                <Checkbox
+                                  label="Я согласен на коммуникацию посредством цифровых способов связи"
+                                  name="agreeCommunication"
+                                  checked={formData.agreeCommunication}
+                                  onChange={(checked) =>
+                                    setFormData((prev) => ({
+                                      ...prev,
+                                      agreeCommunication: checked,
+                                    }))
+                                  }
+                                  disabled={isLoading}
+                                />
+                              </div>
+                            </>
+                          )}
+                        </fieldset>
+                      </div>
                     </div>
                   </form>
                 </div>
 
-                <div className="auth__footer">
+                <div
+                  className="auth__footer"
+                  role="contentinfo"
+                  aria-label="Подвал формы"
+                >
                   <div className="auth__actions">
-                    {registerStep > 1 && (
+                    {registerStep > 0 && (
                       <Button
                         type="button"
                         size="lg"
+                        wide
                         variant="primary"
                         className="auth__action"
                         onClick={handleBack}
@@ -330,20 +351,22 @@ export default function RegisterPage() {
 
                     <Button
                       size="lg"
+                      wide
                       type="submit"
                       variant="secondary"
                       className="auth__action"
                       disabled={isLoading}
+                      onClick={(e) => handleSubmit(e)}
                     >
                       {getSubmitButtonText()}
                     </Button>
                   </div>
-                  <p className="auth__footer-text">
-                    Уже есть аккаунт?{" "}
-                    <Link href={`/auth`} className="auth__footer-link">
+                  <p className="auth__text">
+                    Уже зарегистрированы?{" "}
+                    <Link href={`/auth`} className="auth__link">
                       Войти
                     </Link>
-                  </p>s
+                  </p>
                 </div>
               </div>
             </div>

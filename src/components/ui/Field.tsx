@@ -66,8 +66,8 @@ export default function Field({
           )}
         </div>
       </div>
-      <span className="field__hint">{error}</span>
-      {hint && <span className="field__hint">{hint}</span>}
+      {error && <span className="field__hint">{error}</span>}
+      {hint && <span className="field__hint ">{hint}</span>}
     </div>
   );
 }

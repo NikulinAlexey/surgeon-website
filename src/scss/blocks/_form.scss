@@ -1,0 +1,29 @@
+.form {
+  &__layout {
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 8px;
+    margin: auto;
+
+    @include media-breakpoint-up(lg) {
+      gap: 16px;
+    }
+  }
+
+  &__fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 12px;
+  }
+
+  &__checkboxes {
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 6px;
+  }
+}

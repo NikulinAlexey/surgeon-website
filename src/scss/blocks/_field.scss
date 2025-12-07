@@ -1,11 +1,12 @@
 .field {
   // border
   --field-border-color: transparent;
-  --field-border-color-focus: var(--c-text-color-9);
-  --field-border-color-error: var(--c-error-color);
+  --field-border-focus-color: var(--c-text-color-9);
+  --field-border-error-color: var(--c-error-color);
 
   // hint
-  --field-hint-color: var(--c-text-color-1);
+  --field-hint-color: var(--c-text-color-2);
+  --field-hint-error-color: var(--c-error-color);
 
   //label
   --field-label-color: var(--c-text-color-1);
@@ -14,9 +15,10 @@
   --field-action-color: var(--c-text-color-10);
 
   &__label {
+    @include font(14px, 14px, 500);
+
     display: block;
     margin-bottom: 6px;
-    font-weight: 500;
     color: var(--field-label-color);
   }
 
@@ -25,17 +27,22 @@
   }
 
   &__input {
+    @include font(16px, 18px);
+
     width: 100%;
     padding: 12px 40px 12px 16px;
     border: 1px solid var(--field-border-color);
     border-radius: 6px;
     font-size: 16px;
     transition: border-color 0.3s;
-    // background-color: red;
+
+    @include hover {
+      border-color: var(--field-border-focus-color);
+    }
 
     &:focus {
       outline: none;
-      border-color: var(--field-border-color-focus);
+      border-color: var(--field-border-focus-color);
     }
   }
 
@@ -76,15 +83,16 @@
   }
 
   &__hint {
+    @include font(12px, 12px, 500);
+
     display: block;
     color: var(--field-hint-color);
     margin-top: 4px;
-    font-size: 14px;
     min-height: 1lh;
   }
 
   &--error {
-    --border-color: var(--field-border-color-error);
+    --form-border-color: var(--field-border-error-color);
     --form-field-hint-color: var(--c-error-color);
   }
 }

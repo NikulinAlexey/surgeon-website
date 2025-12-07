@@ -1,0 +1,27 @@
+.checkbox {
+  --checkbox-label-color: var(--c-text-color-1);
+
+  // link
+  --checkbox-link-color: var(--c-text-color-9);
+
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+
+  &__label {
+    @include font(14px, 18px);
+
+    color: var(--checkbox-label-color);
+  }
+
+  &__link {
+    @include font(14px, 18px);
+
+    color: var(--checkbox-link-color);
+    transition: opacity $animation-speed $animation-timing-function;
+
+    @include hover {
+      opacity: 0.8;
+    }
+  }
+}

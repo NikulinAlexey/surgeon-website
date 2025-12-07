@@ -20,6 +20,9 @@ export const buttonVariants = cva("button", {
     lifted: {
       true: "button--lifted",
     },
+    wide: {
+      true: "button--wide",
+    },
     disabled: {
       true: "_disabled",
     },
@@ -30,7 +33,8 @@ interface ButtonProps extends VariantProps<typeof buttonVariants> {
   text?: string;
   className?: string;
   type?: "button" | "submit" | "reset";
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  wide?: boolean;
 }
 
 export default function Button({
@@ -41,6 +45,7 @@ export default function Button({
   size = "sm",
   shape,
   lifted,
+  wide,
   disabled,
   onClick,
   type = "button",
@@ -56,6 +61,7 @@ export default function Button({
         size,
         shape,
         lifted,
+        wide,
         disabled,
         className,
       })}
