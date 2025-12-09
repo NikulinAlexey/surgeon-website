@@ -214,6 +214,7 @@ export default function RegisterPage() {
                                 value={formData.firstName}
                                 onChange={handleInputChange}
                                 error={errors.firstName}
+                                onReset={() => setFormData(prev => ({ ...prev, firstName: "" }))}
                               />
                               <Field
                                 label="Фамилия"
@@ -225,6 +226,7 @@ export default function RegisterPage() {
                                 placeholder="Введите фамилию"
                                 disabled={isLoading}
                                 error={errors.lastName}
+                                onReset={() => setFormData(prev => ({ ...prev, lastName: "" }))}
                               />
                               <Field
                                 label="Отчество (необязательно)"
@@ -237,6 +239,7 @@ export default function RegisterPage() {
                                 onChange={handleInputChange}
                                 placeholder="Введите отчество"
                                 disabled={isLoading}
+                                onReset={() => setFormData(prev => ({ ...prev, patronymic: "" }))}
                               />
                             </>
                           )}
@@ -252,6 +255,7 @@ export default function RegisterPage() {
                                 error={errors.email}
                                 placeholder="Введите email"
                                 disabled={isLoading}
+                                onReset={() => setFormData(prev => ({ ...prev, email: "" }))}
                               />
                               <Field
                                 label="Телефон"
@@ -263,6 +267,7 @@ export default function RegisterPage() {
                                 placeholder="Введите телефон"
                                 disabled={isLoading}
                                 error={errors.phone}
+                                onReset={() => setFormData(prev => ({ ...prev, phone: "" }))}
                               />
                             </>
                           )}
@@ -278,6 +283,7 @@ export default function RegisterPage() {
                                 error={errors.password}
                                 placeholder="Введите пароль"
                                 disabled={isLoading}
+                                onReset={() => setFormData(prev => ({ ...prev, password: "" }))}
                               />
                               <Field
                                 label="Подтвердите пароль"
@@ -289,6 +295,7 @@ export default function RegisterPage() {
                                 error={errors.confirmPassword}
                                 placeholder="Повторите пароль"
                                 disabled={isLoading}
+                                onReset={() => setFormData(prev => ({ ...prev, confirmPassword: "" }))}
                               />
                               <Field
                                 label="Дата рождения"

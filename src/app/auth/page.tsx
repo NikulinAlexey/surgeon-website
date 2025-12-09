@@ -152,6 +152,7 @@ export default function AuthPage() {
                             error={errors.email}
                             placeholder="your@email.com"
                             disabled={isLoading}
+                            onReset={() => setFormData(prev => ({ ...prev, email: "" }))}
                           />
                           {authMode === "login" && (
                             <Field
@@ -164,6 +165,7 @@ export default function AuthPage() {
                               error={errors.password}
                               placeholder="Введите пароль"
                               disabled={isLoading}
+                              onReset={() => setFormData(prev => ({ ...prev, password: "" }))}
                             />
                           )}
                         </fieldset>

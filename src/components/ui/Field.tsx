@@ -1,5 +1,5 @@
 import { cn } from "@/lib/clsx";
-import React from "react";
+import React, { useState } from "react";
 
 interface FieldProps {
   label: string;
@@ -9,7 +9,7 @@ interface FieldProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
-  hint?: string;
+  message?: string;
   placeholder?: string;
   disabled?: boolean;
   onReset?: () => void;
@@ -23,11 +23,12 @@ export default function Field({
   value,
   onChange,
   error,
-  hint,
+  message,
   placeholder,
   disabled = false,
   onReset,
 }: FieldProps) {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <div
       className={cn("field", {
@@ -39,7 +40,7 @@ export default function Field({
       </label>
       <div className="field__input-wrapper">
         <input
-          type={type}
+          type={type === "password" && showPassword ? "text" : type}
           id={id}
           name={name}
           value={value}
@@ -60,14 +61,19 @@ export default function Field({
             </button>
           )}
           {type === "password" && value && (
-            <button type="button" className="field__action" disabled={disabled}>
-              👀
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="field__action"
+              disabled={disabled}
+            >
+              {showPassword ? "🙈" : "👀"}
             </button>
           )}
         </div>
       </div>
-      {error && <span className="field__hint">{error}</span>}
-      {hint && <span className="field__hint ">{hint}</span>}
+      {error && <span className="field__message">{error}</span>}
+      {message && <span className="field__message ">{message}</span>}
     </div>
   );
 }
