@@ -13,6 +13,7 @@ export default function UiKitButtons() {
         <span className="text text--lg text--bold">Темы</span>
         <Button variant="primary" text="Primary Theme" />
         <Button variant="secondary" text="Secondary Theme" />
+        <Button variant="danger" text="Danger Theme" />
         <Button variant="outline" text="Outline Theme" />
         <Button variant="outline-inverted" text="Outline Inverted" />
         <Button variant="ghost" text="Ghost Theme" />
@@ -20,6 +21,7 @@ export default function UiKitButtons() {
         <span className="text text--lg text--bold">Эффекты</span>
         <Button variant="primary" lifted text="Lifted Primary" />
         <Button variant="secondary" lifted text="Lifted Secondary" />
+        <Button variant="danger" lifted text="Lifted Danger" />
         <Button variant="outline" lifted text="Lifted Outline" />
         <hr />
         <span className="text text--lg text--bold">Формы</span>
@@ -53,6 +55,7 @@ export default function UiKitButtons() {
         <span className="text text--lg text--bold">Состояния</span>
         <Button variant="primary" disabled text="Disabled Primary" />
         <Button variant="secondary" disabled text="Disabled Secondary" />
+        <Button variant="danger" disabled text="Disabled Danger" />
         <Button variant="outline" disabled text="Disabled Outline" />
         <hr />
         <span className="text text--lg text--bold">Типы кнопок</span>

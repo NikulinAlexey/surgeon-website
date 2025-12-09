@@ -14,6 +14,7 @@ interface CheckboxProps extends VariantProps<typeof checkboxVariants> {
   onChange: (checked: boolean) => void;
   disabled?: boolean;
   name?: string;
+  required?: boolean;
 }
 
 export default function Checkbox({
@@ -22,6 +23,7 @@ export default function Checkbox({
   onChange,
   disabled,
   name,
+  required,
 }: CheckboxProps) {
   return (
     <label className={checkboxVariants({ disabled })}>
@@ -32,6 +34,7 @@ export default function Checkbox({
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
         disabled={disabled}
+        required={required}
       />
       <span className="checkbox__label">{label}</span>
     </label>

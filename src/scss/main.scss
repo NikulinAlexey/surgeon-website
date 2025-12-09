@@ -3,12 +3,13 @@
 @import "../scss/global/fonts";
 @import "../scss/global/variables";
 
-// grid
+// base
 @import "./blocks/page";
 @import "./blocks/layout";
 @import "./blocks/section";
 @import "./blocks/container";
 @import "./blocks/text";
+@import "./blocks/footer";
 
 // swiper
 @import "swiper/css";
@@ -25,6 +26,10 @@
 @import "./blocks/slider";
 @import "./blocks/grid";
 @import "./blocks/decorated-bg";
+@import "./blocks/field";
+@import "./blocks/content-card";
+@import "./blocks/form";
+@import "./blocks/checkbox";
 
 // pages
 @import "./blocks/profile";
@@ -44,9 +49,5 @@
 @import "./blocks/burger";
 @import "./blocks/nav";
 @import "./blocks/review";
-@import "./blocks/field";
-@import "./blocks/content-card";
-@import "./blocks/form";
-@import "./blocks/checkbox";
+@import "./blocks/contacts";
 
-@import "./blocks/footer";

@@ -84,6 +84,12 @@
     --button-border-color: var(--c-success-color);
   }
 
+  &--theme-danger {
+    --button-bg-color: var(--c-error-color);
+    --button-color: var(--c-text-color-1);
+    --button-border-color: var(--c-error-color);
+  }
+
   &--theme-outline {
     --button-bg-color: transparent;
     --button-color: var(--c-text-color-1);

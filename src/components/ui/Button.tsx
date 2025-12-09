@@ -5,6 +5,7 @@ export const buttonVariants = cva("button", {
     variant: {
       primary: "button--theme-primary",
       secondary: "button--theme-secondary",
+      danger: "button--theme-danger",
       ghost: "button--theme-ghost",
       outline: "button--theme-outline",
       "outline-inverted": "button--theme-outline-inverted",

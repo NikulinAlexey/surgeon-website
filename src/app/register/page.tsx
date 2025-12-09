@@ -23,15 +23,15 @@ interface RegisterFormData {
 const REGISTER_STEPS = [
   {
     title: "Личные данные",
-    fields: ["firstName", "lastName", "patronymic", "phone", "email"],
+    fields: ["firstName", "lastName", "patronymic"],
   },
   {
     title: "Контакты",
-    fields: ["password", "confirmPassword", "birthDate"],
+    fields: ["email", "phone"],
   },
   {
-    title: "Соглашения",
-    fields: ["agreePersonalData", "agreeCommunication"],
+    title: "Пароль и соглашения",
+    fields: ["password", "confirmPassword", "birthDate", "agreePersonalData", "agreeCommunication"],
   },
 ];
 
@@ -51,28 +51,44 @@ export default function RegisterPage() {
     agreeCommunication: false,
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState<Partial<RegisterFormData>>({});
+  const [errors, setErrors] = useState<Record<string, string | undefined>>({});
 
-  const validateForm = (): boolean => {
-    const newErrors: Partial<RegisterFormData> = {};
+  const validateStep = (step: number): boolean => {
+    const newErrors: Record<string, string> = {};
 
-    // Email validation
-    if (!formData.email) {
-      newErrors.email = "Email обязателен";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Некорректный email";
-    }
-
-    // Password validation
-    if (!formData.password) {
-      newErrors.password = "Пароль обязателен";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Пароль должен быть не менее 6 символов";
-    }
-
-    // Confirm password validation
-    if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Пароли не совпадают";
+    if (step === 0) {
+      if (!formData.firstName.trim()) {
+        newErrors.firstName = "Имя обязательно";
+      }
+      if (!formData.lastName.trim()) {
+        newErrors.lastName = "Фамилия обязательна";
+      }
+    } else if (step === 1) {
+      if (!formData.email.trim()) {
+        newErrors.email = "Email обязателен";
+      } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+        newErrors.email = "Некорректный email";
+      }
+      if (!formData.phone.trim()) {
+        newErrors.phone = "Телефон обязателен";
+      }
+    } else if (step === 2) {
+      if (!formData.password) {
+        newErrors.password = "Пароль обязателен";
+      } else if (formData.password.length < 6) {
+        newErrors.password = "Пароль должен быть не менее 6 символов";
+      }
+      if (!formData.confirmPassword) {
+        newErrors.confirmPassword = "Подтверждение пароля обязательно";
+      } else if (formData.password !== formData.confirmPassword) {
+        newErrors.confirmPassword = "Пароли не совпадают";
+      }
+      if (!formData.agreePersonalData) {
+        newErrors.agreePersonalData = "Согласие на обработку персональных данных обязательно";
+      }
+      if (!formData.agreeCommunication) {
+        newErrors.agreeCommunication = "Согласие на коммуникацию обязательно";
+      }
     }
 
     setErrors(newErrors);
@@ -82,12 +98,12 @@ export default function RegisterPage() {
   const handleSubmit = async (e: React.FormEvent | React.MouseEvent) => {
     if ("preventDefault" in e) e.preventDefault();
 
-    if (registerStep < 2) {
-      setRegisterStep(registerStep + 1);
+    if (!validateStep(registerStep)) {
       return;
     }
 
-    if (!validateForm()) {
+    if (registerStep < 2) {
+      setRegisterStep(registerStep + 1);
       return;
     }
 
@@ -197,6 +213,7 @@ export default function RegisterPage() {
                                 disabled={isLoading}
                                 value={formData.firstName}
                                 onChange={handleInputChange}
+                                error={errors.firstName}
                               />
                               <Field
                                 label="Фамилия"
@@ -207,6 +224,7 @@ export default function RegisterPage() {
                                 onChange={handleInputChange}
                                 placeholder="Введите фамилию"
                                 disabled={isLoading}
+                                error={errors.lastName}
                               />
                               <Field
                                 label="Отчество (необязательно)"
@@ -242,9 +260,9 @@ export default function RegisterPage() {
                                 name="phone"
                                 value={formData.phone}
                                 onChange={handleInputChange}
-                                error={errors.phone}
                                 placeholder="Введите телефон"
                                 disabled={isLoading}
+                                error={errors.phone}
                               />
                             </>
                           )}
@@ -285,6 +303,7 @@ export default function RegisterPage() {
                               />
                               <div className="form__checkboxes">
                                 <Checkbox
+                                  required
                                   label={
                                     <>
                                       Я согласен на обработку{" "}
@@ -308,7 +327,11 @@ export default function RegisterPage() {
                                   }
                                   disabled={isLoading}
                                 />
+                                {errors.agreePersonalData && (
+                                  <p className="form__error">{errors.agreePersonalData}</p>
+                                )}
                                 <Checkbox
+                                  required
                                   label="Я согласен на коммуникацию посредством цифровых способов связи"
                                   name="agreeCommunication"
                                   checked={formData.agreeCommunication}
@@ -320,6 +343,9 @@ export default function RegisterPage() {
                                   }
                                   disabled={isLoading}
                                 />
+                                {errors.agreeCommunication && (
+                                  <p className="form__error">{errors.agreeCommunication}</p>
+                                )}
                               </div>
                             </>
                           )}

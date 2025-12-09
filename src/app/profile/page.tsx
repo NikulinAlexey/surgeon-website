@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Footer from "@/components/Footer";
 import { Header } from "@/components/header/Header";
 import { ProfileForm } from "@/components/profile/ProfileForm";
@@ -7,8 +9,11 @@ import { SpecialistInfo } from "@/components/profile/SpecialistInfo";
 import { SpecialistSection } from "@/components/profile/SpecialistSection";
 import { useProfile } from "@/hooks/useProfile";
 import { useSpecialistForm } from "@/hooks/useSpecialistForm";
+import { useCookies } from "@/hooks/useCookies";
+import Button from "@/components/ui/Button";
 
 export default function ProfilePage() {
+  const router = useRouter();
   const {
     user,
     setUser,
@@ -30,6 +35,14 @@ export default function ProfilePage() {
     handleCancelSpecialistRequest,
   } = useSpecialistForm(setUser);
 
+  const { get, remove } = useCookies();
+
+  const handleLogout = () => {
+    remove("isLoggedIn");
+    window.dispatchEvent(new Event("loginStatusChanged"));
+    router.push("/auth");
+  };
+
   return (
     <>
       <Header />
@@ -43,6 +56,11 @@ export default function ProfilePage() {
                 {user.role === "specialist" && "Специалист"}
                 {user.role === "pending_specialist" && "Ожидает подтверждения"}
               </div>
+              {get("isLoggedIn") === "true" && (
+                <Button lifted variant="danger" onClick={handleLogout}>
+                  Выйти
+                </Button>
+              )}
             </div>
 
             <div className="dashboard__content">

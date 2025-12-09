@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Field from "@/components/ui/Field";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
+import { useCookies } from "@/hooks/useCookies";
 
 type AuthMode = "login" | "forgot-password";
 
@@ -14,6 +15,7 @@ interface AuthFormData {
 
 export default function AuthPage() {
   const router = useRouter();
+  const { set } = useCookies();
   const [authMode, setAuthMode] = useState<AuthMode>("login");
   const [formData, setFormData] = useState<AuthFormData>({
     email: "",
@@ -64,15 +66,21 @@ export default function AuthPage() {
 
       // Перенаправление на главную страницу после успешного входа
       if (authMode === "login") {
+        set("isLoggedIn", "true");
+        window.dispatchEvent(new Event("loginStatusChanged"));
         router.push("/");
         return;
       }
 
-      // Сброс формы после успешной отправки
-      setFormData({
-        email: "",
-        password: "",
-      });
+      // Для forgot-password переключаем на login
+      if (authMode === "forgot-password") {
+        setAuthMode("login");
+        // Сброс формы
+        setFormData({
+          email: "",
+          password: "",
+        });
+      }
     } catch (error) {
       console.error("Ошибка при отправке формы:", error);
     } finally {
@@ -159,6 +167,18 @@ export default function AuthPage() {
                             />
                           )}
                         </fieldset>
+                        <div className="auth__actions">
+                          <Button
+                            size="lg"
+                            wide
+                            type="submit"
+                            variant="secondary"
+                            className="auth__action"
+                            disabled={isLoading}
+                          >
+                            {getSubmitButtonText()}
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </form>
@@ -169,18 +189,6 @@ export default function AuthPage() {
                   role="contentinfo"
                   aria-label="Подвал формы"
                 >
-                  <div className="auth__actions">
-                    <Button
-                      size="lg"
-                      wide
-                      type="submit"
-                      variant="secondary"
-                      className="auth__action"
-                      disabled={isLoading}
-                    >
-                      {getSubmitButtonText()}
-                    </Button>
-                  </div>
                   <div className="auth__text">
                     {authMode === "login" && (
                       <Button

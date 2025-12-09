@@ -92,7 +92,7 @@
   }
 
   &--error {
-    --form-border-color: var(--field-border-error-color);
-    --form-field-hint-color: var(--c-error-color);
+    --field-border-color: var(--field-border-error-color);
+    --field-hint-color: var(--c-error-color);
   }
 }

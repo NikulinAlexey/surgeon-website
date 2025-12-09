@@ -3,10 +3,11 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/clsx";
-import { useState, memo, useCallback, useRef, useEffect } from "react";
+import { useState, memo, useCallback, useRef, useEffect, useReducer } from "react";
 import Burger from "./Burger";
 import SvgIcon from "../ui/SvgIcon";
 import ButtonLink from "../ui/ButtonLink";
+import { useCookies } from "@/hooks/useCookies";
 
 interface NavItem {
   title: string;
@@ -22,7 +23,8 @@ const navArray: NavItem[] = [
 ];
 
 function HeaderComponent() {
-  const isLoggedIn = false;
+  const { get } = useCookies();
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
@@ -46,6 +48,18 @@ function HeaderComponent() {
       body.classList.remove("_locked");
     }
   }, [isBurgerClicked]);
+
+  useEffect(() => {
+    const updateLoginStatus = () => {
+      forceUpdate();
+    };
+
+    window.addEventListener("loginStatusChanged", updateLoginStatus);
+
+    return () => {
+      window.removeEventListener("loginStatusChanged", updateLoginStatus);
+    };
+  }, [forceUpdate]);
 
   useEffect(() => {
     if (headerRef && headerRef.current) {
@@ -99,7 +113,7 @@ function HeaderComponent() {
                 <span className="nav__text">8 (812) 000-00-00</span>
               </Link>
               <div className="nav__profile">
-                {isLoggedIn ? (
+                {get("isLoggedIn") === "true" ? (
                   <ButtonLink text="ЛК" href="/profile" />
                 ) : (
                   <ButtonLink text="Войти" href="/auth" />
