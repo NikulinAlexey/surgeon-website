@@ -43,9 +43,11 @@
   &__input {
     @include font(16px, 18px);
 
-    width: 100%;
+    width: auto;
+    flex-grow: 1;
     padding: 12px 16px 12px;
     border: 1px solid transparent;
+    border-radius: 0;
 
     &:focus {
       outline: none;
