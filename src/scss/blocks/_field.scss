@@ -68,6 +68,7 @@
     cursor: pointer;
     padding: 0;
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
     opacity: 1;
