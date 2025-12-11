@@ -24,6 +24,7 @@
 
   &__input-wrapper {
     display: flex;
+    height: 44px;
     border: 1px solid var(--field-border-color);
     border-radius: 12px;
     transition: border-color 0.3s;
@@ -63,7 +64,7 @@
     @include font(24px, 24px);
 
     aspect-ratio: 1;
-    width: 44px;
+    -webkit-aspect-ratio: 1;
     height: 100%;
     border: none;
     color: var(--field-action-color);
