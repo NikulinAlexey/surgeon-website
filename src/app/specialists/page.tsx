@@ -5,12 +5,18 @@ import { Header } from "@/components/header/Header";
 import Library from "@/components/specialists/Library";
 import AskQuestion from "@/components/AskQuestion";
 import Conferences from "@/components/conferences/Conferences";
+import Banner from "@/components/Banner";
 
 export default function SpecialistPage() {
   return (
     <>
       <Header />
       <main className="layout__main">
+        <Banner
+          title="Специалистам"
+          subtitle="Общая информация для специалистов"
+          backgroundImage="/images/doctor.jpg"
+        />
         <Articles />
         <Library />
         <Conferences />

@@ -49,30 +49,28 @@ export default function Field({
           placeholder={placeholder}
           disabled={disabled}
         />
-        {value && (
-          <div className="field__actions">
-            {onReset && (
-              <button
-                type="button"
-                onClick={onReset}
-                className="field__action"
-                disabled={disabled}
-              >
-                ×
-              </button>
-            )}
-            {type === "password" && (
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="field__action"
-                disabled={disabled}
-              >
-                {showPassword ? "🙈" : "👀"}
-              </button>
-            )}
-          </div>
-        )}
+        <div className="field__actions">
+          {onReset && value && (
+            <button
+              type="button"
+              onClick={onReset}
+              className="field__action"
+              disabled={disabled}
+            >
+              ×
+            </button>
+          )}
+          {type === "password" && value && (
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="field__action"
+              disabled={disabled}
+            >
+              {showPassword ? "🙈" : "👀"}
+            </button>
+          )}
+        </div>
       </div>
       {error && <span className="field__message">{error}</span>}
       {message && <span className="field__message ">{message}</span>}

@@ -1,0 +1,29 @@
+.banner {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  // Если backgroundImage не передан, можно добавить дефолтный
+  &:not([style*="background-image"]) {
+    background-color: var(--c-primary-color, #f0f0f0);
+  }
+
+  &__title {
+    @include font(32px, 32px, 700, $basic-family);
+
+    text-wrap: balance;
+    margin-bottom: 16px;
+    color: var(--c-text-color-1, #000);
+
+    @include media-breakpoint-up(xl) {
+      @include font(48px, 48px, 700, $basic-family);
+    }
+  }
+
+  &__subtitle {
+    @include font(18px, 24px, 400, $basic-family);
+
+    opacity: 0.9;
+    color: var(--c-text-color-2, #666);
+  }
+}
