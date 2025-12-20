@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   gap: 4px;
-  width: fit-content;
+  width: var(--button-width, fit-content);
   max-width: 100%;
   height: fit-content;
   padding: var(--button-padding);
@@ -116,6 +116,6 @@
   }
 
   &--wide {
-    width: 100%;
+    --button-width: 100%;
   }
 }

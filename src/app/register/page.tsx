@@ -1,4 +1,5 @@
 "use client";
+import { Header } from "@/components/header/Header";
 import Button from "@/components/ui/Button";
 import Checkbox from "@/components/ui/Checkbox";
 import Field from "@/components/ui/Field";
@@ -31,7 +32,13 @@ const REGISTER_STEPS = [
   },
   {
     title: "Пароль и соглашения",
-    fields: ["password", "confirmPassword", "birthDate", "agreePersonalData", "agreeCommunication"],
+    fields: [
+      "password",
+      "confirmPassword",
+      "birthDate",
+      "agreePersonalData",
+      "agreeCommunication",
+    ],
   },
 ];
 
@@ -84,7 +91,8 @@ export default function RegisterPage() {
         newErrors.confirmPassword = "Пароли не совпадают";
       }
       if (!formData.agreePersonalData) {
-        newErrors.agreePersonalData = "Согласие на обработку персональных данных обязательно";
+        newErrors.agreePersonalData =
+          "Согласие на обработку персональных данных обязательно";
       }
       if (!formData.agreeCommunication) {
         newErrors.agreeCommunication = "Согласие на коммуникацию обязательно";
@@ -175,237 +183,283 @@ export default function RegisterPage() {
   };
 
   return (
-    <main className="layout__main">
+    <>
       <Progress
         className="auth__progress"
         stepsLenght={REGISTER_STEPS.length}
         currentStep={registerStep + 1}
       />
-      <div className="section">
-        <div className="container">
-          <div className="auth">
-            <div className="auth__container">
-              <div className="auth__layout">
-                <div
-                  className="auth__header"
-                  role="banner"
-                  aria-label="Заголовок формы"
-                >
-                  <h1 className="text text--xxl text-bold">Добро пожаловать</h1>
-                </div>
+      <Header compact />
+      <main className="layout__main">
+        <div className="section">
+          <div className="container">
+            <div className="auth">
+              <div className="auth__container">
+                <div className="auth__layout">
+                  <div
+                    className="auth__header"
+                    role="banner"
+                    aria-label="Заголовок формы"
+                  >
+                    <h1 className="text text--xxl text-bold">
+                      Добро пожаловать
+                    </h1>
+                  </div>
 
-                <div className="auth__body" role="main">
-                  <form className="form" onSubmit={handleSubmit}>
-                    <div className="form__container">
-                      <div className="form__layout">
-                        <h2 className="form__title text text--lg">
-                          {REGISTER_STEPS[registerStep].title}
-                        </h2>
-                        <fieldset className="form__fieldset">
-                          {registerStep === 0 && (
-                            <>
-                              <Field
-                                label="Имя"
-                                id="firstName"
-                                name="firstName"
-                                type="text"
-                                placeholder="Введите имя"
-                                disabled={isLoading}
-                                value={formData.firstName}
-                                onChange={handleInputChange}
-                                error={errors.firstName}
-                                onReset={() => setFormData(prev => ({ ...prev, firstName: "" }))}
-                              />
-                              <Field
-                                label="Фамилия"
-                                type="text"
-                                id="lastName"
-                                name="lastName"
-                                value={formData.lastName}
-                                onChange={handleInputChange}
-                                placeholder="Введите фамилию"
-                                disabled={isLoading}
-                                error={errors.lastName}
-                                onReset={() => setFormData(prev => ({ ...prev, lastName: "" }))}
-                              />
-                              <Field
-                                label="Отчество (необязательно)"
-                                type="text"
-                                id="patronymic"
-                                name="patronymic"
-                                value={
-                                  formData.patronymic ? formData.patronymic : ""
-                                }
-                                onChange={handleInputChange}
-                                placeholder="Введите отчество"
-                                disabled={isLoading}
-                                onReset={() => setFormData(prev => ({ ...prev, patronymic: "" }))}
-                              />
-                            </>
-                          )}
-                          {registerStep === 1 && (
-                            <>
-                              <Field
-                                label="Email"
-                                type="email"
-                                id="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleInputChange}
-                                error={errors.email}
-                                placeholder="Введите email"
-                                disabled={isLoading}
-                                onReset={() => setFormData(prev => ({ ...prev, email: "" }))}
-                              />
-                              <Field
-                                label="Телефон"
-                                type="tel"
-                                id="phone"
-                                name="phone"
-                                value={formData.phone}
-                                onChange={handleInputChange}
-                                placeholder="Введите телефон"
-                                disabled={isLoading}
-                                error={errors.phone}
-                                onReset={() => setFormData(prev => ({ ...prev, phone: "" }))}
-                              />
-                            </>
-                          )}
-                          {registerStep === 2 && (
-                            <>
-                              <Field
-                                label="Пароль"
-                                type="password"
-                                id="password"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleInputChange}
-                                error={errors.password}
-                                placeholder="Введите пароль"
-                                disabled={isLoading}
-                                onReset={() => setFormData(prev => ({ ...prev, password: "" }))}
-                              />
-                              <Field
-                                label="Подтвердите пароль"
-                                type="password"
-                                id="confirmPassword"
-                                name="confirmPassword"
-                                value={formData.confirmPassword}
-                                onChange={handleInputChange}
-                                error={errors.confirmPassword}
-                                placeholder="Повторите пароль"
-                                disabled={isLoading}
-                                onReset={() => setFormData(prev => ({ ...prev, confirmPassword: "" }))}
-                              />
-                              <Field
-                                label="Дата рождения"
-                                type="date"
-                                id="birthDate"
-                                name="birthDate"
-                                value={
-                                  formData.birthDate ? formData.birthDate : ""
-                                }
-                                onChange={handleInputChange}
-                                disabled={isLoading}
-                              />
-                              <div className="form__checkboxes">
-                                <Checkbox
-                                  required
-                                  label={
-                                    <>
-                                      Я согласен на обработку{" "}
-                                      <a
-                                        className="checkbox__link"
-                                        href="#"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                      >
-                                        персональных данных
-                                      </a>
-                                    </>
-                                  }
-                                  name="agreePersonalData"
-                                  checked={formData.agreePersonalData}
-                                  onChange={(checked) =>
+                  <div className="auth__body" role="main">
+                    <form className="form" onSubmit={handleSubmit}>
+                      <div className="form__container">
+                        <div className="form__layout">
+                          <h2 className="form__title text text--lg">
+                            {REGISTER_STEPS[registerStep].title}
+                          </h2>
+                          <fieldset className="form__fieldset">
+                            {registerStep === 0 && (
+                              <>
+                                <Field
+                                  label="Имя"
+                                  id="firstName"
+                                  name="firstName"
+                                  type="text"
+                                  placeholder="Введите имя"
+                                  disabled={isLoading}
+                                  value={formData.firstName}
+                                  onChange={handleInputChange}
+                                  error={errors.firstName}
+                                  onReset={() =>
                                     setFormData((prev) => ({
                                       ...prev,
-                                      agreePersonalData: checked,
+                                      firstName: "",
                                     }))
                                   }
-                                  disabled={isLoading}
                                 />
-                                {errors.agreePersonalData && (
-                                  <p className="form__error">{errors.agreePersonalData}</p>
-                                )}
-                                <Checkbox
-                                  required
-                                  label="Я согласен на коммуникацию посредством цифровых способов связи"
-                                  name="agreeCommunication"
-                                  checked={formData.agreeCommunication}
-                                  onChange={(checked) =>
+                                <Field
+                                  label="Фамилия"
+                                  type="text"
+                                  id="lastName"
+                                  name="lastName"
+                                  value={formData.lastName}
+                                  onChange={handleInputChange}
+                                  placeholder="Введите фамилию"
+                                  disabled={isLoading}
+                                  error={errors.lastName}
+                                  onReset={() =>
                                     setFormData((prev) => ({
                                       ...prev,
-                                      agreeCommunication: checked,
+                                      lastName: "",
                                     }))
                                   }
+                                />
+                                <Field
+                                  label="Отчество (необязательно)"
+                                  type="text"
+                                  id="patronymic"
+                                  name="patronymic"
+                                  value={
+                                    formData.patronymic
+                                      ? formData.patronymic
+                                      : ""
+                                  }
+                                  onChange={handleInputChange}
+                                  placeholder="Введите отчество"
+                                  disabled={isLoading}
+                                  onReset={() =>
+                                    setFormData((prev) => ({
+                                      ...prev,
+                                      patronymic: "",
+                                    }))
+                                  }
+                                />
+                              </>
+                            )}
+                            {registerStep === 1 && (
+                              <>
+                                <Field
+                                  label="Email"
+                                  type="email"
+                                  id="email"
+                                  name="email"
+                                  value={formData.email}
+                                  onChange={handleInputChange}
+                                  error={errors.email}
+                                  placeholder="Введите email"
+                                  disabled={isLoading}
+                                  onReset={() =>
+                                    setFormData((prev) => ({
+                                      ...prev,
+                                      email: "",
+                                    }))
+                                  }
+                                />
+                                <Field
+                                  label="Телефон"
+                                  type="tel"
+                                  id="phone"
+                                  name="phone"
+                                  value={formData.phone}
+                                  onChange={handleInputChange}
+                                  placeholder="Введите телефон"
+                                  disabled={isLoading}
+                                  error={errors.phone}
+                                  onReset={() =>
+                                    setFormData((prev) => ({
+                                      ...prev,
+                                      phone: "",
+                                    }))
+                                  }
+                                />
+                              </>
+                            )}
+                            {registerStep === 2 && (
+                              <>
+                                <Field
+                                  label="Пароль"
+                                  type="password"
+                                  id="password"
+                                  name="password"
+                                  value={formData.password}
+                                  onChange={handleInputChange}
+                                  error={errors.password}
+                                  placeholder="Введите пароль"
+                                  disabled={isLoading}
+                                  onReset={() =>
+                                    setFormData((prev) => ({
+                                      ...prev,
+                                      password: "",
+                                    }))
+                                  }
+                                />
+                                <Field
+                                  label="Подтвердите пароль"
+                                  type="password"
+                                  id="confirmPassword"
+                                  name="confirmPassword"
+                                  value={formData.confirmPassword}
+                                  onChange={handleInputChange}
+                                  error={errors.confirmPassword}
+                                  placeholder="Повторите пароль"
+                                  disabled={isLoading}
+                                  onReset={() =>
+                                    setFormData((prev) => ({
+                                      ...prev,
+                                      confirmPassword: "",
+                                    }))
+                                  }
+                                />
+                                <Field
+                                  label="Дата рождения"
+                                  type="date"
+                                  id="birthDate"
+                                  name="birthDate"
+                                  value={
+                                    formData.birthDate ? formData.birthDate : ""
+                                  }
+                                  onChange={handleInputChange}
                                   disabled={isLoading}
                                 />
-                                {errors.agreeCommunication && (
-                                  <p className="form__error">{errors.agreeCommunication}</p>
-                                )}
-                              </div>
-                            </>
-                          )}
-                        </fieldset>
+                                <div className="form__checkboxes">
+                                  <Checkbox
+                                    required
+                                    label={
+                                      <>
+                                        Я согласен на обработку{" "}
+                                        <a
+                                          className="checkbox__link"
+                                          href="#"
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                        >
+                                          персональных данных
+                                        </a>
+                                      </>
+                                    }
+                                    name="agreePersonalData"
+                                    checked={formData.agreePersonalData}
+                                    onChange={(checked) =>
+                                      setFormData((prev) => ({
+                                        ...prev,
+                                        agreePersonalData: checked,
+                                      }))
+                                    }
+                                    disabled={isLoading}
+                                  />
+                                  {errors.agreePersonalData && (
+                                    <p className="form__error">
+                                      {errors.agreePersonalData}
+                                    </p>
+                                  )}
+                                  <Checkbox
+                                    required
+                                    label="Я согласен на коммуникацию посредством цифровых способов связи"
+                                    name="agreeCommunication"
+                                    checked={formData.agreeCommunication}
+                                    onChange={(checked) =>
+                                      setFormData((prev) => ({
+                                        ...prev,
+                                        agreeCommunication: checked,
+                                      }))
+                                    }
+                                    disabled={isLoading}
+                                  />
+                                  {errors.agreeCommunication && (
+                                    <p className="form__error">
+                                      {errors.agreeCommunication}
+                                    </p>
+                                  )}
+                                </div>
+                              </>
+                            )}
+                          </fieldset>
+                        </div>
                       </div>
-                    </div>
-                  </form>
-                </div>
+                    </form>
+                  </div>
 
-                <div
-                  className="auth__footer"
-                  role="contentinfo"
-                  aria-label="Подвал формы"
-                >
-                  <div className="auth__actions">
-                    {registerStep > 0 && (
+                  <div
+                    className="auth__footer"
+                    role="contentinfo"
+                    aria-label="Подвал формы"
+                  >
+                    <div className="auth__actions">
+                      {registerStep > 0 && (
+                        <Button
+                          type="button"
+                          size="lg"
+                          wide
+                          variant="primary"
+                          className="auth__action"
+                          onClick={handleBack}
+                          disabled={isLoading}
+                        >
+                          Назад
+                        </Button>
+                      )}
+
                       <Button
-                        type="button"
                         size="lg"
                         wide
-                        variant="primary"
+                        type="submit"
+                        variant="secondary"
                         className="auth__action"
-                        onClick={handleBack}
                         disabled={isLoading}
+                        onClick={(e) => handleSubmit(e)}
                       >
-                        Назад
+                        {getSubmitButtonText()}
                       </Button>
-                    )}
-
-                    <Button
-                      size="lg"
-                      wide
-                      type="submit"
-                      variant="secondary"
-                      className="auth__action"
-                      disabled={isLoading}
-                      onClick={(e) => handleSubmit(e)}
-                    >
-                      {getSubmitButtonText()}
-                    </Button>
+                    </div>
+                    <p className="auth__text">
+                      Уже зарегистрированы?{" "}
+                      <Link href={`/auth`} className="auth__link">
+                        Войти
+                      </Link>
+                    </p>
                   </div>
-                  <p className="auth__text">
-                    Уже зарегистрированы?{" "}
-                    <Link href={`/auth`} className="auth__link">
-                      Войти
-                    </Link>
-                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }

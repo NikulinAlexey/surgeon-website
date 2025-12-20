@@ -16,6 +16,7 @@ export default function ButtonLink({
   variant,
   size = "sm",
   shape,
+  wide,
   lifted,
   disabled,
   ...props
@@ -26,6 +27,7 @@ export default function ButtonLink({
         variant,
         size,
         shape,
+        wide,
         lifted,
         disabled,
         className,

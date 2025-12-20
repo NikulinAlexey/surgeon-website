@@ -1,6 +1,9 @@
 .header {
-  --header-color: var(--c-bg-color-1);
+  --header-color: var(--c-text-color-1);
   --header-bg-color: var(--c-bg-color-9);
+
+  // logo
+  --header-logo-size: 44px;
 
   // menu
   --header-menu-bg-color: var(--c-bg-color-2);
@@ -28,11 +31,15 @@
     gap: 40px;
   }
 
+  &__logo {
+    @include block-size(var(--header-logo-size));
+  }
+
   &__burger {
     margin-left: auto;
     flex-shrink: 0;
 
-    @include media-breakpoint-up(lg) {
+    @include media-breakpoint-up(xl) {
       display: none;
     }
   }
@@ -65,7 +72,7 @@
       visibility: visible;
     }
 
-    @include media-breakpoint-up(lg) {
+    @include media-breakpoint-up(xl) {
       position: static;
       inset: auto;
       opacity: 1;
@@ -89,12 +96,20 @@
     transition-duration: $animation-speed;
     transition-timing-function: $animation-timing-function;
 
-    @include media-breakpoint-up(lg) {
+    @include media-breakpoint-up(xl) {
       background-color: transparent;
       transform: none;
       max-width: none;
       border-radius: 0;
       height: auto;
+    }
+  }
+
+  &--compact {
+    --header-logo-size: 30px;
+
+    @include media-breakpoint-up(lg) {
+      --header-logo-size: 40px;
     }
   }
 }

@@ -21,8 +21,12 @@ $animation-timing-function: ease;
   --c-error-color: #ef4444;
   --c-warning-color: #f59e0b;
 
+
+  --c-dark-color: #384f68;
+  --c-light-color: #fff;
+
   // Text colors
-  --c-text-color-1: #ffffff;
+  --c-text-color-1: var(--c-light-color);
   --c-text-color-2: #96a2c7;
   --c-text-color-3: #00abeb;
   --c-text-color-4: #435e96;
@@ -31,10 +35,10 @@ $animation-timing-function: ease;
   --c-text-color-7: #00715d;
   --c-text-color-8: #101828;
   --c-text-color-9: #3b82f6;
-  --c-text-color-10: #384f68;
+  --c-text-color-10: var(--c-dark-color);
 
   // Background colors
-  --c-bg-color-1: #ffffff;
+  --c-bg-color-1: var(--c-light-color);
   --c-bg-color-2: #f9fafd;
   --c-bg-color-3: #00abeb;
   --c-bg-color-4: #0b2f7c;
@@ -42,7 +46,7 @@ $animation-timing-function: ease;
   --c-bg-color-6: #435e96;
   --c-bg-color-7: #00715d;
   --c-bg-color-8: #3b82f6;
-  --c-bg-color-9: #384f68;
+  --c-bg-color-9: var(--c-dark-color);
   --c-bg-color-10: #293c51;
   --c-bg-color-11: #000;
 
@@ -54,8 +58,8 @@ $animation-timing-function: ease;
   --c-border-color-5: #0b2f7c;
   --c-border-color-6: #00715d;
   --c-border-color-7: #3b82f6;
-  --c-border-color-8: #384f68;
-  --c-border-color-9: #ffffff;
+  --c-border-color-8: var(--c-dark-color);
+  --c-border-color-9: var(--c-light-color);
 
   // Shadows
   --c-shadow-1: 0 8px 20px #d0d0d012;

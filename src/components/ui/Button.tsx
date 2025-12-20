@@ -35,7 +35,6 @@ interface ButtonProps extends VariantProps<typeof buttonVariants> {
   className?: string;
   type?: "button" | "submit" | "reset";
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  wide?: boolean;
 }
 
 export default function Button({
@@ -45,8 +44,8 @@ export default function Button({
   variant,
   size = "sm",
   shape,
-  lifted,
   wide,
+  lifted,
   disabled,
   onClick,
   type = "button",
