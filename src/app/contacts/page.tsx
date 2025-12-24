@@ -10,7 +10,6 @@ export default function ContactsPage() {
       <main className="layout__main">
         <Banner
           title="Контакты"
-          subtitle="Контакты клиники урологии"
           backgroundImage="/images/doctor.jpg"
         />
         <Section title="Контакты">

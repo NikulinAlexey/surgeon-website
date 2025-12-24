@@ -50,17 +50,14 @@ export default function ProfilePage() {
         <div className="container">
           <div className="dashboard">
             <div className="dashboard__header">
-              <h1 className="dashboard__title">Личный кабинет</h1>
+              <h1 className="dashboard__title text text--xxl text-bold">
+                Личный кабинет
+              </h1>
               <div className="dashboard__role-badge">
                 {user.role === "patient" && "Пациент"}
                 {user.role === "specialist" && "Специалист"}
                 {user.role === "pending_specialist" && "Ожидает подтверждения"}
               </div>
-              {get("isLoggedIn") === "true" && (
-                <Button lifted variant="danger" onClick={handleLogout}>
-                  Выйти
-                </Button>
-              )}
             </div>
 
             <div className="dashboard__content">
@@ -92,6 +89,18 @@ export default function ProfilePage() {
                 <SpecialistInfo user={user} />
               )}
             </div>
+
+            {get("isLoggedIn") === "true" && (
+              <Button
+                lifted
+                wide
+                size="md"
+                variant="danger"
+                onClick={handleLogout}
+              >
+                Выйти
+              </Button>
+            )}
           </div>
         </div>
       </main>

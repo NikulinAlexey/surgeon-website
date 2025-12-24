@@ -100,4 +100,21 @@
     --field-border-color: var(--field-border-error-color);
     --field-message-color: var(--c-error-color);
   }
+
+  &--primary {
+    // border
+    --field-border-color: var(--c-border-color-10);
+    --field-border-focus-color: var(--c-border-color-8);
+    --field-border-error-color: var(--c-error-color);
+
+    // message
+    --field-message-color: var(--c-text-color-2);
+    --field-message-error-color: var(--c-error-color);
+
+    //label
+    --field-label-color: var(--c-text-color-2);
+
+    // action
+    --field-action-color: var( --c-text-color-2);
+  }
 }

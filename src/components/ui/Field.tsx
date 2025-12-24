@@ -9,6 +9,7 @@ interface FieldProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
+  variant?: "primary";
   message?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -22,6 +23,7 @@ export default function Field({
   name,
   value,
   onChange,
+  variant,
   error,
   message,
   placeholder,
@@ -32,6 +34,7 @@ export default function Field({
   return (
     <div
       className={cn("field", {
+        "field--primary": variant === "primary",
         "field--error": error,
       })}
     >

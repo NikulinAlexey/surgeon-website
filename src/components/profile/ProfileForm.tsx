@@ -1,3 +1,5 @@
+import Button from "../ui/Button";
+import Field from "../ui/Field";
 
 interface UserProfile {
   id: string;
@@ -22,7 +24,14 @@ interface ProfileFormProps {
   onToggleEdit: () => void;
 }
 
-export function ProfileForm({ user, onUserChange, isEditing, isLoading, onSave, onToggleEdit }: ProfileFormProps) {
+export function ProfileForm({
+  user,
+  onUserChange,
+  isEditing,
+  isLoading,
+  onSave,
+  onToggleEdit,
+}: ProfileFormProps) {
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -48,67 +57,51 @@ export function ProfileForm({ user, onUserChange, isEditing, isLoading, onSave, 
         )}
       </div>
 
-      <form onSubmit={onSave}>
+      <form onSubmit={onSave} className="form">
         <div className="form-grid">
-          <div className="form-field">
-            <label htmlFor="firstName" className="form-label">
-              Имя
-            </label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              value={user.firstName}
-              onChange={handleInputChange}
-              className="form-input"
-              disabled={!isEditing || user.role !== "patient"}
-            />
-          </div>
+          <Field
+            variant="primary"
+            label="Имя"
+            type="text"
+            id="firstName"
+            name="firstName"
+            value={user.firstName}
+            onChange={handleInputChange}
+            disabled={!isEditing || user.role !== "patient"}
+          />
 
-          <div className="form-field">
-            <label htmlFor="lastName" className="form-label">
-              Фамилия
-            </label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              value={user.lastName}
-              onChange={handleInputChange}
-              className="form-input"
-              disabled={!isEditing || user.role !== "patient"}
-            />
-          </div>
+          <Field
+            variant="primary"
+            label="Фамилия"
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={user.lastName}
+            onChange={handleInputChange}
+            disabled={!isEditing || user.role !== "patient"}
+          />
 
-          <div className="form-field">
-            <label htmlFor="email" className="form-label">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={user.email}
-              onChange={handleInputChange}
-              className="form-input"
-              disabled={!isEditing || user.role !== "patient"}
-            />
-          </div>
+          <Field
+            variant="primary"
+            label="Email"
+            type="email"
+            id="email"
+            name="email"
+            value={user.email}
+            onChange={handleInputChange}
+            disabled={!isEditing || user.role !== "patient"}
+          />
 
-          <div className="form-field">
-            <label htmlFor="phone" className="form-label">
-              Телефон
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={user.phone}
-              onChange={handleInputChange}
-              className="form-input"
-              disabled={!isEditing || user.role !== "patient"}
-            />
-          </div>
+          <Field
+            variant="primary"
+            label="Телефон"
+            type="tel"
+            id="phone"
+            name="email"
+            value={user.phone || ""}
+            onChange={handleInputChange}
+            disabled={!isEditing || user.role !== "patient"}
+          />
         </div>
 
         {isEditing && user.role === "patient" && (

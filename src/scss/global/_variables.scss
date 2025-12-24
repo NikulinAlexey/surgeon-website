@@ -21,7 +21,6 @@ $animation-timing-function: ease;
   --c-error-color: #ef4444;
   --c-warning-color: #f59e0b;
 
-
   --c-dark-color: #384f68;
   --c-light-color: #fff;
 
@@ -60,11 +59,12 @@ $animation-timing-function: ease;
   --c-border-color-7: #3b82f6;
   --c-border-color-8: var(--c-dark-color);
   --c-border-color-9: var(--c-light-color);
+  --c-border-color-10: #96a2c7;
 
   // Shadows
   --c-shadow-1: 0 8px 20px #d0d0d012;
   --c-shadow-2: 0 4px 10px rgba(0, 0, 0, 0.1);
-  --c-shadow-3: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --c-shadow-3: -11px 12px 12px rgba(0, 0, 0, 0.15);
   --c-shadow-4: 0 2px 6px rgba(0, 0, 0, 0.1);
 
   --c-gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
