@@ -184,11 +184,6 @@ export default function RegisterPage() {
 
   return (
     <>
-      <Progress
-        className="auth__progress"
-        stepsLenght={REGISTER_STEPS.length}
-        currentStep={registerStep + 1}
-      />
       <Header compact />
       <main className="layout__main">
         <div className="section">
@@ -205,6 +200,12 @@ export default function RegisterPage() {
                       Добро пожаловать
                     </h1>
                   </div>
+
+                  <Progress
+                    className="auth__progress"
+                    stepsLenght={REGISTER_STEPS.length}
+                    currentStep={registerStep + 1}
+                  />
 
                   <div className="auth__body" role="main">
                     <form className="form" onSubmit={handleSubmit}>

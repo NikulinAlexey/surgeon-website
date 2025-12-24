@@ -21,7 +21,7 @@ export default function Progress({
       })}
     >
       <label className="progress__label">
-        {noLabel == false && (
+        {!noLabel && (
           <span className="progress__text">
             Шаг {currentStep} из {stepsLenght}
           </span>

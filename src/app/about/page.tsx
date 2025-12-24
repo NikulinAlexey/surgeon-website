@@ -2,7 +2,6 @@
 "use client";
 import { Header } from "@/components/header/Header";
 import Footer from "@/components/Footer";
-import Banner from "@/components/Banner";
 import Section from "@/components/Section";
 import Image from "next/image";
 
@@ -11,40 +10,33 @@ export default function AboutPage() {
     <>
       <Header />
       <main className="layout__main">
-        <Banner
-          title="О нашей клинике урологии"
-          subtitle="Современная урологическая клиника с многолетним опытом лечения заболеваний мочеполовой системы"
-          backgroundImage="/images/doctor.jpg"
-        />
-
         <Section id="about" title="О клинике">
           <div className="about">
-            <p className="about__text text text--lg text--regular">
-              Наша клиника урологии — это современное медицинское учреждение,
-              специализирующееся на диагностике и лечении заболеваний
-              мочеполовой системы у мужчин и женщин. Мы предоставляем полный
-              спектр урологических услуг с использованием новейших технологий и
-              оборудования.
-            </p>
-            <p className="about__text text text--lg text--regular">
-              Клиника была основана в 2010 году группой ведущих урологов с
-              многолетним опытом работы. За годы работы мы помогли тысячам
-              пациентов восстановить здоровье и качество жизни.
-            </p>
-            <p className="about__text text text--lg text--regular">
-              Мы гордимся тем, что наша клиника соответствует самым высоким
-              стандартам медицинской помощи и использует только проверенные и
-              эффективные методы лечения.
-            </p>
-          </div>
-          <div className="about__picture">
-            <Image
-              width="400"
-              height="400"
-              className="about__image"
-              alt="Клиника урологии"
-              src="/surgeon-website/images/doctor.jpg"
-            />
+            <div className="about__container">
+              <div className="about__description">
+                <p className="about__text text text--md text--regular">
+                  Наша клиника урологии — это современное медицинское
+                  учреждение, специализирующееся на диагностике и лечении
+                  заболеваний мочеполовой системы у мужчин и женщин. Мы
+                  предоставляем полный спектр урологических услуг с
+                  использованием новейших технологий и оборудования.
+                </p>
+                <p className="about__text text text--md text--regular">
+                  Клиника была основана в 2010 году группой ведущих урологов с
+                  многолетним опытом работы. За годы работы мы помогли тысячам
+                  пациентов восстановить здоровье и качество жизни.
+                </p>
+              </div>
+              <div className="about__picture">
+                <Image
+                  width="400"
+                  height="400"
+                  className="about__image"
+                  alt="Клиника урологии"
+                  src="/surgeon-website/images/doctor.jpg"
+                />
+              </div>
+            </div>
           </div>
         </Section>
 
