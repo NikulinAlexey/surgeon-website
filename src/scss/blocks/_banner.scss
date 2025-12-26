@@ -1,29 +1,31 @@
 .banner {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  --banner-title-color: var(--c-text-color-1, , #666);
+  --banner-subtitle-color: var(--c-text-color-1, , #666);
+  --banner-bg-color: var(--c-bg-color-9);
+  --banner-offset-y: var(--c-section-offset-block);
 
-  // Если backgroundImage не передан, можно добавить дефолтный
-  &:not([style*="background-image"]) {
-    background-color: var(--c-primary-color, #f0f0f0);
+  &__container {
+    background-image: var(--banner-bg-img, none);
+    background-size: cover;
+    background-position: center;
+    background-repeat: var(--banner-container-bg-repeat, no-repeat);
   }
 
   &__title {
-    @include font(32px, 32px, 700, $basic-family);
-
     text-wrap: balance;
-    margin-bottom: 16px;
-    color: var(--c-text-color-1, #000);
-
-    @include media-breakpoint-up(xl) {
-      @include font(48px, 48px, 700, $basic-family);
-    }
+    color: var(--banner-title-color);
   }
 
   &__subtitle {
-    @include font(18px, 24px, 400, $basic-family);
-
     opacity: 0.9;
-    color: var(--c-text-color-2, #666);
+    color: var(--banner-subtitle-color);
+  }
+
+  &--offset-top {
+    margin-top: var(--banner-offset-y);
+  }
+
+  &--offset-bottom {
+    margin-bottom: var(--banner-offset-y);
   }
 }

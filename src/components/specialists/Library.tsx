@@ -8,6 +8,7 @@ import { useRef } from "react";
 import { SWIPER_CONFIGS } from "@/config/swiper-configs";
 import Section from "../Section";
 import Link from "next/link";
+import ButtonLink from "../ui/ButtonLink";
 
 const libraryItems = [
   {
@@ -96,13 +97,13 @@ export default function Library() {
                       {item.description}
                     </p>
                   </div>
-                  <Link
+                  <ButtonLink
+                    variant='secondary'
                     href={item.downloadLink}
-                    className="specialists-page__library-download"
                     download
                   >
                     Скачать PDF
-                  </Link>
+                  </ButtonLink>
                 </div>
               </li>
             </SwiperSlide>

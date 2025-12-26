@@ -7,7 +7,7 @@
   }
 
   &--wide-before-xl {
-    --slider-wide-inline-offset: var(--c-container-padding-inline);
+    --slider-wide-inline-offset: var(--c-container-offset-inline);
 
     margin-inline: calc(var(--slider-wide-inline-offset) * -1);
     scroll-padding: var(--slider-wide-inline-offset);

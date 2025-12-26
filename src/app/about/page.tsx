@@ -40,6 +40,10 @@ export default function AboutPage() {
           </div>
         </Section>
 
+        {/* <Section id="legal-information">
+
+        </Section> */}
+
         <Section id="services" title="Наши услуги">
           <div className="about-page__service-card">
             <h3>Диагностика</h3>

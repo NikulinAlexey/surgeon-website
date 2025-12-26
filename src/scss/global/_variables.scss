@@ -82,12 +82,12 @@ $animation-timing-function: ease;
   );
   --c-gradient-6: linear-gradient(262deg, #000 23.31%, #00715d 101.07%);
 
-  --c-section-padding-block: 40px;
-  --c-container-padding-inline: 16px;
+  --c-section-offset-block: 40px;
+  --c-container-offset-inline: 16px;
 
   @include media-breakpoint-up(lg) {
-    --c-section-padding-block: 60px;
-    --c-container-padding-inline: 40px;
+    --c-section-offset-block: 60px;
+    --c-container-offset-inline: 40px;
   }
 }
 

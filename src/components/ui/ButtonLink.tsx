@@ -6,6 +6,7 @@ interface ButtonLinkProps extends VariantProps<typeof buttonVariants> {
   children?: React.ReactNode;
   text?: string;
   href: string;
+  download?: boolean;
   className?: string;
   onClick?: () => void;
 }

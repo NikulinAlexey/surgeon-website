@@ -34,13 +34,16 @@ export default function AskQuestion() {
       </p>
       {!showQuestionForm ? (
         <Button
+          variant="primary"
           text="Задать вопрос"
           onClick={() => setShowQuestionForm(true)}
           className="button"
         />
       ) : (
-        <form onSubmit={handleSubmitQuestion} className="">
+        <form onSubmit={handleSubmitQuestion} className="form">
           <textarea
+            id=""
+            name=""
             value={questionText}
             onChange={(e) => setQuestionText(e.target.value)}
             placeholder="Введите ваш вопрос..."
@@ -51,16 +54,18 @@ export default function AskQuestion() {
           />
           <div className="">
             <Button
-              type="submit"
-              disabled={isSubmitting || !questionText.trim()}
-              text={isSubmitting ? "Отправка..." : "Отправить вопрос"}
-            />
-            <Button
+              variant="danger"
               onClick={() => {
                 setShowQuestionForm(false);
                 setQuestionText("");
               }}
               text="Отмена"
+            />
+            <Button
+              variant="secondary"
+              type="submit"
+              disabled={isSubmitting || !questionText.trim()}
+              text={isSubmitting ? "Отправка..." : "Отправить вопрос"}
             />
           </div>
         </form>

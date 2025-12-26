@@ -2,7 +2,7 @@
   --section-bg-color: var(--c-bg-color-9);
   --section-padding-block: 40px;
 
-  padding-block: var(--c-section-padding-block);
+  padding-block: var(--c-section-offset-block);
 
   @include media-breakpoint-up(lg) {
     --section-padding-block: 60px;
