@@ -1,7 +1,6 @@
 .nav {
-  --nav-color: var(--c-bg-color-1);
+  --nav-link-color: var(--c-bg-color-1);
 
-  color: var(--nav-color);
   display: flex;
   justify-content: center;
 
@@ -49,6 +48,7 @@
   }
 
   &__link {
+    color: var(--nav-link-color);
     display: flex;
     text-align: center;
     justify-content: center;
@@ -66,6 +66,10 @@
 
     @include hover {
       opacity: 0.75;
+    }
+
+    &._active {
+      --nav-link-color: red;
     }
   }
 

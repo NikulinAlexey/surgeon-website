@@ -15,6 +15,7 @@ import Burger from "./Burger";
 import SvgIcon from "../ui/SvgIcon";
 import ButtonLink from "../ui/ButtonLink";
 import { useCookies } from "@/hooks/useCookies";
+import { usePathname } from "next/navigation";
 
 interface NavItem {
   title: string;
@@ -34,6 +35,7 @@ const navArray: NavItem[] = [
 ];
 
 function HeaderComponent({ compact }: HeaderComponentProps) {
+  const pathname = usePathname();
   const { get } = useCookies();
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
@@ -113,17 +115,28 @@ function HeaderComponent({ compact }: HeaderComponentProps) {
               <div className="header__nav nav">
                 <div className="nav__body">
                   <ul className="nav__list">
-                    {navArray.map(({ link, title }, index) => (
-                      <li className="nav__item" key={index}>
-                        <Link
-                          href={link}
-                          className="nav__link text text--sm text--regular"
-                          onClick={handleLinkClick}
-                        >
-                          <span className="nav__text">{title}</span>
-                        </Link>
-                      </li>
-                    ))}
+                    {navArray.map(({ link, title }, index) => {
+                      const isActive = link === pathname;
+                      console.log(link);
+                      console.log(pathname);
+                      return (
+                        <li className="nav__item" key={index}>
+                          <Link
+                            href={link}
+                            className={cn(
+                              "nav__link text text--sm text--regular",
+                              {
+                                _active: isActive,
+                              }
+                            )}
+                            onClick={handleLinkClick}
+                            aria-current={isActive ? "page" : undefined}
+                          >
+                            <span className="nav__text">{title}</span>
+                          </Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                   <Link
                     className="nav__link text text--sm text--regular"
@@ -132,14 +145,16 @@ function HeaderComponent({ compact }: HeaderComponentProps) {
                     <SvgIcon className="nav__icon" name="phone" />
                     <span className="nav__text">8 (812) 000-00-00</span>
                   </Link>
-                  <div className="nav__profile">
+                  <div className="nav__profile" suppressHydrationWarning={true}>
                     {get("isLoggedIn") === "true" ? (
-                      <ButtonLink text="ЛК" href="/profile" />
+                      <ButtonLink text="ЛК" href="/profile">
+                        <SvgIcon name="user" />
+                      </ButtonLink>
                     ) : (
                       <ButtonLink
                         variant="outline-inverted"
-                          wide
-                          size='md'
+                        wide
+                        size="md"
                         text="Войти"
                         href="/auth"
                       />

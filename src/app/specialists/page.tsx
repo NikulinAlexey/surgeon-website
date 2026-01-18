@@ -1,3 +1,4 @@
+"use client";
 import Articles from "@/components/articles/Articles";
 
 import Footer from "@/components/Footer";

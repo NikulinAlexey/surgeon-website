@@ -23,6 +23,16 @@ export const SWIPER_CONFIGS = {
     },
   } as SwiperProps,
 
+  "cards-sm": {
+    ...BASE_CONFIG,
+    slidesPerView: 2.2,
+    breakpoints: {
+      480: { slidesPerView: 3.2, spaceBetween: 20 },
+      768: { slidesPerView: 4.2, spaceBetween: 20 },
+      992: { slidesPerView: 5, spaceBetween: 20 },
+    },
+  } as SwiperProps,
+
   // Для отзывов
   testimonials: {
     ...BASE_CONFIG,

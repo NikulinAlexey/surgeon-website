@@ -1,8 +1,5 @@
 "use client";
 
-import SvgIcon from "../ui/SvgIcon";
-import Button from "../ui/Button";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import { useRef } from "react";

@@ -1,10 +1,8 @@
 .grid {
   --grid-cols-repeat: 1;
   --grid-col-size: minmax(0, 1fr);
-  --grid--template-columns: repeat(
-    var(--grid-cols-repeat),
-    var(--grid-col-size)
-  );
+  --grid--template-columns: repeat(var(--grid-cols-repeat),
+      var(--grid-col-size));
   --grid-gap: 16px;
 
   @include media-breakpoint-up(md) {
@@ -28,5 +26,19 @@
   &--wrap {
     --grid-cols-repeat: auto-fit;
     --grid-col-size: minmax(250px, 1fr);
+  }
+
+  &--cols {
+    @include media-breakpoint-up(md) {
+      --grid-cols-repeat: 1;
+    }
+
+    @include media-breakpoint-up(lg) {
+      --grid-cols-repeat: 1;
+    }
+  }
+
+  &--gap-lg {
+    --grid-gap: 36px;
   }
 }
