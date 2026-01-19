@@ -4,46 +4,14 @@ import { cn } from "@/lib/clsx";
 import SvgIcon from "./ui/SvgIcon";
 import Section from "./Section";
 
-interface FAQItem {
+import { FAQItem } from "@/types/components/faqItem";
+
+interface FAQProps {
+  faqData: FAQItem[];
+  title?: string;
   id: string;
-  question: string;
-  answer: string;
 }
-
-const faqData: FAQItem[] = [
-  {
-    id: "1",
-    question: "Как записаться на прием?",
-    answer:
-      "Вы можете записаться на прием по телефону или через наш сайт. Мы работаем с понедельника по пятницу с 9:00 до 18:00.",
-  },
-  {
-    id: "2",
-    question: "Какие услуги предоставляет клиника?",
-    answer:
-      "Наша клиника предлагает широкий спектр медицинских услуг: консультации специалистов, диагностику, лечение и профилактику заболеваний.",
-  },
-  {
-    id: "3",
-    question: "Какова стоимость услуг?",
-    answer:
-      "Стоимость услуг зависит от вида медицинской помощи. Подробную информацию можно получить по телефону или на сайте в разделе 'Цены'.",
-  },
-  {
-    id: "4",
-    question: "Нужно ли предварительно готовиться к приему?",
-    answer:
-      "В зависимости от вида обследования или консультации, может потребоваться предварительная подготовка. Наш администратор сообщит вам об этом при записи.",
-  },
-  {
-    id: "5",
-    question: "Работает ли клиника в выходные?",
-    answer:
-      "В выходные дни клиника работает по предварительной записи. Пожалуйста, уточните график по телефону.",
-  },
-];
-
-export default function FAQ() {
+export default function FAQ({ faqData, title, id }: FAQProps) {
   const [openItems, setOpenItems] = useState<Set<string>>(new Set());
 
   const toggleItem = (id: string) => {
@@ -57,11 +25,11 @@ export default function FAQ() {
   };
 
   return (
-    <Section id="faq" title="Часто задаваемые вопросы">
+    <Section id={id} title={title}>
       <div className="faq">
         <div className="faq__body">
           <ul className="faq__accordion">
-            {faqData.map((item) => (
+            {faqData.map((item: FAQItem) => (
               <li
                 key={item.id}
                 className={cn("faq__item", { _active: openItems.has(item.id) })}

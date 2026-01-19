@@ -1,0 +1,11 @@
+.list {
+  padding-left: revert;
+
+  &--ul {
+    list-style-type: disc;
+  }
+
+  &--ol {
+    list-style-type: decimal;
+  }
+}

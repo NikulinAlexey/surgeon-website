@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import Section from "@/components/Section";
 import Image from "next/image";
 
-export default function AboutPage() {
+export default function DnevnoyStacionarPage() {
   return (
     <>
       <Header />
