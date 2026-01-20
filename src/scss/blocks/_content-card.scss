@@ -62,4 +62,8 @@
   &__date {
     color: var(--content-card-date-color);
   }
+
+  &--employee {
+    cursor: default;
+  }
 }
