@@ -4,145 +4,214 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import { SWIPER_CONFIGS } from "@/config/swiper-configs";
 import { useRef } from "react";
-import ContentCard from "../ContentCard";
+import EmployeeCard from "./EmployeeCard";
 
-interface EmployeesProps {
-  className?: string;
-}
-export default function Employees({ className }: EmployeesProps) {
-  const swiperRef = useRef<SwiperType>(null);
-  const newsCards = [
+export default function Employees() {
+  const swiperRefDoctors = useRef<SwiperType>(null);
+  const swiperRefNurses = useRef<SwiperType>(null);
+  const swiperRefPersonnel = useRef<SwiperType>(null);
+
+  const doctors = [
     {
-      title: "Хороший доктор",
-      description:
-        "История молодого талантливого врача с синдромом саванта, обладающего уникальными способностями - невероятной памятью и фантастической чувствительностью к проблемам, вспыхивающим внутри человеческого организма. Парень становится блестящим хирургом, но несмотря на это, в личностном плане его развитие соответствует уровню десятилетнего ребёнка.",
+      title: "Иванов И.И.",
+      description: "Специализвация врача или короткое описание",
       img: "/surgeon-website/images/good-doctor.jpg",
       id: "qweasdasdasdasф2dasd",
-      link: "example.com",
-      date: "18.04.1997",
-      slug: "novaya-medicina-2024",
     },
     {
-      title: "Хороший доктор",
-      description:
-        "История молодого талантливого врача с синдромом саванта, обладающего уникальными способностями - невероятной памятью и фантастической чувствительностью к проблемам, вспыхивающим внутри человеческого организма. Парень становится блестящим хирургом, но несмотря на это, в личностном плане его развитие соответствует уровню десятилетнего ребёнка.",
+      title: "Иванов И.И.",
+      description: "Специализвация врача или короткое описание",
       img: "/surgeon-website/images/good-doctor.jpg",
       id: "qweasdasdasdasd132",
-      link: "example.com",
-      date: "18.04.1997",
-      slug: "novaya-medicina-2024",
     },
     {
-      title: "Хороший доктор",
-      description:
-        "История молодого талантливого врача с синдромом саванта, обладающего уникальными способностями - невероятной памятью и фантастической чувствительностью к проблемам, вспыхивающим внутри человеческого организма. Парень становится блестящим хирургом, но несмотря на это, в личностном плане его развитие соответствует уровню десятилетнего ребёнка.",
+      title: "Иванов И.И.",
+      description: "Специализвация врача или короткое описание",
       img: "/surgeon-website/images/good-doctor.jpg",
       id: "qweasdas3dedasd32d",
-      link: "example.com",
-      date: "18.04.1997",
-      slug: "novaya-medicina-2024",
     },
     {
-      title: "Хороший доктор",
-      description:
-        "История молодого талантливого врача с синдромом саванта, обладающего уникальными способностями - невероятной памятью и фантастической чувствительностью к проблемам, вспыхивающим внутри человеческого организма. Парень становится блестящим хирургом, но несмотря на это, в личностном плане его развитие соответствует уровню десятилетнего ребёнка.",
+      title: "Иванов И.И.",
+      description: "Специализвация врача или короткое описание",
       img: "/surgeon-website/images/good-doctor.jpg",
       id: "qweasdasdasdasdasd",
-      link: "example.com",
-      date: "18.04.1997",
-      slug: "novaya-medicina-2024",
     },
     {
-      title: "Хороший доктор",
-      description:
-        "История молодого талантливого врача с синдромом саванта, обладающего уникальными способностями - невероятной памятью и фантастической чувствительностью к проблемам, вспыхивающим внутри человеческого организма. Парень становится блестящим хирургом, но несмотря на это, в личностном плане его развитие соответствует уровню десятилетнего ребёнка.",
+      title: "Иванов И.И.",
+      description: "Специализвация врача или короткое описание",
       img: "/surgeon-website/images/good-doctor.jpg",
       id: "qweasdasdasdasd1й2",
-      link: "example.com",
-      date: "18.04.1997",
-      slug: "novaya-medicina-2024",
     },
     {
-      title: "Хороший доктор",
-      description:
-        "История молодого талантливого врача с синдромом саванта, обладающего уникальными способностями - невероятной памятью и фантастической чувствительностью к проблемам, вспыхивающим внутри человеческого организма. Парень становится блестящим хирургом, но несмотря на это, в личностном плане его развитие соответствует уровню десятилетнего ребёнка.",
+      title: "Иванов И.И.",
+      description: "Специализвация врача или короткое описание",
       img: "/surgeon-website/images/good-doctor.jpg",
       id: "qweasdas3dedasda2d",
-      link: "example.com",
-      date: "18.04.1997",
-      slug: "novaya-medicina-2024",
     },
   ];
+  const nurses = [
+    {
+      title: "Паралонов Х.Х.",
+      description: "Что-то про медсестру или медбрата",
+      img: "/surgeon-website/images/good-doctor.jpg",
+      id: "qweasdasdasdasф2dasd",
+    },
+    {
+      title: "Паралонов Х.Х.",
+      description: "Что-то про медсестру или медбрата",
+      img: "/surgeon-website/images/good-doctor.jpg",
+      id: "qweasdasdasdasd132",
+    },
+    {
+      title: "Паралонов Х.Х.",
+      description: "Что-то про медсестру или медбрата",
+      img: "/surgeon-website/images/good-doctor.jpg",
+      id: "qweasdas3dedasd32d",
+    },
+    {
+      title: "Паралонов Х.Х.",
+      description: "Что-то про медсестру или медбрата",
+      img: "/surgeon-website/images/good-doctor.jpg",
+      id: "qweasdasdasdasdasd",
+    },
+    {
+      title: "Паралонов Х.Х.",
+      description: "Что-то про медсестру или медбрата",
+      img: "/surgeon-website/images/good-doctor.jpg",
+      id: "qweasdasdasdasd1й2",
+    },
+    {
+      title: "Паралонов Х.Х.",
+      description: "Что-то про медсестру или медбрата",
+      img: "/surgeon-website/images/good-doctor.jpg",
+      id: "qweasdas3dedasda2d",
+    },
+  ];
+  const otherPersonnel = [
+    {
+      title: "Иванов И.И.",
+      description:
+        "Тут будет текст про конкретного человека из прочего персонала",
+      img: "/surgeon-website/images/good-doctor.jpg",
+      id: "qweasdasdasdasф2dasd",
+    },
+    {
+      title: "Иванов И.И.",
+      description:
+        "Тут будет текст про конкретного человека из прочего персонала",
+      img: "/surgeon-website/images/good-doctor.jpg",
+      id: "qweasdasdasdasd132",
+    },
+    {
+      title: "Иванов И.И.",
+      description:
+        "Тут будет текст про конкретного человека из прочего персонала",
+      img: "/surgeon-website/images/good-doctor.jpg",
+      id: "qweasdas3dedasd32d",
+    },
+    {
+      title: "Иванов И.И.",
+      description:
+        "Тут будет текст про конкретного человека из прочего персонала",
+      img: "/surgeon-website/images/good-doctor.jpg",
+      id: "qweasdasdasdasdasd",
+    },
+    {
+      title: "Иванов И.И.",
+      description:
+        "Тут будет текст про конкретного человека из прочего персонала",
+      img: "/surgeon-website/images/good-doctor.jpg",
+      id: "qweasdasdasdasd1й2",
+    },
+    {
+      title: "Иванов И.И.",
+      description:
+        "Тут будет текст про конкретного человека из прочего персонала",
+      img: "/surgeon-website/images/good-doctor.jpg",
+      id: "qweasdas3dedasda2d",
+    },
+  ];
+
   return (
-    <Section
-      title="Сотрудники"
-      controls={{
-        onPrevClick: () => swiperRef.current?.slidePrev(),
-        onNextClick: () => swiperRef.current?.slideNext(),
-      }}
-    >
-      <div className="grid grid--cols grid--gap-lg">
-        <div>
-          Свайпер с врачами:
-          <Swiper
-            {...SWIPER_CONFIGS["cards-sm"]}
-            onSwiper={(swiper) => {
-              swiperRef.current = swiper;
-            }}
-            className="slider slider--wide-before-xl"
-          >
-            <ul className="grid">
-              {newsCards.map(({ id, ...props }) => (
-                <SwiperSlide className="slider__item" key={id}>
-                  <li className="grid__item">
-                    <ContentCard type="articles" {...props} />
-                  </li>
-                </SwiperSlide>
-              ))}
-            </ul>
-          </Swiper>
-        </div>
-        <div>
-          Свайпер с медсестрами:
-          <Swiper
-            {...SWIPER_CONFIGS["cards-sm"]}
-            onSwiper={(swiper) => {
-              swiperRef.current = swiper;
-            }}
-            className="slider slider--wide-before-xl"
-          >
-            <ul className="grid">
-              {newsCards.map(({ id, ...props }) => (
-                <SwiperSlide className="slider__item" key={id}>
-                  <li className="grid__item">
-                    <ContentCard type="articles" {...props} />
-                  </li>
-                </SwiperSlide>
-              ))}
-            </ul>
-          </Swiper>
-        </div>
-        <div>
-          Свайпер с прочим персоналом:
-          <Swiper
-            {...SWIPER_CONFIGS["cards-sm"]}
-            onSwiper={(swiper) => {
-              swiperRef.current = swiper;
-            }}
-            className="slider slider--wide-before-xl"
-          >
-            <ul className="grid">
-              {newsCards.map(({ id, ...props }) => (
-                <SwiperSlide className="slider__item" key={id}>
-                  <li className="grid__item">
-                    <ContentCard type="articles" {...props} />
-                  </li>
-                </SwiperSlide>
-              ))}
-            </ul>
-          </Swiper>
-        </div>
-      </div>
-    </Section>
+    <>
+      <Section
+        id="doctors-ambulatornoe"
+        title="Врачи"
+        controls={{
+          onPrevClick: () => swiperRefDoctors.current?.slidePrev(),
+          onNextClick: () => swiperRefDoctors.current?.slideNext(),
+        }}
+      >
+        <Swiper
+          {...SWIPER_CONFIGS["cards-secondary"]}
+          onSwiper={(swiper) => {
+            swiperRefDoctors.current = swiper;
+          }}
+          className="slider slider--wide-before-xl"
+        >
+          <ul className="grid">
+            {doctors.map(({ id, ...props }) => (
+              <SwiperSlide className="slider__item" key={id}>
+                <li className="grid__item">
+                  <EmployeeCard {...props} />
+                </li>
+              </SwiperSlide>
+            ))}
+          </ul>
+        </Swiper>
+      </Section>
+      <Section
+        id="nurses-ambulatornoe"
+        title="Медсестры"
+        controls={{
+          onPrevClick: () => swiperRefNurses.current?.slidePrev(),
+          onNextClick: () => swiperRefNurses.current?.slideNext(),
+        }}
+      >
+        <Swiper
+          {...SWIPER_CONFIGS["cards-secondary"]}
+          onSwiper={(swiper) => {
+            swiperRefNurses.current = swiper;
+          }}
+          className="slider slider--wide-before-xl"
+        >
+          <ul className="grid">
+            {nurses.map(({ id, ...props }) => (
+              <SwiperSlide className="slider__item" key={id}>
+                <li className="grid__item">
+                  <EmployeeCard {...props} />
+                </li>
+              </SwiperSlide>
+            ))}
+          </ul>
+        </Swiper>
+      </Section>
+      <Section
+        id="other-personnel"
+        title="Прочий персонал"
+        controls={{
+          onPrevClick: () => swiperRefPersonnel.current?.slidePrev(),
+          onNextClick: () => swiperRefPersonnel.current?.slideNext(),
+        }}
+      >
+        <Swiper
+          {...SWIPER_CONFIGS["cards-secondary"]}
+          onSwiper={(swiper) => {
+            swiperRefPersonnel.current = swiper;
+          }}
+          className="slider slider--wide-before-xl"
+        >
+          <ul className="grid">
+            {otherPersonnel.map(({ id, ...props }) => (
+              <SwiperSlide className="slider__item" key={id}>
+                <li className="grid__item">
+                  <EmployeeCard {...props} />
+                </li>
+              </SwiperSlide>
+            ))}
+          </ul>
+        </Swiper>
+      </Section>
+    </>
   );
 }

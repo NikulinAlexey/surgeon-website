@@ -23,13 +23,13 @@ export const SWIPER_CONFIGS = {
     },
   } as SwiperProps,
 
-  "cards-sm": {
+  "cards-secondary": {
     ...BASE_CONFIG,
-    slidesPerView: 2.2,
+    slidesPerView: 1.2,
     breakpoints: {
-      480: { slidesPerView: 3.2, spaceBetween: 20 },
-      768: { slidesPerView: 4.2, spaceBetween: 20 },
-      992: { slidesPerView: 5, spaceBetween: 20 },
+      640: { slidesPerView: 2.2, spaceBetween: 20 },
+      768: { slidesPerView: 2.2, spaceBetween: 20 },
+      992: { slidesPerView: 3.2, spaceBetween: 20 },
     },
   } as SwiperProps,
 
