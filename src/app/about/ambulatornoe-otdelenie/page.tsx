@@ -1,4 +1,3 @@
-// components/Header/Header.tsx
 import { Header } from "@/components/header/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/Section";
