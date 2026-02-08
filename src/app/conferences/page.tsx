@@ -1,10 +1,27 @@
-import Banner from "@/components/Banner";
 import Footer from "@/components/Footer";
 import { Header } from "@/components/header/Header";
 import Section from "@/components/Section";
 import Link from "next/link";
 
 export default function ConferencesPage() {
+  const pastTranslationsList = [
+    {
+      link: "https://vkvideo.ru/video-73332929_456262202",
+      title: "Поморские урологические чтения, осень 2025, день 1",
+    },
+    {
+      link: "https://vkvideo.ru/video-73332929_456262202",
+      title: "Поморские урологические чтения, осень 2025, день 2",
+    },
+    {
+      link: "https://vkvideo.ru/video-73332929_456262202",
+      title: "Поморские урологические чтения, весна 2024, день 1",
+    },
+    {
+      link: "https://vkvideo.ru/video-73332929_456262202",
+      title: "Поморские урологические чтения, весна 2025, день 2",
+    },
+  ];
   return (
     <>
       <Header />
@@ -14,26 +31,26 @@ export default function ConferencesPage() {
           id="pomorskiye-urologicheskie-chteniya"
         >
           <div className="cms">
-            <p>
+            <div>
               Приглашаем Вас принять участие в Междисциплинарной
               научно-практической конференции с международным участием
               «Поморские урологические чтения. Глава 4»
-            </p>
-            <p>
+            </div>
+            <div>
               Конференция посвящена 80-летию образования урологического
               отделения на базе ГБУЗАО «Первая ГКБ им Е.Е.Волосевич».
-            </p>
+            </div>
 
-            <p>
+            <div>
               Будут рассматриваться актуальные вопросы диагностики и лечения в
               сфере урогинекологии, андрологии, нейроурологии,
               инфекционно-воспалительных заболеваний, мочекаменной болезни.
-            </p>
-            <p>
+            </div>
+            <div>
               Планируется участие ведущих спикеров из различных городов России
               (Москва, Санкт-Петербург, Екатеринбург, Астрахань, Волгоград,
               Новосибирск и др.).
-            </p>
+            </div>
             <div>
               По вопросам участия в конференции обращайтесь:
               <ul>
@@ -53,9 +70,11 @@ export default function ConferencesPage() {
                 </li>
                 <li>
                   Бузинов Денис Романович:
-                  <p>
-                    тел: <Link href="tel:+79062836622">+7 906 283 66 22</Link>
-                  </p>
+                  <ul>
+                    <li>
+                      тел: <Link href="tel:+79062836622">+7 906 283 66 22</Link>
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </div>
@@ -63,14 +82,31 @@ export default function ConferencesPage() {
         </Section>
 
         <Section title="Программа" id="program">
-          <p className="text">
-            Место проведения: Агентство регионального развития, Набережная
-            Северной Двины 71
-          </p>
+          <div className="cms">
+            <div>
+              Место проведения:
+              <div>
+                Агентство регионального развития, Набережная Северной Двины 71.
+              </div>
+            </div>
+            <div></div>
+          </div>
+          <p className="text"></p>
         </Section>
 
         <Section title="Регистрация" id="registration">
-          Контент регистрации на Поморские урологические чтения
+          <div className="cms">
+            <div>
+              Регистрации на Поморские урологические чтения проходит следующим
+              образовом:
+              <div>
+                Далеко-далеко за словесными горами в стране гласных и согласных
+                живут, рыбные тексты. Языкового заманивший собрал, на берегу
+                дорогу своих знаках пор своего инициал меня ведущими, курсивных
+                родного, взобравшись гор возвращайся обеспечивает над подпоясал!
+              </div>
+            </div>
+          </div>
         </Section>
 
         <Section title="Трансляция" id="translation">
@@ -78,9 +114,21 @@ export default function ConferencesPage() {
           тег video
         </Section>
 
-        <Section title="Трансляция" id="translation">
-          Контент список прошедших урологических чтений. Список из ссылок на
-          веб-ресуры по типу ВК видео, Рутуб
+        <Section
+          title="Архив проведенных урологических чтений"
+          id="translations"
+        >
+          <div className="cms">
+            <ol>
+              {pastTranslationsList.map((pastTransLation, index) => (
+                <li key={index}>
+                  <Link href={pastTransLation.link || ""}>
+                    {pastTransLation.title}
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          </div>
         </Section>
       </main>
       <Footer />

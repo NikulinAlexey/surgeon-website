@@ -31,7 +31,7 @@ const navArray: NavItem[] = [
   { title: "Пациентам", link: "/patients" },
   { title: "Специалистам", link: "/specialists" },
   { title: "Контакты", link: "/contacts" },
-  { title: "Конференции", link: "/conferences" },
+  // { title: "Конференции", link: "/conferences" },
 ];
 
 function HeaderComponent({ compact }: HeaderComponentProps) {
@@ -51,6 +51,20 @@ function HeaderComponent({ compact }: HeaderComponentProps) {
   const handleLinkClick = useCallback(() => {
     setIsBurgerClicked(false);
   }, []);
+
+  const updateHeaderHeight = () => {
+    const header = headerRef.current;
+    const height = header?.offsetHeight;
+
+    // Записываем в :root CSS переменную
+    document.documentElement.style.setProperty(
+      "--header-height",
+      `${height}px`,
+    );
+  };
+
+  // Первоначальный замер
+  updateHeaderHeight();
 
   useEffect(() => {
     const body = document.body;
@@ -78,12 +92,21 @@ function HeaderComponent({ compact }: HeaderComponentProps) {
   }, [forceUpdate]);
 
   useEffect(() => {
-    if (headerRef && headerRef.current) {
-      document.documentElement.style.setProperty(
-        "--header-height",
-        `${headerRef.current.offsetHeight}`
-      );
-    }
+    const header = headerRef.current;
+    if (!header) return;
+
+    // Только ResizeObserver для самого header
+    const resizeObserver = new ResizeObserver(() => {
+      updateHeaderHeight();
+    });
+
+    // Наблюдаем ТОЛЬКО за header
+    resizeObserver.observe(header);
+
+    // Cleanup
+    return () => {
+      resizeObserver.disconnect();
+    };
   }, []);
 
   return (
@@ -127,7 +150,7 @@ function HeaderComponent({ compact }: HeaderComponentProps) {
                               "nav__link text text--sm text--regular",
                               {
                                 _active: isActive,
-                              }
+                              },
                             )}
                             onClick={handleLinkClick}
                             aria-current={isActive ? "page" : undefined}

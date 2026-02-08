@@ -28,3 +28,46 @@
     @warn "Breakpoint #{$breakpoint} not found";
   }
 }
+
+// Media breakpoints down (max-width)
+@mixin media-breakpoint-down($breakpoint) {
+  @if $breakpoint ==xs {
+    @media (max-width: $xs) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==sm {
+    @media (max-width: $sm) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==md {
+    @media (max-width: $md) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==lg {
+    @media (max-width: $lg) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==xl {
+    @media (max-width: $xl) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==xxl {
+    @media (max-width: $xxl) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "Breakpoint #{$breakpoint} not found";
+  }
+}

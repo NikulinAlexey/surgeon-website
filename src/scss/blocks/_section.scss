@@ -10,9 +10,11 @@
 
   &__top {
     display: flex;
+    align-items: center;
     margin-bottom: 24px;
 
     @include media-breakpoint-up(xl) {
+      align-items: flex-start;
       margin-bottom: 32px;
     }
   }

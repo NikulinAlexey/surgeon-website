@@ -33,6 +33,7 @@
 
     @include media-breakpoint-up(xl) {
       flex-flow: row wrap;
+      justify-content: center;
       flex-shrink: 1;
       flex-grow: 1;
       margin-bottom: 0;
