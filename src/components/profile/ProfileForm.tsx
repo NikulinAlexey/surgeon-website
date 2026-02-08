@@ -1,4 +1,3 @@
-import Button from "../ui/Button";
 import Field from "../ui/Field";
 
 interface UserProfile {

@@ -6,7 +6,6 @@ import { Header } from "@/components/header/Header";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
-import { Navigation } from "swiper/modules";
 import { useRef, useState } from "react";
 import SvgIcon from "@/components/ui/SvgIcon";
 import Button from "@/components/ui/Button";
