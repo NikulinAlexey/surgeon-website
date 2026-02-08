@@ -54,7 +54,9 @@ function HeaderComponent({ compact }: HeaderComponentProps) {
 
   const updateHeaderHeight = () => {
     const header = headerRef.current;
-    const height = header?.offsetHeight;
+    if (!header) return;
+
+    const height = header.offsetHeight;
 
     // Записываем в :root CSS переменную
     document.documentElement.style.setProperty(
