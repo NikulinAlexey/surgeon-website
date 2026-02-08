@@ -1,0 +1,103 @@
+.cms {
+  --cms-color: var(--c-text-color-1);
+  --cms-max-width: 800px;
+
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 16px;
+  font-family: $basic-family;
+  line-height: 1.5;
+  color: var(--cms-color);
+  max-width: var(--cms-max-width);
+  transition-property: font-size, color;
+  transition-duration: $animation-speed;
+  transition-timing-function: $animation-timing-function;
+
+  & h1 {
+    @include font(24px, 28px, 700, $basic-family);
+
+    @include media-breakpoint-up(lg) {
+      @include font(28px, 32px, 700, $basic-family);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include font(32px, 36px, 700, $basic-family);
+    }
+  }
+
+  & h2 {
+    @include font(20px, 24px, 700, $basic-family);
+
+    @include media-breakpoint-up(lg) {
+      @include font(22px, 26px, 700, $basic-family);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include font(24px, 28px, 700, $basic-family);
+    }
+  }
+
+  & h3 {
+    @include font(18px, 22px, 700, $basic-family);
+
+    @include media-breakpoint-up(lg) {
+      @include font(20px, 24px, 700, $basic-family);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include font(22px, 26px, 700, $basic-family);
+    }
+  }
+
+  & h4 {
+    @include font(16px, 20px, 700, $basic-family);
+
+    @include media-breakpoint-up(lg) {
+      @include font(18px, 22px, 700, $basic-family);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include font(20px, 24px, 700, $basic-family);
+    }
+  }
+
+  & ol,
+  & ul {
+    padding-left: revert;
+  }
+
+  & ol {
+    list-style-type: decimal;
+  }
+
+  & ul {
+    list-style-type: disc;
+  }
+
+  & a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition-property: opacity;
+    transition-duration: $animation-speed;
+    transition-timing-function: $animation-timing-function;
+
+    @include hover {
+      opacity: 0.8;
+    }
+  }
+
+  & img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  & blockquote {
+    border-left: 4px solid #e5e7eb;
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #6b7280;
+  }
+}
