@@ -1,6 +1,10 @@
 import Footer from "@/components/Footer";
 import { Header } from "@/components/header/Header";
 import Section from "@/components/Section";
+import SvgIcon from "@/components/ui/SvgIcon";
+import UniversalVideoEmbed, {
+  VideoPlayer,
+} from "@/components/universalVideoEmbed/UniversalVideoEmbed";
 import Link from "next/link";
 
 export default function ConferencesPage() {
@@ -82,15 +86,22 @@ export default function ConferencesPage() {
         </Section>
 
         <Section title="Программа" id="program">
-          <div className="cms">
+          <article className="cms">
             <div>
-              Место проведения:
-              <div>
+              <h3>
+                <SvgIcon name="paper-airplane" size="24" /> Место проведения:
+              </h3>
+              <p>
                 Агентство регионального развития, Набережная Северной Двины 71.
-              </div>
+              </p>
             </div>
-            <div></div>
-          </div>
+            <div>
+              <h3>
+                <SvgIcon name="calendar" size="24" /> Даты проведения:
+              </h3>
+              <p>25-26 сентября</p>
+            </div>
+          </article>
           <p className="text"></p>
         </Section>
 
@@ -110,8 +121,8 @@ export default function ConferencesPage() {
         </Section>
 
         <Section title="Трансляция" id="translation">
-          Контент трансляции Поморских урологических чтений. Возможно тут будет
-          тег video
+          Онлайн трансляция Поморских урологических чтений.
+          {/* <UniversalVideoEmbed videoUrl="https://vkvideo.ru/video-73332929_456262202" /> */}
         </Section>
 
         <Section
@@ -122,7 +133,11 @@ export default function ConferencesPage() {
             <ol>
               {pastTranslationsList.map((pastTransLation, index) => (
                 <li key={index}>
-                  <Link href={pastTransLation.link || ""}>
+                  <Link
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    href={pastTransLation.link || ""}
+                  >
                     {pastTransLation.title}
                   </Link>
                 </li>

@@ -1,10 +1,12 @@
 .icon {
   --icon-rotate-angle: 0;
+  --icon-width: 24px;
+  --icon-height: var(--icon-width);
 
   display: inline-flex;
   fill: currentColor;
   flex-shrink: 0;
-  width: 100%;
-  height: 100%;
+  width: var(--icon-width);
+  height: var(--icon-height);
   transform: rotate(var(--icon-rotate-angle));
 }

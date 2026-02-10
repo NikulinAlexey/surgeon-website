@@ -25,7 +25,7 @@ export default function Section({
       <div className="container">
         {title && (
           <div className="section__top">
-            <h2 className="text text--xl text-bold">{title}</h2>
+            <h2 className="text text--xxl text-bold">{title}</h2>
             <div className="section__options">
               {controls && (
                 <>
