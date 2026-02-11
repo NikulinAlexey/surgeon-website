@@ -83,7 +83,7 @@ export default function ConferencesPage() {
         </Section>
 
         <Section title="Программа" id="program">
-          <article className="cms">
+          <div className="cms">
             <div>
               <h3>
                 <SvgIcon name="paper-airplane" size="24" /> Место проведения:
@@ -98,8 +98,40 @@ export default function ConferencesPage() {
               </h3>
               <p>25-26 сентября</p>
             </div>
-          </article>
-          <p className="text"></p>
+          </div>
+          <div className="program">
+            {/* список дней */}
+            <ol className="program__list">
+              {/* день из программы */}
+              <li className="program__item">
+                <div className="day">
+                  <p className="day__title text text--lg">25 декабря, день 1</p>
+                  <ol className="day__list grid grid--col text">
+                    <li className="day__list-item grid grid--cols-primary">
+                      <span className="day__time">8:00 - 9:00</span>
+                      <span className="day__text">Регистрация участников</span>
+                    </li>
+                    <li className="day__list-item grid grid--cols-primary">
+                      <span className="day__time">8:00 - 9:00</span>
+                      <span className="day__text">Регистрация участников</span>
+                    </li>
+                    <li className="day__list-item grid grid--cols-primary">
+                      <span className="day__time">8:00 - 9:00</span>
+                      <span className="day__text">Регистрация участников</span>
+                    </li>
+                    <li className="day__list-item grid grid--cols-primary">
+                      <span className="day__time">8:00 - 9:00</span>
+                      <span className="day__text">Регистрация участников</span>
+                    </li>
+                    <li className="day__list-item grid grid--cols-primary">
+                      <span className="day__time">8:00 - 9:00</span>
+                      <span className="day__text">Регистрация участников</span>
+                    </li>
+                  </ol>
+                </div>
+              </li>
+            </ol>
+          </div>
         </Section>
 
         <Section title="Регистрация" id="registration">

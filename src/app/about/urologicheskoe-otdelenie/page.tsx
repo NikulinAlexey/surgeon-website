@@ -50,7 +50,7 @@ export default function UrologicheskoeOtdeleniePage() {
         {/* ниже будет паттерн, для несколькоих страниц */}
         <Employees />
         <Section id="make-appointment" title="Как записаться на прием">
-          <div className="grid grid--cols">
+          <div className="grid grid--col">
             <div className="text">
               Обращаем Ваше внимание, что изменился формат записи на плановую
               консультацию к специалистам в:

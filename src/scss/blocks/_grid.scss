@@ -28,7 +28,7 @@
     --grid-col-size: minmax(250px, 1fr);
   }
 
-  &--cols {
+  &--col {
     @include media-breakpoint-up(md) {
       --grid-cols-repeat: 1;
     }
@@ -36,6 +36,19 @@
     @include media-breakpoint-up(lg) {
       --grid-cols-repeat: 1;
     }
+  }
+
+  &--cols-primary {
+    --grid-cols-repeat: auto-fit;
+    --grid-col-size: 100px 1fr;
+
+    @include media-breakpoint-up(md) {
+        --grid-cols-repeat: 1;
+      }
+    
+      @include media-breakpoint-up(lg) {
+        --grid-cols-repeat: 1;
+      }
   }
 
   &--gap-lg {

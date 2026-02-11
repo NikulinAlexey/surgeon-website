@@ -132,7 +132,7 @@ export default function SpecialistPage() {
                   }}
                   className="slider slider--wide-before-xl"
                 >
-                  <ul className="grid grid--cols-3">
+                  <ul className="grid grid--col-3">
                     {libraryItems.map((item) => (
                       <SwiperSlide className="slider__item" key={item.id}>
                         <li className="grid__item">
