@@ -12,7 +12,7 @@ export default function PatientsPage() {
           subtitle="Общая информация для пациентов"
           backgroundImage="/images/doctor.jpg"
         />
-        <div className="container">Patients</div>
+        <div className="section__container">Patients</div>
       </main>
       <Footer />
     </>

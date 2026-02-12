@@ -16,7 +16,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
     <>
       <Header />
       <main className="layout__main">
-        <div className="container">
+        <div className="section__container">
           
           <h1>Статья: {slug}</h1>
           {/* Отображаем контент статьи */}

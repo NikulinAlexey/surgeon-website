@@ -78,20 +78,13 @@ $animation-timing-function: ease;
       #ff9a9e 100%);
   --c-gradient-6: linear-gradient(262deg, #000 23.31%, #00715d 101.07%);
 
-  --c-section-offset-block: 40px;
+  --c-section-offset-block: 20px;
   --c-container-offset-inline: 16px;
   --header-height: 68px;
 
   @include media-breakpoint-up(lg) {
-    --c-section-offset-block: 60px;
+    --c-section-offset-block: 40px;
     --c-container-offset-inline: 40px;
     --header-height: 107px;
   }
 }
-
-// @media (prefers-color-scheme: dark) {
-//   :root {
-//     --background: #0a0a0a;
-//     --foreground: #ededed;
-//   }
-// }

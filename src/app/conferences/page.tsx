@@ -1,11 +1,93 @@
+"use client";
+
 import Footer from "@/components/Footer";
 import { Header } from "@/components/header/Header";
 import Section from "@/components/Section";
+import Button from "@/components/ui/Button";
 import ButtonLink from "@/components/ui/ButtonLink";
+import Field from "@/components/ui/Field";
 import SvgIcon from "@/components/ui/SvgIcon";
 import Link from "next/link";
+import { useState } from "react";
+
+interface FormData {
+  email: string;
+  name: string;
+}
 
 export default function ConferencesPage() {
+  const [formData, setFormData] = useState<FormData>({
+    email: "",
+    name: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState<Partial<FormData>>({});
+
+  const validateForm = (): boolean => {
+    const newErrors: Partial<FormData> = {};
+
+    // Email validation
+    if (!formData.email) {
+      newErrors.email = "Email обязателен";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Некорректный email";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // Имитация запроса
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // Здесь будет реальный запрос
+      // const response = await authApi[authMode](formData);
+      console.log("Форма успешно отправлена");
+    } catch (error) {
+      console.error("Ошибка при отправке формы:", error);
+    } finally {
+      setIsLoading(false);
+      setFormData({
+        email: "",
+        name: "",
+      });
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    // Clear error when user starts typing
+    if (errors[name as keyof FormData]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: undefined,
+      }));
+    }
+  };
+
+  const getSubmitButtonText = () => {
+    if (isLoading) {
+      return "Загрузка...";
+    } else {
+      return "Зарегистрироваться";
+    }
+  };
+
   const pastTranslationsList = [
     {
       link: "https://vkvideo.ru/video-73332929_456262202",
@@ -90,7 +172,7 @@ export default function ConferencesPage() {
           <div className="cms">
             <div>
               <h3>
-                <SvgIcon name="paper-airplane" size="24" /> Место проведения:
+                <SvgIcon name="paper-airplane" size="20" /> Место проведения:
               </h3>
               <p>
                 Агентство регионального развития, Набережная Северной Двины 71.
@@ -98,63 +180,65 @@ export default function ConferencesPage() {
             </div>
             <div>
               <h3>
-                <SvgIcon name="calendar" size="24" /> Даты проведения:
+                <SvgIcon name="calendar" size="20" /> Даты проведения:
               </h3>
               <p>25-26 сентября</p>
             </div>
           </div>
           <div className="program">
             {/* список дней */}
-            <ol className="program__list">
+            <ol className="program__list grid grid--col">
               {/* день из программы */}
-              <li className="program__item grid grid--col grid--gap-md">
-                <div className="day">
-                  <p className="day__title text text--lg">25 декабря, день 1</p>
-                  <ol className="day__list grid grid--col text">
-                    <li className="day__list-item grid grid--cols-primary">
-                      <span className="day__time">8:00 - 9:00</span>
-                      <span className="day__text">Регистрация участников</span>
+              <li className="program__item grid grid--col">
+                <div className="grid grid--col">
+                  <p className="text text--lg">25 декабря, день 1</p>
+                  <ol className="grid grid--col grid--gap-sm text">
+                    <li className="grid grid--cols-primary grid--gap-sm">
+                      <span className="text text--bold">8:00 - 9:00</span>
+                      <span className="text">Регистрация участников</span>
                     </li>
-                    <li className="day__list-item grid grid--cols-primary">
-                      <span className="day__time">8:00 - 9:00</span>
-                      <span className="day__text">Регистрация участников</span>
+                    <li className="grid grid--cols-primary grid--gap-sm">
+                      <span className="text text--bold">8:00 - 9:00</span>
+                      <span className="text">Регистрация участников</span>
                     </li>
-                    <li className="day__list-item grid grid--cols-primary">
-                      <span className="day__time">8:00 - 9:00</span>
-                      <span className="day__text">Регистрация участников</span>
+                    <li className="grid grid--cols-primary grid--gap-sm">
+                      <span className="text text--bold">8:00 - 9:00</span>
+                      <span className="text">Регистрация участников</span>
                     </li>
-                    <li className="day__list-item grid grid--cols-primary">
-                      <span className="day__time">8:00 - 9:00</span>
-                      <span className="day__text">Регистрация участников</span>
+                    <li className="grid grid--cols-primary grid--gap-sm">
+                      <span className="text text--bold">8:00 - 9:00</span>
+                      <span className="text">Регистрация участников</span>
                     </li>
-                    <li className="day__list-item grid grid--cols-primary">
-                      <span className="day__time">8:00 - 9:00</span>
-                      <span className="day__text">Регистрация участников</span>
+                    <li className="grid grid--cols-primary grid--gap-sm">
+                      <span className="text text--bold">8:00 - 9:00</span>
+                      <span className="text">Регистрация участников</span>
                     </li>
                   </ol>
                 </div>
-                <div className="day">
-                  <p className="day__title text text--lg">26 декабря, день 2</p>
-                  <ol className="day__list grid grid--col text">
-                    <li className="day__list-item grid grid--cols-primary">
-                      <span className="day__time">8:00 - 9:00</span>
-                      <span className="day__text">Регистрация участников</span>
+              </li>
+              <li className="program__item grid grid--col">
+                <div className="grid grid--col">
+                  <p className="text text--lg">26 декабря, день 2</p>
+                  <ol className="grid grid--col grid--gap-sm text">
+                    <li className="grid grid--cols-primary grid--gap-sm">
+                      <span className="text text--bold">8:00 - 9:00</span>
+                      <span className="text">Регистрация участников</span>
                     </li>
-                    <li className="day__list-item grid grid--cols-primary">
-                      <span className="day__time">8:00 - 9:00</span>
-                      <span className="day__text">Регистрация участников</span>
+                    <li className="grid grid--cols-primary grid--gap-sm">
+                      <span className="text text--bold">8:00 - 9:00</span>
+                      <span className="text">Регистрация участников</span>
                     </li>
-                    <li className="day__list-item grid grid--cols-primary">
-                      <span className="day__time">8:00 - 9:00</span>
-                      <span className="day__text">Регистрация участников</span>
+                    <li className="grid grid--cols-primary grid--gap-sm">
+                      <span className="text text--bold">8:00 - 9:00</span>
+                      <span className="text">Регистрация участников</span>
                     </li>
-                    <li className="day__list-item grid grid--cols-primary">
-                      <span className="day__time">8:00 - 9:00</span>
-                      <span className="day__text">Регистрация участников</span>
+                    <li className="grid grid--cols-primary grid--gap-sm">
+                      <span className="text text--bold">8:00 - 9:00</span>
+                      <span className="text">Регистрация участников</span>
                     </li>
-                    <li className="day__list-item grid grid--cols-primary">
-                      <span className="day__time">8:00 - 9:00</span>
-                      <span className="day__text">Регистрация участников</span>
+                    <li className="grid grid--cols-primary grid--gap-sm">
+                      <span className="text text--bold">8:00 - 9:00</span>
+                      <span className="text">Регистрация участников</span>
                     </li>
                   </ol>
                 </div>
@@ -164,18 +248,57 @@ export default function ConferencesPage() {
         </Section>
 
         <Section title="Регистрация" id="registration">
-          <div className="cms">
-            <div>
-              Регистрации на Поморские урологические чтения проходит следующим
-              образовом:
-              <div>
-                Далеко-далеко за словесными горами в стране гласных и согласных
-                живут, рыбные тексты. Языкового заманивший собрал, на берегу
-                дорогу своих знаках пор своего инициал меня ведущими, курсивных
-                родного, взобравшись гор возвращайся обеспечивает над подпоясал!
+          <form className="form" onSubmit={handleSubmit}>
+            <div className="form__container">
+              <div className="form__layout">
+                <fieldset className="form__fieldset">
+                  <Field
+                    label="Email"
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    error={errors.email}
+                    placeholder="your@email.com"
+                    disabled={isLoading}
+                    onReset={() =>
+                      setFormData((prev) => ({ ...prev, email: "" }))
+                    }
+                  />
+                  <Field
+                    label="Имя"
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    error={errors.name}
+                    placeholder="Введите имя"
+                    disabled={isLoading}
+                    onReset={() =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        name: "",
+                      }))
+                    }
+                  />
+                </fieldset>
+                <div className="auth__actions">
+                  <Button
+                    size="lg"
+                    wide
+                    type="submit"
+                    variant="secondary"
+                    className="auth__action"
+                    disabled={isLoading}
+                  >
+                    {getSubmitButtonText()}
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
+          </form>
         </Section>
 
         <Section title="Трансляция" id="translation">

@@ -16,7 +16,7 @@ export default function NewsPage({ params }: NewsPageProps) {
     <>
       <Header />
       <main className="layout__main">
-        <div className="container">
+        <div className="section__container">
           <h1>Новость: {slug}</h1>
           {/* Отображаем контент новости */}
         </div>

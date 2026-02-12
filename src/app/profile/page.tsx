@@ -46,7 +46,7 @@ export default function ProfilePage() {
     <>
       <Header />
       <main className="layout__main">
-        <div className="container">
+        <div className="section__container">
           <div className="dashboard">
             <div className="dashboard__header">
               <h1 className="dashboard__title text text--xxl text-bold">

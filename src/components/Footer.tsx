@@ -41,8 +41,8 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer">
-      <div className="footer__container container">
+    <footer className="footer section">
+      <div className="footer__container section__container">
         {/* Основной контент */}
         <div className="footer__main">
           {/* Блок с контактами и лого */}

@@ -89,7 +89,7 @@ export default function SpecialistPage() {
     <>
       <Header />
       <main className="layout__main">
-        <div className="container">
+        <div className="section__container">
           <div className="specialists-page">
             <h1 className="specialists-page__title">Специалисты</h1>
 

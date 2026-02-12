@@ -13,7 +13,7 @@ export default function Ui() {
   ];
   return (
     <main className="layout__main">
-      <div className="container">
+      <div className="section__container">
         <ul className="ui-kit">
           {pages.map((page, index) => (
             <li key={index}>

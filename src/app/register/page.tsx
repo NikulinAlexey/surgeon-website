@@ -187,7 +187,7 @@ export default function RegisterPage() {
       <Header compact />
       <main className="layout__main">
         <div className="section">
-          <div className="container">
+          <div className="section__container">
             <div className="auth">
               <div className="auth__container">
                 <div className="auth__layout">

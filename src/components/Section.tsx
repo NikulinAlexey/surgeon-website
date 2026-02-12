@@ -22,7 +22,7 @@ export default function Section({
 }: SectionProps) {
   return (
     <section className="section" id={id}>
-      <div className="container">
+      <div className="section__container">
         {title && (
           <div className="section__top">
             <h2 className="text text--xxl text-bold">{title}</h2>
