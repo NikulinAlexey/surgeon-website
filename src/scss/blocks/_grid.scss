@@ -43,12 +43,16 @@
     --grid-col-size: 100px 1fr;
 
     @include media-breakpoint-up(md) {
-        --grid-cols-repeat: 1;
-      }
-    
-      @include media-breakpoint-up(lg) {
-        --grid-cols-repeat: 1;
-      }
+      --grid-cols-repeat: 1;
+    }
+
+    @include media-breakpoint-up(lg) {
+      --grid-cols-repeat: 1;
+    }
+  }
+
+  &--gap-md {
+    --grid-gap: 24px;
   }
 
   &--gap-lg {

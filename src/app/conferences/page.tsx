@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import { Header } from "@/components/header/Header";
 import Section from "@/components/Section";
+import ButtonLink from "@/components/ui/ButtonLink";
 import SvgIcon from "@/components/ui/SvgIcon";
 import Link from "next/link";
 
@@ -31,6 +32,9 @@ export default function ConferencesPage() {
           title="Поморские урологические чтения"
           id="pomorskiye-urologicheskie-chteniya"
         >
+          <ButtonLink variant="primary" href="#" download>
+            Скачать информационное письмо
+          </ButtonLink>
           <div className="cms">
             <div>
               Приглашаем Вас принять участие в Междисциплинарной
@@ -103,9 +107,34 @@ export default function ConferencesPage() {
             {/* список дней */}
             <ol className="program__list">
               {/* день из программы */}
-              <li className="program__item">
+              <li className="program__item grid grid--col grid--gap-md">
                 <div className="day">
                   <p className="day__title text text--lg">25 декабря, день 1</p>
+                  <ol className="day__list grid grid--col text">
+                    <li className="day__list-item grid grid--cols-primary">
+                      <span className="day__time">8:00 - 9:00</span>
+                      <span className="day__text">Регистрация участников</span>
+                    </li>
+                    <li className="day__list-item grid grid--cols-primary">
+                      <span className="day__time">8:00 - 9:00</span>
+                      <span className="day__text">Регистрация участников</span>
+                    </li>
+                    <li className="day__list-item grid grid--cols-primary">
+                      <span className="day__time">8:00 - 9:00</span>
+                      <span className="day__text">Регистрация участников</span>
+                    </li>
+                    <li className="day__list-item grid grid--cols-primary">
+                      <span className="day__time">8:00 - 9:00</span>
+                      <span className="day__text">Регистрация участников</span>
+                    </li>
+                    <li className="day__list-item grid grid--cols-primary">
+                      <span className="day__time">8:00 - 9:00</span>
+                      <span className="day__text">Регистрация участников</span>
+                    </li>
+                  </ol>
+                </div>
+                <div className="day">
+                  <p className="day__title text text--lg">26 декабря, день 2</p>
                   <ol className="day__list grid grid--col text">
                     <li className="day__list-item grid grid--cols-primary">
                       <span className="day__time">8:00 - 9:00</span>
