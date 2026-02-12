@@ -15,10 +15,9 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-
-    @include media-breakpoint-up(xl) {
-      max-width: 1200px;
-    }
+    max-width: var(--c-container-max-width);
+    margin: 0 auto;
+    padding-inline: var(--c-container-offset-inline);
   }
 
   &__main {
@@ -52,7 +51,7 @@
     font-weight: 700;
     color: #3b82f6;
     text-decoration: none;
-    
+
     &:hover {
       color: #60a5fa;
     }
@@ -80,7 +79,7 @@
     color: #cbd5e1;
     font-size: 0.875rem;
     text-decoration: none;
-    
+
     &:hover {
       color: #3b82f6;
     }
@@ -132,7 +131,7 @@
     text-decoration: none;
     font-size: 0.875rem;
     transition: color 0.2s ease;
-    
+
     &:hover {
       color: #3b82f6;
     }
@@ -172,7 +171,7 @@
     color: #9ca3af;
     font-size: 0.75rem;
     text-decoration: none;
-    
+
     &:hover {
       color: #cbd5e1;
     }
