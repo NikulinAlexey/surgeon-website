@@ -1,7 +1,7 @@
 .section {
   --section-bg-color: var(--c-bg-color-9);
   --section-padding-block: var(--c-section-offset-block);
-  --section-container-max-width: 1296px;
+  --section-container-max-width: var(--c-container-max-width);
 
   padding-block: var(--c-section-offset-block);
 

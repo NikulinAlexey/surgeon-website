@@ -81,6 +81,7 @@ $animation-timing-function: ease;
   --c-section-offset-block: 20px;
   --c-container-offset-inline: 16px;
   --header-height: 68px;
+  --c-container-max-width: 1296px;
 
   @include media-breakpoint-up(lg) {
     --c-section-offset-block: 40px;

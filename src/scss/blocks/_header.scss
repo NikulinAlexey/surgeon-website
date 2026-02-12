@@ -30,6 +30,9 @@
     display: flex;
     align-items: center;
     gap: 40px;
+    margin: 0 auto;
+    padding-inline: var(--c-container-offset-inline);
+    max-width: var(--c-container-max-width);
   }
 
   &__logo {

@@ -119,7 +119,7 @@ function HeaderComponent({ compact }: HeaderComponentProps) {
         "header--compact": compact,
       })}
     >
-      <div className="header__container container">
+      <div className="header__container">
         <Link href="/" className="header__logo logo">
           <SvgIcon className="logo__icon" name="logo-icon" aria-hidden />
         </Link>
