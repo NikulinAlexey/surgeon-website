@@ -114,9 +114,12 @@ export default function ConferencesPage() {
           title="Поморские урологические чтения"
           id="pomorskiye-urologicheskie-chteniya"
         >
-          <ButtonLink variant="primary" href="#" download>
-            Скачать информационное письмо
-          </ButtonLink>
+          <div className="grid grid--wrap-fit">
+            <ButtonLink variant="primary" href="#" download>
+              Скачать информационное письмо
+            </ButtonLink>
+            <Button variant="secondary">Регистрация на вебинар</Button>
+          </div>
           <div className="cms">
             <div>
               Приглашаем Вас принять участие в Междисциплинарной
