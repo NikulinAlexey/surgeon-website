@@ -51,10 +51,8 @@
 
   &__menu {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset-inline: 0;
+    inset-block: var(--header-height) 0;
     width: 100%;
     transform: var(--header-menu-transform);
     max-width: 100vw;
@@ -73,14 +71,14 @@
 
     &._active {
       --header-nav-translate-x: 0;
-      --header-menu-transform: translateY(var(--header-height));
+      // --header-menu-transform: translateY(var(--header-height));
 
       opacity: 1;
       visibility: visible;
 
       @include media-breakpoint-up(xl) {
         --header-nav-translate-x: none;
-        --header-menu-transform: none;
+        // --header-menu-transform: none;
       }
     }
 

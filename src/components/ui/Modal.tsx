@@ -1,6 +1,7 @@
 import { cn } from "@/lib/clsx";
 import SvgIcon from "./SvgIcon";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
+import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
 
 interface ModalProps {
   children?: ReactNode;
@@ -14,16 +15,8 @@ export default function Modal({
   onModalClose,
   children,
 }: ModalProps) {
+  useLockBodyScroll(isOpen);
 
-  useEffect(() => {
-    const body = document.body;
-
-    if (isOpen) {
-      body.classList.add("_locked");
-    } else {
-      body.classList.remove("_locked");
-    }
-  }, [isOpen]);
   return (
     <div
       className={cn("modal", {

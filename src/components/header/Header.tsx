@@ -16,6 +16,7 @@ import SvgIcon from "../ui/SvgIcon";
 import ButtonLink from "../ui/ButtonLink";
 import { useCookies } from "@/hooks/useCookies";
 import { usePathname } from "next/navigation";
+import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
 
 interface NavItem {
   title: string;
@@ -67,19 +68,7 @@ function HeaderComponent({ compact }: HeaderComponentProps) {
 
   // Первоначальный замер
   updateHeaderHeight();
-
-  useEffect(() => {
-    const body = document.body;
-    const scrollbarWidth = window.innerWidth - body.clientWidth;
-
-    if (isBurgerClicked) {
-      body.classList.add("_locked");
-      body.style.setProperty("--page-scrollbar-width", `${scrollbarWidth}px`);
-    } else {
-      body.classList.remove("_locked");
-      body.style.setProperty("--page-scrollbar-width", `0px`);
-    }
-  }, [isBurgerClicked]);
+  useLockBodyScroll(isBurgerClicked);
 
   useEffect(() => {
     const updateLoginStatus = () => {
