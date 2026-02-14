@@ -6,6 +6,7 @@ import Section from "@/components/Section";
 import Button from "@/components/ui/Button";
 import ButtonLink from "@/components/ui/ButtonLink";
 import Field from "@/components/ui/Field";
+import Modal from "@/components/ui/Modal";
 import SvgIcon from "@/components/ui/SvgIcon";
 import Link from "next/link";
 import { useState } from "react";
@@ -22,6 +23,8 @@ export default function ConferencesPage() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [isRegistrationModalOpened, setIsRegistrationModalOpened] =
+    useState(false);
 
   const validateForm = (): boolean => {
     const newErrors: Partial<FormData> = {};
@@ -118,7 +121,12 @@ export default function ConferencesPage() {
             <ButtonLink variant="primary" href="#" download>
               Скачать информационное письмо
             </ButtonLink>
-            <Button variant="secondary">Регистрация на вебинар</Button>
+            <Button
+              variant="secondary"
+              onClick={() => setIsRegistrationModalOpened(true)}
+            >
+              Регистрация на вебинар
+            </Button>
           </div>
           <div className="cms">
             <div>
@@ -329,6 +337,12 @@ export default function ConferencesPage() {
             </ol>
           </div>
         </Section>
+        <Modal
+          isOpen={isRegistrationModalOpened}
+          onModalClose={() => setIsRegistrationModalOpened(false)}
+        >
+          Далеко-далеко, за словесными горами в стране гласных и согласных живут рыбные тексты. Маленькая предупреждал инициал семантика ее, большого предложения снова грустный грамматики речью на берегу рукописи жизни безорфографичный, которой последний запятых, назад реторический?
+        </Modal>
       </main>
       <Footer />
     </>

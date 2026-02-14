@@ -1,4 +1,5 @@
 .header {
+  --header-z-index: 100;
   --header-color: var(--c-text-color-1);
   --header-bg-color: var(--c-bg-color-9);
 
@@ -16,7 +17,7 @@
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 10000;
+  z-index: var(--header-z-index);
   color: var(--header-color);
   padding-block: 12px;
   background-color: var(--header-bg-color);
