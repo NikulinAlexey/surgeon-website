@@ -55,10 +55,11 @@
     width: 100%;
     height: 100%;
     background-color: white;
-    padding: 32px;
+    padding: 24px;
 
     @include media-breakpoint-up(md) {
       border-radius: 24px;
+      padding: 32px;
       height: auto;
       max-width: var(--modal-body-max-width);
     }
