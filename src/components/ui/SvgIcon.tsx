@@ -19,8 +19,8 @@ export default function SvgIcon({
     <svg
       className={cn("icon", className)}
       style={{ "--icon-rotate-angle": `${rotateAngle}deg` } as CSSProperties}
-      width={size || 24}
-      height={size || 24}
+      width={size || undefined}
+      height={size || undefined}
       {...props}
     >
       <use xlinkHref={`/surgeon-website/sprite/sprite.svg#icon-${name}`} />

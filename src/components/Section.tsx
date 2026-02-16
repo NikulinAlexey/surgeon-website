@@ -38,7 +38,6 @@ export default function Section({
                     <SvgIcon
                       name="shevron"
                       rotateAngle="-180"
-                      size="14"
                       aria-hidden
                     />
                   </Button>
@@ -48,7 +47,7 @@ export default function Section({
                     lifted
                     onClick={controls.onNextClick}
                   >
-                    <SvgIcon name="shevron" size="14" aria-hidden />
+                    <SvgIcon name="shevron" aria-hidden />
                   </Button>
                 </>
               )}

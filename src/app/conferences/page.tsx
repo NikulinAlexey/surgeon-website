@@ -339,6 +339,7 @@ export default function ConferencesPage() {
         </Section>
 
         <Modal
+          id="registration"
           title="Регистрация на семинар"
           isOpen={isRegistrationModalOpened}
           onModalClose={() => setIsRegistrationModalOpened(false)}

@@ -7,7 +7,6 @@
   --header-logo-size: 44px;
 
   // menu
-  --header-menu-bg-color: var(--c-bg-color-2);
   --header-menu-transform: none;
 
   // nav
@@ -71,14 +70,12 @@
 
     &._active {
       --header-nav-translate-x: 0;
-      // --header-menu-transform: translateY(var(--header-height));
 
       opacity: 1;
       visibility: visible;
 
       @include media-breakpoint-up(xl) {
         --header-nav-translate-x: none;
-        // --header-menu-transform: none;
       }
     }
 

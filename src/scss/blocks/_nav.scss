@@ -15,6 +15,7 @@
     flex-direction: column;
     gap: 8px;
     padding: 16px;
+    cursor: default;
 
     @include media-breakpoint-up(xl) {
       padding: 0;
