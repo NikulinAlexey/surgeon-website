@@ -110,7 +110,6 @@ export default function Modal({
                 )}
 
                 <Button
-                  ref={closeButtonRef}
                   className="modal__close"
                   onClick={onModalClose}
                   aria-label="Закрыть модальное окно"
