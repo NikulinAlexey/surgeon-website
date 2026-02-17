@@ -81,28 +81,21 @@ export default function Library() {
           {libraryItems.map((item) => (
             <SwiperSlide className="slider__item" key={item.id}>
               <li className="grid__item">
-                <div className="specialists-page__library-item">
-                  <div className="specialists-page__library-icon">
-                    <SvgIcon name="shevron" size="14" aria-hidden />
+                {/* library-card */}
+                <div className="library-card">
+                  <div className="library-card__container">
+                    <h3 className="library-card__title">{item.title}</h3>
+                    <p className="library-card__author">Автор: {item.author}</p>
+                    <p className="library-card__desc">{item.description}</p>
+                    <ButtonLink
+                      wide
+                      variant="secondary"
+                      href={item.downloadLink}
+                      download
+                    >
+                      Скачать PDF
+                    </ButtonLink>
                   </div>
-                  <div className="specialists-page__library-content">
-                    <h3 className="specialists-page__library-title">
-                      {item.title}
-                    </h3>
-                    <p className="specialists-page__library-author">
-                      Автор: {item.author}
-                    </p>
-                    <p className="specialists-page__library-desc">
-                      {item.description}
-                    </p>
-                  </div>
-                  <ButtonLink
-                    variant='secondary'
-                    href={item.downloadLink}
-                    download
-                  >
-                    Скачать PDF
-                  </ButtonLink>
                 </div>
               </li>
             </SwiperSlide>

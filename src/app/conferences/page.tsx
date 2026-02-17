@@ -264,60 +264,6 @@ export default function ConferencesPage() {
           </div>
         </Section>
 
-        {/* <Section title="Регистрация" id="registration">
-          <form className="form" onSubmit={handleSubmit}>
-            <div className="form__container">
-              <div className="form__layout">
-                <fieldset className="form__fieldset">
-                  <Field
-                    label="Email"
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    error={errors.email}
-                    placeholder="your@email.com"
-                    disabled={isLoading}
-                    onReset={() =>
-                      setFormData((prev) => ({ ...prev, email: "" }))
-                    }
-                  />
-                  <Field
-                    label="Имя"
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    error={errors.name}
-                    placeholder="Введите имя"
-                    disabled={isLoading}
-                    onReset={() =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        name: "",
-                      }))
-                    }
-                  />
-                </fieldset>
-                <div className="auth__actions">
-                  <Button
-                    size="lg"
-                    wide
-                    type="submit"
-                    variant="secondary"
-                    className="auth__action"
-                    disabled={isLoading}
-                  >
-                    {getSubmitButtonText()}
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </Section> */}
-
         <Section title="Трансляция" id="translation">
           Онлайн трансляция Поморских урологических чтений.
           {/* <UniversalVideoEmbed videoUrl="https://vkvideo.ru/video-73332929_456262202" /> */}

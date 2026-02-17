@@ -35,7 +35,6 @@
     grid-template-columns: 100%;
     overflow: hidden;
     border-radius: 8px;
-    margin-bottom: 16px;
   }
 
   &__img {
@@ -57,6 +56,13 @@
 
   &__description {
     color: var(--content-card-description-color);
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: calc(1.5lh * 4);
+
   }
 
   &__date {

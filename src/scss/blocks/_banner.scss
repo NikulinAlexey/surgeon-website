@@ -1,31 +1,40 @@
 .banner {
-  --banner-title-color: var(--c-text-color-1, , #666);
-  --banner-subtitle-color: var(--c-text-color-1, , #666);
-  --banner-bg-color: var(--c-bg-color-9);
-  --banner-offset-y: var(--c-section-offset-block);
+  --banner-container-title-color: var(--c-bg-color-10);
+  --banner-container-subtitle-color: var(--c-bg-color-10);
+  --banner-container-bg-color: var(--c-bg-color-1);
+  --banner-container-offset-y: var(--c-section-offset-block);
+  --banner-container-padding: 20px;
+  --banner-container-max-width: var(--c-container-max-width);
+
+  @include media-breakpoint-up(lg) {
+    --banner-container-padding: 40px;
+  }
 
   &__container {
-    background-image: var(--banner-bg-img, none);
-    background-size: cover;
-    background-position: center;
-    background-repeat: var(--banner-container-bg-repeat, no-repeat);
+    padding-block: var(--banner-container-padding);
+    background-image: url('/surgeon-website/images/pattern.svg');
+    background-color: var(--banner-container-bg-color);
+    background-size: 45px;
+    margin: 0 auto;
+    padding-inline: var(--c-container-offset-inline);
+    max-width: var(--banner-container-max-width);
   }
 
   &__title {
     text-wrap: balance;
-    color: var(--banner-title-color);
+    color: var(--banner-container-title-color);
   }
 
   &__subtitle {
     opacity: 0.9;
-    color: var(--banner-subtitle-color);
+    color: var(--banner-container-subtitle-color);
   }
 
   &--offset-top {
-    margin-top: var(--banner-offset-y);
+    margin-top: var(--banner-container-offset-y);
   }
 
   &--offset-bottom {
-    margin-bottom: var(--banner-offset-y);
+    margin-bottom: var(--banner-container-offset-y);
   }
 }

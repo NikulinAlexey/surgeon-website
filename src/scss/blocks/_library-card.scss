@@ -1,0 +1,21 @@
+.library-card {
+  --library-card-container-bg-color: var(--c-bg-color-1);
+  --library-card-container-color: var(--c-text-color-10);
+  --library-card-container-padding: 24px;
+  --library-card-container-border-radius: 8px;
+
+  width: 100%;
+  height: 100%;
+
+  &__container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 8px;
+    color: var(--library-card-container-color);
+    padding: var(--library-card-container-padding);
+    background-color: var(--library-card-container-bg-color);
+    border-radius: var(--library-card-container-border-radius);
+  }
+}

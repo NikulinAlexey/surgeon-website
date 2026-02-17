@@ -32,44 +32,35 @@ export default function AskQuestion() {
       <p className="text text--lg text--regular">
         Задайте вопрос нашим специалистам и получите консультацию.
       </p>
-      {!showQuestionForm ? (
-        <Button
-          variant="primary"
-          text="Задать вопрос"
-          onClick={() => setShowQuestionForm(true)}
-          className="button"
+      <form onSubmit={handleSubmitQuestion} className="form">
+        <textarea
+          id=""
+          name=""
+          value={questionText}
+          onChange={(e) => setQuestionText(e.target.value)}
+          placeholder="Введите ваш вопрос..."
+          className="specialists-page__textarea"
+          rows={4}
+          disabled={isSubmitting}
+          required
         />
-      ) : (
-        <form onSubmit={handleSubmitQuestion} className="form">
-          <textarea
-            id=""
-            name=""
-            value={questionText}
-            onChange={(e) => setQuestionText(e.target.value)}
-            placeholder="Введите ваш вопрос..."
-            className="specialists-page__textarea"
-            rows={4}
-            disabled={isSubmitting}
-            required
+        <div className="">
+          <Button
+            variant="danger"
+            onClick={() => {
+              setShowQuestionForm(false);
+              setQuestionText("");
+            }}
+            text="Отмена"
           />
-          <div className="">
-            <Button
-              variant="danger"
-              onClick={() => {
-                setShowQuestionForm(false);
-                setQuestionText("");
-              }}
-              text="Отмена"
-            />
-            <Button
-              variant="secondary"
-              type="submit"
-              disabled={isSubmitting || !questionText.trim()}
-              text={isSubmitting ? "Отправка..." : "Отправить вопрос"}
-            />
-          </div>
-        </form>
-      )}
+          <Button
+            variant="secondary"
+            type="submit"
+            disabled={isSubmitting || !questionText.trim()}
+            text={isSubmitting ? "Отправка..." : "Отправить вопрос"}
+          />
+        </div>
+      </form>
     </Section>
   );
 }
