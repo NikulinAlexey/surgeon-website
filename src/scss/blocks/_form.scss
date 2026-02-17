@@ -1,13 +1,15 @@
 .form {
+  --form-layout-gap: 8px;
+
+  @include media-breakpoint-up(lg) {
+    --form-layout-gap: 16px;
+  }
+
   &__layout {
     display: grid;
     grid-template-columns: 100%;
-    gap: 8px;
+    gap: var(--form-layout-gap, 8px);
     margin: auto;
-
-    @include media-breakpoint-up(lg) {
-      gap: 16px;
-    }
   }
 
   &__fieldset {
@@ -31,5 +33,13 @@
     color: #e74c3c;
     font-size: 0.875rem;
     margin: 4px 0 0;
+  }
+
+  &--layout-gap-lg {
+    --form-layout-gap: 16px;
+
+    @include media-breakpoint-up(lg) {
+      --form-layout-gap: 32px;
+    }
   }
 }

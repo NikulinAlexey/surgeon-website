@@ -109,12 +109,13 @@ export default function Modal({
                   </p>
                 )}
 
-                <Button
-                  className="modal__close"
-                  onClick={onModalClose}
-                  aria-label="Закрыть модальное окно"
-                  variant="close"
-                />
+                <div className="modal__close">
+                  <Button
+                    onClick={onModalClose}
+                    aria-label="Закрыть модальное окно"
+                    variant="close"
+                  />
+                </div>
               </div>
 
               <div className="modal__content">

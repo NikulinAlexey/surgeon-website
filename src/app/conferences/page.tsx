@@ -25,6 +25,12 @@ export default function ConferencesPage() {
   const [errors, setErrors] = useState<Partial<FormData>>({});
   const [isRegistrationModalOpened, setIsRegistrationModalOpened] =
     useState(false);
+  const [
+    isRegistrationSuccessModalOpened,
+    setIsRegistrationSuccessModalOpened,
+  ] = useState(false);
+  const [isRegistrationFailModalOpened, setIsRegistrationFailModalOpened] =
+    useState(false);
 
   const validateForm = (): boolean => {
     const newErrors: Partial<FormData> = {};
@@ -344,7 +350,7 @@ export default function ConferencesPage() {
           isOpen={isRegistrationModalOpened}
           onModalClose={() => setIsRegistrationModalOpened(false)}
         >
-          <form className="form" onSubmit={handleSubmit}>
+          <form className="form form--layout-gap-lg" onSubmit={handleSubmit}>
             <div className="form__container">
               <div className="form__layout">
                 <fieldset className="form__fieldset">
@@ -397,6 +403,22 @@ export default function ConferencesPage() {
               </div>
             </div>
           </form>
+        </Modal>
+        <Modal
+          id="registration-fail"
+          title="Ошибка при регистрации на семинар"
+          isOpen={isRegistrationFailModalOpened}
+          onModalClose={() => setIsRegistrationFailModalOpened(false)}
+        >
+          При регистрации на семинар произошла ошибка
+        </Modal>
+        <Modal
+          id="registration-success"
+          title="Вы успешно зарегистрировались на семинар"
+          isOpen={isRegistrationSuccessModalOpened}
+          onModalClose={() => setIsRegistrationSuccessModalOpened(false)}
+        >
+          Успешная регистрация на семинар
         </Modal>
       </main>
       <Footer />

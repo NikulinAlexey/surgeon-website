@@ -33,6 +33,7 @@
     width: 100%;
     padding: 0;
     display: flex;
+    overflow-y: auto;
 
     @include media-breakpoint-up(md) {
       padding: 40px;
@@ -72,5 +73,6 @@
 
   &__close {
     margin-left: auto;
+    padding-left: 20px;
   }
 }
