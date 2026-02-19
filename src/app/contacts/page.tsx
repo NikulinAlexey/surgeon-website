@@ -1,3 +1,4 @@
+import Banner from "@/components/Banner";
 import Footer from "@/components/Footer";
 import { Header } from "@/components/header/Header";
 import Section from "@/components/Section";
@@ -26,7 +27,8 @@ export default function ContactsPage() {
     <>
       <Header />
       <main className="layout__main">
-        <Section title="Контакты">
+        <Banner title="Контакты " />
+        <Section id="contacts">
           <div className="contacts">
             <div className="contacts__container">
               <ul className="contacts__info grid grid--wrap">

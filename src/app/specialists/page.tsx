@@ -15,7 +15,6 @@ export default function SpecialistPage() {
       <main className="layout__main">
         <Banner
           title="Специалистам"
-          // subtitle="Общая информация для специалистов"
         />
         <Articles />
         <Library />

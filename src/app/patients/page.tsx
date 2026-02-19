@@ -9,8 +9,7 @@ export default function PatientsPage() {
       <main className="layout__main">
         <Banner
           title="Пациентам"
-          subtitle="Общая информация для пациентов"
-          backgroundImage="/images/doctor.jpg"
+          // subtitle="Общая информация для пациентов"
         />
         <div className="section__container">Patients</div>
       </main>

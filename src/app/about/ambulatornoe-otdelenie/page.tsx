@@ -5,6 +5,7 @@ import Employees from "@/components/ui/Employees";
 import FAQ from "@/components/FAQ";
 import { FAQItem } from "@/types/components/faqItem";
 import Link from "next/link";
+import Banner from "@/components/Banner";
 
 export default function AmbulatornoeOtdeleniePage() {
   const faqData: FAQItem[] = [
@@ -43,9 +44,7 @@ export default function AmbulatornoeOtdeleniePage() {
     <>
       <Header />
       <main className="layout__main">
-        <div className="section container">
-          <h1 className="text text--xxl">Страница амбулаторного отделения</h1>
-        </div>
+        <Banner title="Амбулаторное отделение" />
 
         {/* ниже будет паттерн, для несколькоих страниц */}
         <Employees />

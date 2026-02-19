@@ -5,6 +5,7 @@
   --banner-container-offset-y: var(--c-section-offset-block);
   --banner-container-padding: 20px;
   --banner-container-max-width: var(--c-container-max-width);
+  --banner-container-border-radius: 12px;
 
   @include media-breakpoint-up(lg) {
     --banner-container-padding: 40px;
@@ -18,6 +19,8 @@
     margin: 0 auto;
     padding-inline: var(--c-container-offset-inline);
     max-width: var(--banner-container-max-width);
+    border-bottom-left-radius: var(--banner-container-border-radius);
+    border-bottom-right-radius: var(--banner-container-border-radius);
   }
 
   &__title {

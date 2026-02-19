@@ -1,6 +1,6 @@
 "use client";
 import News from "@/components/news/News";
-import Reviews from "@/components/Reviews";
+// import Reviews from "@/components/Reviews";
 import FAQ from "@/components/FAQ";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
@@ -47,7 +47,7 @@ export default function Home() {
 
         {/* секции страницы */}
         <News />
-        <Reviews />
+        {/* <Reviews /> */}
         <FAQ id="faq-main" title="Часто задаваемые вопросы" faqData={faqData} />
       </main>
       <Footer />

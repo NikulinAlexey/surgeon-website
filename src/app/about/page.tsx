@@ -2,13 +2,17 @@ import { Header } from "@/components/header/Header";
 import Footer from "@/components/Footer";
 import Section from "@/components/Section";
 import Tile from "@/components/ui/Tile";
+import Banner from "@/components/Banner";
 
 export default function AboutPage() {
   return (
     <>
       <Header />
       <main className="layout__main">
-        <Section title="О нас" id="about">
+        <Banner
+          title="О нас"
+        />
+        <Section id="about">
           <ul className="grid">
             <li className="grid__item">
               <Tile
