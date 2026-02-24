@@ -131,8 +131,6 @@ function HeaderComponent({ compact }: HeaderComponentProps) {
                   <ul className="nav__list">
                     {navArray.map(({ link, title }, index) => {
                       const isActive = link === pathname;
-                      console.log(link);
-                      console.log(pathname);
                       return (
                         <li className="nav__item" key={index}>
                           <Link
@@ -161,8 +159,9 @@ function HeaderComponent({ compact }: HeaderComponentProps) {
                   </Link>
                   <div className="nav__profile" suppressHydrationWarning={true}>
                     {get("isLoggedIn") === "true" ? (
-                      <ButtonLink text="ЛК" href="/profile">
-                        <SvgIcon name="user" />
+                      <ButtonLink variant="lk" href="/profile">
+                        <SvgIcon className="button__icon" name="user" size="24" />
+                        <span className="button__text">Личный кабинет</span>
                       </ButtonLink>
                     ) : (
                       <ButtonLink
