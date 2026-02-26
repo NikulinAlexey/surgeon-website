@@ -6,8 +6,6 @@ const footerSections = {
     title: "Навигация",
     links: [
       { label: "Главная", href: "/" },
-      { label: "О враче", href: "/about" },
-      { label: "Услуги", href: "/services" },
       { label: "Отзывы", href: "/reviews" },
       { label: "Контакты", href: "/contacts" },
     ],
@@ -25,7 +23,10 @@ const footerSections = {
   contacts: {
     title: "Контакты",
     info: [
-      { type: "address", value: "г. Архангельск, ул. Медицинская, д. 15" },
+      {
+        type: "address",
+        value: "163001 Архангельская обл., г.Архангельск, ул. Суворова, 1",
+      },
       { type: "phone", value: "+7 (495) 123-45-67", href: "tel:+74951234567" },
       {
         type: "email",
@@ -48,12 +49,8 @@ export default function Footer() {
           {/* Блок с контактами и лого */}
           <div className="footer__brand">
             <Link href="/" className="footer__logo">
-              Доктор Иванов
+              Первая ГКБ им.Е.Е.Волосевич
             </Link>
-            <p className="footer__description">
-              Хирург-андролог высшей категории. Современные методы диагностики и
-              лечения.
-            </p>
             <div className="footer__contacts">
               {footerSections.contacts.info.map((item, index) => (
                 <div key={index} className="footer__contact-item">
@@ -108,7 +105,8 @@ export default function Footer() {
         {/* Нижняя часть */}
         <div className="footer__bottom">
           <div className="footer__copyright">
-            © {currentYear} Доктор Иванов. Все права защищены.
+            © {currentYear} ГБУЗ Архангельской области &laquo;Первая ГКБ
+            им.Е.Е.Волосевич&raquo;. Все права защищены.
           </div>
           <div className="footer__legal">
             <Link href="/privacy" className="footer__legal-link">

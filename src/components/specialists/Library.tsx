@@ -92,8 +92,9 @@ export default function Library() {
                       variant="secondary"
                       href={item.downloadLink}
                       download
+                      aria-label={`Скачать ${item.title} в pdf формате`}
                     >
-                      Скачать PDF
+                      Скачать
                     </ButtonLink>
                   </div>
                 </div>

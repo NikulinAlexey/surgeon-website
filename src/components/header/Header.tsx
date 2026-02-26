@@ -109,7 +109,7 @@ function HeaderComponent({ compact }: HeaderComponentProps) {
       })}
     >
       <div className="header__container">
-        <Link href="/" className="header__logo logo">
+        <Link href="/" className="header__logo logo" aria-label="Перейти на главную страницу">
           <SvgIcon className="logo__icon" name="logo-icon" aria-hidden />
         </Link>
 
@@ -159,8 +159,16 @@ function HeaderComponent({ compact }: HeaderComponentProps) {
                   </Link>
                   <div className="nav__profile" suppressHydrationWarning={true}>
                     {get("isLoggedIn") === "true" ? (
-                      <ButtonLink variant="lk" href="/profile">
-                        <SvgIcon className="button__icon" name="user" size="24" />
+                      <ButtonLink
+                        variant="lk"
+                        href="/profile"
+                        aria-label="Войти в личный кабинет"
+                      >
+                        <SvgIcon
+                          className="button__icon"
+                          name="user"
+                          size="24"
+                        />
                         <span className="button__text">Личный кабинет</span>
                       </ButtonLink>
                     ) : (
@@ -168,7 +176,7 @@ function HeaderComponent({ compact }: HeaderComponentProps) {
                         variant="outline-inverted"
                         wide
                         size="md"
-                        text="Войти"
+                        text="Войти в профиль"
                         href="/auth"
                       />
                     )}

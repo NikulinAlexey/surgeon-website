@@ -12,6 +12,8 @@
   padding: var(--button-padding);
   color: var(--button-color);
   flex-shrink: 0;
+  text-align: center;
+  text-wrap: pretty;
   background-color: var(--button-bg-color);
   border: var(--button-border-width, 1px) var(--button-border-style, solid) var(--button-border-color, transparent);
   border-radius: var(--button-border-radius, 0);
@@ -79,15 +81,15 @@
   }
 
   &--theme-primary {
-    --button-bg-color: var(--c-bg-color-8);
+    --button-bg-color: var(--c-bg-color-4);
     --button-color: var(--c-text-color-1);
-    --button-border-color: var(--c-bg-color-8);
+    --button-border-color: var(--c-bg-color-4);
   }
 
   &--theme-secondary {
-    --button-bg-color: var(--c-success-color);
+    --button-bg-color: var(--c-bg-color-7);
     --button-color: var(--c-text-color-1);
-    --button-border-color: var(--c-success-color);
+    --button-border-color: var(--c-bg-color-7);
   }
 
   &--theme-danger {

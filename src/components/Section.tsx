@@ -33,6 +33,7 @@ export default function Section({
                     variant="outline"
                     shape="circle"
                     lifted
+                    aria-label="Листать назад"
                     onClick={controls.onPrevClick}
                   >
                     <SvgIcon
@@ -45,6 +46,7 @@ export default function Section({
                     variant="outline"
                     shape="circle"
                     lifted
+                    aria-label="Листать вперед"
                     onClick={controls.onNextClick}
                   >
                     <SvgIcon name="shevron" aria-hidden />
