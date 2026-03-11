@@ -1,5 +1,5 @@
-// components/Footer/Footer.tsx
 import Link from "next/link";
+import SvgIcon from "./ui/SvgIcon";
 
 const footerSections = {
   navigation: {
@@ -44,79 +44,30 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer__container">
-        {/* Основной контент */}
-        <div className="footer__main">
-          {/* Блок с контактами и лого */}
-          <div className="footer__brand">
-            <Link href="/" className="footer__logo">
-              Первая ГКБ им.Е.Е.Волосевич
-            </Link>
-            <div className="footer__contacts">
-              {footerSections.contacts.info.map((item, index) => (
-                <div key={index} className="footer__contact-item">
-                  {item.href ? (
-                    <a href={item.href} className="footer__contact-link">
-                      {item.value}
-                    </a>
-                  ) : (
-                    <span className="footer__contact-text">{item.value}</span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
+        <Link
+          href="/"
+          className="footer__logo logo"
+          aria-label="Перейти на главную страницу"
+        >
+          <SvgIcon
+            className="logo__icon"
+            size="32"
+            name="logo-icon"
+            aria-hidden
+          />
+          Первая ГКБ им.Е.Е.Волосевич
+        </Link>
 
-          {/* Навигационные секции */}
-          <div className="footer__sections">
-            {/* Навигация */}
-            <div className="footer__section">
-              <h3 className="footer__section-title">
-                {footerSections.navigation.title}
-              </h3>
-              <ul className="footer__links">
-                {footerSections.navigation.links.map((link, index) => (
-                  <li key={index} className="footer__link-item">
-                    <Link href={link.href} className="footer__link">
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Услуги */}
-            <div className="footer__section">
-              <h3 className="footer__section-title">
-                {footerSections.services.title}
-              </h3>
-              <ul className="footer__links">
-                {footerSections.services.links.map((link, index) => (
-                  <li key={index} className="footer__link-item">
-                    <Link href={link.href} className="footer__link">
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+        <div className="footer__copyright">
+          © {currentYear} ГБУЗ Архангельской области &laquo;Первая ГКБ
+          им.Е.Е.Волосевич&raquo;. Все права защищены.
         </div>
-
-        {/* Нижняя часть */}
-        <div className="footer__bottom">
-          <div className="footer__copyright">
-            © {currentYear} ГБУЗ Архангельской области &laquo;Первая ГКБ
-            им.Е.Е.Волосевич&raquo;. Все права защищены.
-          </div>
-          <div className="footer__legal">
-            <Link href="/privacy" className="footer__legal-link">
-              Политика конфиденциальности
-            </Link>
-            <Link href="/terms" className="footer__legal-link">
-              Пользовательское соглашение
-            </Link>
-          </div>
-        </div>
+        <Link href="/privacy" className="footer__link">
+          Политика конфиденциальности
+        </Link>
+        <Link href="/terms" className="footer__link">
+          Пользовательское соглашение
+        </Link>
       </div>
     </footer>
   );

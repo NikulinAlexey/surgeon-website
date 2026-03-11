@@ -6,10 +6,10 @@
   background-color: var(--layout-bg-color);
   display: flex;
   flex-direction: column;
-  width: 100%;
-  min-height: 100dvh;
+  height: 100%;
 
   &__main {
     flex-grow: 1;
+    scrollbar-gutter: stable;
   }
 }

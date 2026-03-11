@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
-import { cn } from "@/lib/clsx";
 import SvgIcon from "./ui/SvgIcon";
 import Section from "./Section";
 
 import { FAQItem } from "@/types/components/faqItem";
+import { cn } from "@/lib/clsx";
 
 interface FAQProps {
   faqData: FAQItem[];

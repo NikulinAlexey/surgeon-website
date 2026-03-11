@@ -29,6 +29,9 @@ export const buttonVariants = cva("button", {
     disabled: {
       true: "_disabled",
     },
+    loading: {
+      true: "_loading"
+    }
   },
 });
 interface ButtonProps extends VariantProps<typeof buttonVariants> {
@@ -48,6 +51,7 @@ export default function Button({
   shape,
   wide,
   lifted,
+  loading,
   disabled,
   onClick,
   type = "button",
@@ -61,6 +65,7 @@ export default function Button({
       className={buttonVariants({
         variant,
         size,
+        loading,
         shape,
         lifted,
         wide,

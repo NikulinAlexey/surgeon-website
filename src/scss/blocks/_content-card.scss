@@ -8,6 +8,9 @@
   --content-card-title-color: var(--c-text-color-8);
   --content-card-description-color: var(--c-text-color-8);
 
+  display: var(--content-card-display, flex);
+  flex-direction: var(--content-card-flex-direction, column);
+  gap: var(--content-card-gap, 16px);
   color: var(--content-card-color);
   background-color: var(--content-card-bg-color);
   padding: var(--content-card-padding);

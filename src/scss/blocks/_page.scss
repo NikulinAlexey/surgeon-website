@@ -4,6 +4,8 @@
   width: 100%;
   height: 100%;
   padding-right: var(--page-scrollbar-width);
+  min-height: 100dvh;
+  scrollbar-gutter: stable;
 
   &._locked {
     overflow: hidden;

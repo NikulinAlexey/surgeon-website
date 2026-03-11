@@ -102,6 +102,7 @@ function HeaderComponent({ compact }: HeaderComponentProps) {
 
   return (
     <header
+      id="header"
       ref={headerRef}
       className={cn("header", {
         _active: isBurgerClicked,
@@ -109,7 +110,11 @@ function HeaderComponent({ compact }: HeaderComponentProps) {
       })}
     >
       <div className="header__container">
-        <Link href="/" className="header__logo logo" aria-label="Перейти на главную страницу">
+        <Link
+          href="/"
+          className="header__logo logo"
+          aria-label="Перейти на главную страницу"
+        >
           <SvgIcon className="logo__icon" name="logo-icon" aria-hidden />
         </Link>
 

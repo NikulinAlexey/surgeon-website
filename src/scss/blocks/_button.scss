@@ -43,6 +43,10 @@
     width: var(--button-icon-height);
   }
 
+  &._loading {
+    cursor: wait;
+  }
+
   &--lifted {
     @include hover {
       --button-box-shadow: var(--c-shadow-4);

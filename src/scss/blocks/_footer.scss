@@ -14,10 +14,7 @@
   &__container {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    max-width: var(--c-container-max-width);
-    margin: 0 auto;
-    padding-inline: var(--c-container-offset-inline);
+    gap: 1rem;
   }
 
   &__main {
