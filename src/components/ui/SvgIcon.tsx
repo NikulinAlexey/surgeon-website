@@ -23,7 +23,7 @@ export default function SvgIcon({
       height={size || undefined}
       {...props}
     >
-      <use xlinkHref={`/surgeon-website/sprite/sprite.svg#icon-${name}`} />
+      <use xlinkHref={`/sprite/sprite.svg#icon-${name}`} />
     </svg>
   );
 }

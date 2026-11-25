@@ -1,0 +1,17 @@
+node_modules
+.next
+.git
+.github
+.env
+.env.*
+!.env.example
+.data
+coverage
+playwright-report
+test-results
+.playwright-cli
+*.tsbuildinfo
+Dockerfile
+docker-compose.yml
+README.md
+requirements.tsx

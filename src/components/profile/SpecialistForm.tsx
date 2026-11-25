@@ -1,4 +1,3 @@
-
 interface SpecialistFormData {
   specialization: string;
   experience: string;
@@ -8,141 +7,56 @@ interface SpecialistFormData {
 interface SpecialistFormProps {
   formData: SpecialistFormData;
   onFormDataChange: (data: SpecialistFormData) => void;
-  diplomaFile: File | null;
-  onDiplomaFileChange: (file: File | null) => void;
+  documents: File[];
+  onDocumentsChange: (files: File[]) => void;
   isLoading: boolean;
-  onSubmit: (e: React.FormEvent) => void;
+  onSubmit: (event: React.FormEvent) => void;
   onCancel: () => void;
 }
 
-export function SpecialistForm({
-  formData,
-  onFormDataChange,
-  diplomaFile,
-  onDiplomaFileChange,
-  isLoading,
-  onSubmit,
-  onCancel,
-}: SpecialistFormProps) {
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    onFormDataChange({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      // Проверка типа файла
-      if (!file.type.includes("image/") && file.type !== "application/pdf") {
-        alert("Пожалуйста, загрузите изображение или PDF файл");
-        return;
-      }
-
-      // Проверка размера файла (5MB)
-      if (file.size > 5 * 1024 * 1024) {
-        alert("Файл слишком большой. Максимальный размер: 5MB");
-        return;
-      }
-
-      onDiplomaFileChange(file);
-    }
+export function SpecialistForm({ formData, onFormDataChange, documents, onDocumentsChange, isLoading, onSubmit, onCancel }: SpecialistFormProps) {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    onFormDataChange({ ...formData, [event.target.name]: event.target.value });
   };
 
   return (
     <form onSubmit={onSubmit} className="specialist-form">
       <div className="form-grid">
         <div className="form-field">
-          <label htmlFor="specialization" className="form-label">
-            Специализация *
-          </label>
-          <input
-            type="text"
-            id="specialization"
-            name="specialization"
-            value={formData.specialization}
-            onChange={handleInputChange}
-            className="form-input"
-            placeholder="Например: Терапевт, Хирург, Невролог"
-            required
-          />
+          <label htmlFor="specialization" className="form-label">Специализация *</label>
+          <input id="specialization" name="specialization" value={formData.specialization} onChange={handleInputChange} className="form-input" required minLength={2} maxLength={160} disabled={isLoading} />
         </div>
-
         <div className="form-field">
-          <label htmlFor="experience" className="form-label">
-            Опыт работы (лет)
-          </label>
-          <input
-            type="number"
-            id="experience"
-            name="experience"
-            value={formData.experience}
-            onChange={handleInputChange}
-            className="form-input"
-            placeholder="5"
-            min="0"
-            max="50"
-          />
+          <label htmlFor="experience" className="form-label">Опыт работы, лет *</label>
+          <input type="number" id="experience" name="experience" value={formData.experience} onChange={handleInputChange} className="form-input" min="0" max="80" required disabled={isLoading} />
         </div>
       </div>
-
       <div className="form-field">
-        <label htmlFor="description" className="form-label">
-          Дополнительная информация
-        </label>
-        <textarea
-          id="description"
-          name="description"
-          value={formData.description}
-          onChange={handleInputChange}
-          className="form-textarea"
-          placeholder="Расскажите о своем опыте, образовании, достижениях..."
-          rows={4}
-        />
+        <label htmlFor="description" className="form-label">Образование и профессиональный опыт *</label>
+        <textarea id="description" name="description" value={formData.description} onChange={handleInputChange} className="form-textarea" rows={6} required minLength={20} maxLength={5000} disabled={isLoading} />
       </div>
-
       <div className="form-field">
-        <label htmlFor="diploma" className="form-label">
-          Скан диплома о медицинском образовании *
-        </label>
+        <label htmlFor="documents" className="form-label">Документы об образовании и квалификации *</label>
         <input
           type="file"
-          id="diploma"
-          name="diploma"
-          onChange={handleFileChange}
+          id="documents"
+          name="documents"
+          multiple
+          onChange={(event) => onDocumentsChange(Array.from(event.target.files || []).slice(0, 3))}
           className="form-file"
-          accept=".jpg,.jpeg,.png,.pdf,.doc,.docx"
+          accept=".jpg,.jpeg,.png,.webp,.pdf"
           required
+          disabled={isLoading}
         />
         <div className="form-file-info">
-          {diplomaFile ? (
-            <span>Выбран файл: {diplomaFile.name}</span>
-          ) : (
-            <span>Формат: JPG, PNG, PDF (макс. 5MB)</span>
-          )}
+          {documents.length ? `${documents.map((file) => file.name).join(", ")}` : "PDF, JPG, PNG или WebP; до 3 файлов, каждый не больше 8 МБ"}
         </div>
       </div>
-
       <div className="form-actions">
-        <button
-          type="submit"
-          className="btn btn--primary"
-          disabled={isLoading || !diplomaFile}
-        >
-          {isLoading ? "Отправка..." : "Отправить на модерацию"}
+        <button type="submit" className="btn btn--primary" disabled={isLoading || documents.length === 0}>
+          {isLoading ? "Отправка…" : "Отправить на проверку"}
         </button>
-        <button
-          type="button"
-          className="btn btn--secondary"
-          onClick={onCancel}
-          disabled={isLoading}
-        >
-          Отмена
-        </button>
+        <button type="button" className="btn btn--secondary" onClick={onCancel} disabled={isLoading}>Отмена</button>
       </div>
     </form>
   );

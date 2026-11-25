@@ -1,63 +1,28 @@
 import { SpecialistForm } from "./SpecialistForm";
 
-interface SpecialistFormData {
-  specialization: string;
-  experience: string;
-  description: string;
-}
-
+interface SpecialistFormData { specialization: string; experience: string; description: string }
 interface SpecialistSectionProps {
   showSpecialistForm: boolean;
   onShowForm: () => void;
   formData: SpecialistFormData;
   onFormDataChange: (data: SpecialistFormData) => void;
-  diplomaFile: File | null;
-  onDiplomaFileChange: (file: File | null) => void;
+  documents: File[];
+  onDocumentsChange: (files: File[]) => void;
   isLoading: boolean;
-  onSubmit: (e: React.FormEvent) => void;
+  onSubmit: (event: React.FormEvent) => void;
   onCancel: () => void;
 }
 
-export function SpecialistSection({
-  showSpecialistForm,
-  onShowForm,
-  formData,
-  onFormDataChange,
-  diplomaFile,
-  onDiplomaFileChange,
-  isLoading,
-  onSubmit,
-  onCancel,
-}: SpecialistSectionProps) {
+export function SpecialistSection(props: SpecialistSectionProps) {
   return (
-    <div className="dashboard__section">
+    <section className="dashboard__section">
       <div className="specialist-promo">
-        <h3>Стать специалистом</h3>
-        <p>
-          Подтвердите свою квалификацию и получите доступ к расширенным
-          возможностям платформы для медицинских специалистов.
-        </p>
-
-        {!showSpecialistForm ? (
-          <button
-            type="button"
-            className="btn btn--primary"
-            onClick={onShowForm}
-          >
-            Подтвердить, что я специалист
-          </button>
-        ) : (
-          <SpecialistForm
-            formData={formData}
-            onFormDataChange={onFormDataChange}
-            diplomaFile={diplomaFile}
-            onDiplomaFileChange={onDiplomaFileChange}
-            isLoading={isLoading}
-            onSubmit={onSubmit}
-            onCancel={onCancel}
-          />
-        )}
+        <h2>Подтверждение профиля специалиста</h2>
+        <p>Заполните профессиональные данные и прикрепите документы. Решение администратора появится в личном кабинете.</p>
+        {!props.showSpecialistForm ? (
+          <button type="button" className="btn btn--primary" onClick={props.onShowForm}>Подать заявку</button>
+        ) : <SpecialistForm {...props} />}
       </div>
-    </div>
+    </section>
   );
 }

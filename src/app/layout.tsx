@@ -3,8 +3,12 @@ import type { Metadata } from "next";
 import "../scss/main.scss";
 
 export const metadata: Metadata = {
-  title: "Доктор Хаус",
-  description: "Страница доктора",
+  title: {
+    default: "Урологическое отделение | Первая ГКБ им. Е. Е. Волосевич",
+    template: "%s | Первая ГКБ им. Е. Е. Волосевич",
+  },
+  description:
+    "Информация для пациентов и специалистов урологического отделения Первой ГКБ им. Е. Е. Волосевич.",
 };
 
 export default function RootLayout({

@@ -1,50 +1,24 @@
-interface UserProfile {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  role: "patient" | "specialist" | "pending_specialist";
-  phone?: string;
-  avatar?: string;
-  specialization?: string;
-  experience?: number;
-  diplomaFile?: File | null;
-  isVerified: boolean;
-}
+import { ClientUser } from "@/types/user";
 
-interface SpecialistInfoProps {
-  user: UserProfile;
-}
-
-export function SpecialistInfo({ user }: SpecialistInfoProps) {
+export function SpecialistInfo({ user }: { user: ClientUser }) {
+  const verification = user.verification;
   return (
-    <div className="dashboard__section">
-      <h2>Информация специалиста</h2>
-
-      {user.role === "pending_specialist" && (
-        <div className="alert alert--info">
-          Ваша заявка находится на рассмотрении. Обычно это занимает до 3 рабочих дней.
+    <section className="dashboard__section">
+      <h2>Профиль специалиста</h2>
+      {verification?.status === "PENDING" && <div className="alert alert--info" role="status">Заявка находится на проверке.</div>}
+      {verification?.status === "APPROVED" && <div className="alert alert--success" role="status">Статус специалиста подтверждён.</div>}
+      {verification?.status === "REJECTED" && (
+        <div className="alert alert--error" role="alert">
+          Заявка отклонена{verification.rejectionReason ? `: ${verification.rejectionReason}` : "."}
         </div>
       )}
-
-      {user.role === "specialist" && (
-        <div className="alert alert--success">
-          Ваш статус специалиста подтвержден!
+      {user.specialistProfile && (
+        <div className="specialist-info">
+          <div className="info-item"><strong>Специализация:</strong><span>{user.specialistProfile.specialization}</span></div>
+          <div className="info-item"><strong>Опыт:</strong><span>{user.specialistProfile.experience} лет</span></div>
+          <div className="info-item"><strong>О себе:</strong><span>{user.specialistProfile.description}</span></div>
         </div>
       )}
-
-      <div className="specialist-info">
-        <div className="info-item">
-          <strong>Специализация:</strong>
-          <span>{user.specialization || "Не указана"}</span>
-        </div>
-        <div className="info-item">
-          <strong>Статус верификации:</strong>
-          <span>
-            {user.isVerified ? "Подтвержден" : "Требуется подтверждение"}
-          </span>
-        </div>
-      </div>
-    </div>
+    </section>
   );
 }

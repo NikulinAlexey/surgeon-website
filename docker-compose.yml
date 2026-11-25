@@ -1,0 +1,71 @@
+services:
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: surgeon
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: surgeon
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U surgeon -d surgeon"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  migrate:
+    build:
+      context: .
+      target: migrator
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://surgeon:${POSTGRES_PASSWORD}@db:5432/surgeon
+      BOOTSTRAP_ADMIN_EMAIL: ${BOOTSTRAP_ADMIN_EMAIL:?Set BOOTSTRAP_ADMIN_EMAIL in .env}
+      BOOTSTRAP_ADMIN_PASSWORD: ${BOOTSTRAP_ADMIN_PASSWORD:?Set BOOTSTRAP_ADMIN_PASSWORD in .env}
+      APP_URL: ${APP_URL:-http://localhost:3000}
+      PRIVACY_VERSION: ${PRIVACY_VERSION:-2026-11-25}
+      TERMS_VERSION: ${TERMS_VERSION:-2026-11-25}
+    restart: "no"
+
+  app:
+    build:
+      context: .
+      target: runner
+    restart: unless-stopped
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    environment:
+      DATABASE_URL: postgresql://surgeon:${POSTGRES_PASSWORD}@db:5432/surgeon
+      APP_URL: ${APP_URL:-http://localhost:3000}
+      SMTP_URL: ${SMTP_URL:?Set SMTP_URL in .env}
+      EMAIL_FROM: ${EMAIL_FROM:-Surgeon Website <no-reply@example.com>}
+      LOCAL_STORAGE_DIR: /data/uploads
+      DEV_MAIL_DIR: /data/mail
+      S3_ENDPOINT: ${S3_ENDPOINT:-}
+      S3_REGION: ${S3_REGION:-ru-central1}
+      S3_BUCKET: ${S3_BUCKET:-}
+      S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID:-}
+      S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY:-}
+      S3_FORCE_PATH_STYLE: ${S3_FORCE_PATH_STYLE:-true}
+      PRIVACY_VERSION: ${PRIVACY_VERSION:-2026-11-25}
+      TERMS_VERSION: ${TERMS_VERSION:-2026-11-25}
+    volumes:
+      - uploads:/data/uploads
+      - mail:/data/mail
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+volumes:
+  postgres_data:
+  uploads:
+  mail:

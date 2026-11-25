@@ -1,23 +1,14 @@
-"use client";
+import type { Metadata } from "next";
+import { CmsTextPage } from "@/components/CmsTextPage";
+import { getCmsPage } from "@/lib/pages";
 
-import Footer from "@/components/Footer";
-import { Header } from "@/components/header/Header";
-import Section from "@/components/Section";
+export const dynamic = "force-dynamic";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getCmsPage("privacy");
+  return { title: page?.seoTitle || "Политика конфиденциальности", description: page?.seoDescription || undefined };
+}
 
 export default function PrivacyPage() {
-  
-  return (
-    <>
-      <Header />
-      <main className="layout__main">
-        <Section
-          title="Политика конфиденциальности"
-          id="privacy"
-        >
-          Политика конфиденциальности
-        </Section>
-      </main>
-      <Footer />
-    </>
-  );
+  return <CmsTextPage slug="privacy" showFaq={false} />;
 }

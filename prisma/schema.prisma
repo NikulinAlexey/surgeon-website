@@ -1,0 +1,261 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  PATIENT
+  SPECIALIST
+  EDITOR
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  BLOCKED
+}
+
+enum AuthTokenType {
+  EMAIL_VERIFICATION
+  PASSWORD_RESET
+}
+
+enum VerificationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum ContentKind {
+  ARTICLE
+  NEWS
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model User {
+  id                String              @id @default(uuid())
+  email             String              @unique
+  phone             String?
+  passwordHash      String
+  firstName         String
+  lastName          String
+  patronymic        String?
+  birthDate         DateTime?
+  role              UserRole            @default(PATIENT)
+  status            UserStatus          @default(ACTIVE)
+  emailVerifiedAt   DateTime?
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  sessions          Session[]
+  authTokens        AuthToken[]
+  specialistProfile SpecialistProfile?
+  verificationRequests VerificationRequest[] @relation("VerificationApplicant")
+  reviewedRequests  VerificationRequest[] @relation("VerificationReviewer")
+  articles          ContentEntry[]      @relation("ContentAuthor")
+  contentRevisions  ContentRevision[]
+  pageRevisions     PageRevision[]
+  media             Media[]
+  auditLogs         AuditLog[]
+  consents          Consent[]
+
+  @@index([role, status])
+  @@index([createdAt])
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  tokenHash String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  lastUsedAt DateTime @default(now())
+
+  @@index([userId, expiresAt])
+}
+
+model AuthToken {
+  id        String        @id @default(uuid())
+  tokenHash String        @unique
+  type      AuthTokenType
+  userId    String
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime      @default(now())
+
+  @@index([userId, type, expiresAt])
+}
+
+model SpecialistProfile {
+  id             String   @id @default(uuid())
+  userId         String   @unique
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  specialization String
+  experience     Int
+  description    String   @db.Text
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model VerificationRequest {
+  id              String                @id @default(uuid())
+  userId          String
+  user            User                  @relation("VerificationApplicant", fields: [userId], references: [id], onDelete: Cascade)
+  status          VerificationStatus    @default(PENDING)
+  rejectionReason String?               @db.Text
+  reviewerId      String?
+  reviewer        User?                 @relation("VerificationReviewer", fields: [reviewerId], references: [id], onDelete: SetNull)
+  submittedAt     DateTime              @default(now())
+  reviewedAt      DateTime?
+  documents       VerificationDocument[]
+
+  @@index([status, submittedAt])
+  @@index([userId, submittedAt])
+}
+
+model VerificationDocument {
+  id           String              @id @default(uuid())
+  requestId    String
+  request      VerificationRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  storageKey   String              @unique
+  originalName String
+  mimeType     String
+  size         Int
+  createdAt    DateTime            @default(now())
+}
+
+model Media {
+  id           String         @id @default(uuid())
+  storageKey   String         @unique
+  originalName String
+  mimeType     String
+  size         Int
+  isPublic     Boolean        @default(true)
+  uploadedById String
+  uploadedBy   User           @relation(fields: [uploadedById], references: [id], onDelete: Cascade)
+  createdAt    DateTime       @default(now())
+  content      ContentEntry[]
+}
+
+model ContentEntry {
+  id             String           @id @default(uuid())
+  kind           ContentKind
+  slug           String           @unique
+  title          String
+  excerpt        String           @db.Text
+  body           String           @db.Text
+  status         ContentStatus    @default(DRAFT)
+  authorId       String
+  author         User             @relation("ContentAuthor", fields: [authorId], references: [id])
+  coverMediaId   String?
+  coverMedia     Media?           @relation(fields: [coverMediaId], references: [id], onDelete: SetNull)
+  coverAlt       String?
+  seoTitle       String?
+  seoDescription String?
+  publishedAt    DateTime?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  revisions      ContentRevision[]
+
+  @@index([kind, status, publishedAt])
+  @@index([authorId])
+}
+
+model ContentRevision {
+  id             String       @id @default(uuid())
+  contentId      String
+  content        ContentEntry @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  editorId       String
+  editor         User         @relation(fields: [editorId], references: [id])
+  title          String
+  excerpt        String       @db.Text
+  body           String       @db.Text
+  seoTitle       String?
+  seoDescription String?
+  createdAt      DateTime     @default(now())
+
+  @@index([contentId, createdAt])
+}
+
+model Page {
+  id             String         @id @default(uuid())
+  slug           String         @unique
+  title          String
+  subtitle       String         @default("") @db.Text
+  body           String         @default("") @db.Text
+  faq            Json           @default("[]")
+  seoTitle       String?
+  seoDescription String?
+  updatedAt      DateTime       @updatedAt
+  revisions      PageRevision[]
+}
+
+model PageRevision {
+  id             String   @id @default(uuid())
+  pageId         String
+  page           Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  editorId       String
+  editor         User     @relation(fields: [editorId], references: [id])
+  title          String
+  subtitle       String   @default("") @db.Text
+  body           String   @default("") @db.Text
+  faq            Json
+  seoTitle       String?
+  seoDescription String?
+  createdAt      DateTime @default(now())
+
+  @@index([pageId, createdAt])
+}
+
+model SiteSettings {
+  id        Int      @id @default(1)
+  phone     String   @default("")
+  email     String   @default("")
+  address   String   @default("")
+  workHours String   @default("")
+  updatedAt DateTime @updatedAt
+}
+
+model Consent {
+  id             String   @id @default(uuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  document       String
+  documentVersion String
+  acceptedAt     DateTime @default(now())
+
+  @@index([userId, document])
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  actorId    String?
+  actor      User?    @relation(fields: [actorId], references: [id], onDelete: SetNull)
+  action     String
+  entityType String
+  entityId   String
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  @@index([entityType, entityId, createdAt])
+  @@index([actorId, createdAt])
+}
+
+model RateLimit {
+  key         String   @id
+  count       Int      @default(0)
+  windowStart DateTime @default(now())
+  expiresAt   DateTime
+
+  @@index([expiresAt])
+}

@@ -1,23 +1,14 @@
-"use client";
+import type { Metadata } from "next";
+import { CmsTextPage } from "@/components/CmsTextPage";
+import { getCmsPage } from "@/lib/pages";
 
-import Footer from "@/components/Footer";
-import { Header } from "@/components/header/Header";
-import Section from "@/components/Section";
+export const dynamic = "force-dynamic";
 
-export default function PrivacyPage() {
-  
-  return (
-    <>
-      <Header />
-      <main className="layout__main">
-        <Section
-          title="Пользовательское соглашение"
-          id="terms"
-        >
-          Пользовательское соглашение
-        </Section>
-      </main>
-      <Footer />
-    </>
-  );
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getCmsPage("terms");
+  return { title: page?.seoTitle || "Пользовательское соглашение", description: page?.seoDescription || undefined };
+}
+
+export default function TermsPage() {
+  return <CmsTextPage slug="terms" showFaq={false} />;
 }

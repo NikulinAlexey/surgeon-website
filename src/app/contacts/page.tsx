@@ -1,39 +1,46 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import Banner from "@/components/Banner";
 import Footer from "@/components/Footer";
 import { Header } from "@/components/header/Header";
 import Section from "@/components/Section";
 import Tile from "@/components/ui/Tile";
-import Link from "next/link";
+import { getCmsPage, getSiteSettings } from "@/lib/pages";
+import { safeBody } from "@/lib/content";
 
-export default function ContactsPage() {
+export const dynamic = "force-dynamic";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getCmsPage("contacts");
+  return { title: page?.seoTitle || "Контакты", description: page?.seoDescription || undefined };
+}
+
+export default async function ContactsPage() {
+  const [page, settings] = await Promise.all([getCmsPage("contacts"), getSiteSettings()]);
+  const phoneHref = settings.phone ? `tel:${settings.phone.replace(/[^+\d]/g, "")}` : "";
   const items = [
-    { title: "Адрес", description: "г. Москва, ул. Ленина, д. 10" },
-    {
-      title: "Телефон",
-      description: <Link href="tel:+74951234567">+7 (495) 123-45-67</Link>,
-    },
-    {
-      title: "Email",
-      description: (
-        <Link href="mailto:+74951234567">info@urology-clinic.ru</Link>
-      ),
-    },
-    {
-      title: "Время работы",
-      description: "Пн-Пт: 8:00-20:00",
-    },
-  ];
+    { title: "Адрес", description: settings.address },
+    { title: "Телефон", description: settings.phone ? <Link href={phoneHref}>{settings.phone}</Link> : "Не указан" },
+    { title: "Email", description: settings.email ? <Link href={`mailto:${settings.email}`}>{settings.email}</Link> : "Не указан" },
+    { title: "Время работы", description: settings.workHours },
+  ].filter((item) => Boolean(item.description));
+
   return (
     <>
-      <Header />
+      <Header phone={settings.phone || undefined} />
       <main className="layout__main">
-        <Banner title="Контакты " />
+        <Banner title={page?.title || "Контакты"} subtitle={page?.subtitle || undefined} />
+        {page?.body && (
+          <Section id="contacts-details">
+            <div className="cms" dangerouslySetInnerHTML={{ __html: safeBody(page.body) }} />
+          </Section>
+        )}
         <Section id="contacts">
           <div className="contacts">
             <div className="contacts__container">
               <ul className="contacts__info grid grid--wrap">
-                {items.map((item, index) => (
-                  <li className="contacts__item grid__item" key={index}>
+                {items.map((item) => (
+                  <li className="contacts__item grid__item" key={item.title}>
                     <Tile title={item.title} description={item.description} />
                   </li>
                 ))}

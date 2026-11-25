@@ -1,54 +1,49 @@
-"use client";
+import type { Metadata } from "next";
 import News from "@/components/news/News";
-// import Reviews from "@/components/Reviews";
 import FAQ from "@/components/FAQ";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import { Header } from "@/components/header/Header";
-import { FAQItem } from "@/types/components/faqItem";
-export default function Home() {
-  const faqData: FAQItem[] = [
-    {
-      id: "1",
-      question: "Как записаться на прием?",
-      answer:
-        "Вы можете записаться на прием по телефону или через наш сайт. Мы работаем с понедельника по пятницу с 9:00 до 18:00.",
-    },
-    {
-      id: "2",
-      question: "Какие услуги предоставляет клиника?",
-      answer:
-        "Наша клиника предлагает широкий спектр медицинских услуг: консультации специалистов, диагностику, лечение и профилактику заболеваний.",
-    },
-    {
-      id: "3",
-      question: "Какова стоимость услуг?",
-      answer:
-        "Стоимость услуг зависит от вида медицинской помощи. Подробную информацию можно получить по телефону или на сайте в разделе 'Цены'.",
-    },
-    {
-      id: "4",
-      question: "Нужно ли предварительно готовиться к приему?",
-      answer:
-        "В зависимости от вида обследования или консультации, может потребоваться предварительная подготовка. Наш администратор сообщит вам об этом при записи.",
-    },
-    {
-      id: "5",
-      question: "Работает ли клиника в выходные?",
-      answer:
-        "В выходные дни клиника работает по предварительной записи. Пожалуйста, уточните график по телефону.",
-    },
-  ];
+import { getPublishedContent, safeBody } from "@/lib/content";
+import { getCmsPage, getSiteSettings } from "@/lib/pages";
+import { toPublicContentCard } from "@/lib/public-content";
+
+export const dynamic = "force-dynamic";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getCmsPage("home");
+  return {
+    title: page?.seoTitle || page?.title || "Архангельский региональный урологический центр",
+    description: page?.seoDescription || page?.subtitle || undefined,
+  };
+}
+
+export default async function Home() {
+  const [page, news, settings] = await Promise.all([
+    getCmsPage("home"),
+    getPublishedContent("NEWS", 12),
+    getSiteSettings(),
+  ]);
+
   return (
     <>
-      <Header />
+      <Header phone={settings.phone || undefined} />
       <main className="layout__main">
-        <Hero />
-
-        {/* секции страницы */}
-        <News />
-        {/* <Reviews /> */}
-        <FAQ id="faq-main" title="Часто задаваемые вопросы" faqData={faqData} />
+        <Hero
+          title={page?.title || "Архангельский региональный урологический центр"}
+          description={page?.subtitle || "Первый урологический центр Поморья."}
+        />
+        {page?.body && (
+          <section className="section">
+            <div className="section__container container">
+              <div className="cms" dangerouslySetInnerHTML={{ __html: safeBody(page.body) }} />
+            </div>
+          </section>
+        )}
+        <News items={news.map(toPublicContentCard)} />
+        {page && page.faq.length > 0 && (
+          <FAQ id="faq-main" title="Часто задаваемые вопросы" faqData={page.faq} />
+        )}
       </main>
       <Footer />
     </>

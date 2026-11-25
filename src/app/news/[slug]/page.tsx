@@ -1,50 +1,24 @@
-import Footer from "@/components/Footer";
-import { Header } from "@/components/header/Header";
+import type { Metadata } from "next";
+import { PublicContentDetail } from "@/components/PublicContentDetail";
+import { getPublishedContentBySlug } from "@/lib/content";
+
+export const dynamic = "force-dynamic";
 
 interface NewsPageProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }
 
-export default function NewsPage({ params }: NewsPageProps) {
-  const { slug } = params;
-
-  // Здесь получаем данные новости по slug
-  // const newsItem = await getNewsBySlug(slug);
-  return (
-    <>
-      <Header />
-      <main className="layout__main">
-        <div className="section__container">
-          <h1>Новость: {slug}</h1>
-          {/* Отображаем контент новости */}
-        </div>
-      </main>
-      <Footer />
-    </>
-  );
-}
-
-// Для статического экспорта - генерация параметров
-export async function generateStaticParams() {
-  // Здесь получаем все возможные slug новостей
-  // const news = await getAllNews();
-  // return news.map((item) => ({ slug: item.slug }));
-
-  // Пока фиктивные данные
-  return [
-    { slug: 'news-1' },
-    { slug: 'news-2' },
-  ];
-}
-
-// Для SEO - генерация метаданных
-export async function generateMetadata({ params }: NewsPageProps) {
-  const { slug } = params;
-
+export async function generateMetadata({ params }: NewsPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const item = await getPublishedContentBySlug(slug);
+  if (!item || item.kind !== "NEWS") return { title: "Новость не найдена" };
   return {
-    title: `Новость: ${slug}`,
-    description: `Страница новости ${slug}`,
+    title: item.seoTitle || item.title,
+    description: item.seoDescription || item.excerpt || undefined,
   };
+}
+
+export default async function NewsPage({ params }: NewsPageProps) {
+  const { slug } = await params;
+  return <PublicContentDetail slug={slug} kind="NEWS" />;
 }

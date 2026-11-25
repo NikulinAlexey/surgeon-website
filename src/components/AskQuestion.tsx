@@ -1,63 +1,45 @@
 "use client";
 
-import Section from "./Section";
 import { useState } from "react";
+import Section from "./Section";
 import Button from "./ui/Button";
 
-export default function AskQuestion() {
-  const [showQuestionForm, setShowQuestionForm] = useState(false);
+export default function AskQuestion({ email }: { email: string }) {
   const [questionText, setQuestionText] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmitQuestion = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!questionText.trim()) return;
-
-    setIsSubmitting(true);
-    try {
-      // Имитация отправки
-      console.log("Отправка вопроса:", questionText);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setQuestionText("");
-      setShowQuestionForm(false);
-      alert("Вопрос отправлен!");
-    } catch (error) {
-      console.error("Ошибка отправки:", error);
-    } finally {
-      setIsSubmitting(false);
-    }
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!questionText.trim() || !email) return;
+    const subject = encodeURIComponent("Вопрос специалистам с сайта");
+    const body = encodeURIComponent(questionText.trim());
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
   };
+
   return (
     <Section id="ask-question" title="Задать вопрос">
       <p className="text text--lg text--regular">
-        Задайте вопрос нашим специалистам и получите консультацию.
+        Нажмите «Подготовить письмо»: вопрос откроется в вашей почтовой программе. Отправка выполняется через вашу почту.
       </p>
-      <form onSubmit={handleSubmitQuestion} className="form">
+      <form onSubmit={handleSubmit} className="form">
+        <label className="sr-only" htmlFor="specialist-question">Ваш вопрос</label>
         <textarea
-          id=""
-          name=""
+          id="specialist-question"
+          name="question"
           value={questionText}
-          onChange={(e) => setQuestionText(e.target.value)}
+          onChange={(event) => setQuestionText(event.target.value)}
           placeholder="Введите ваш вопрос..."
           className="specialists-page__textarea"
           rows={4}
-          disabled={isSubmitting}
+          maxLength={5000}
           required
         />
-        <div className="">
-          <Button
-            variant="danger"
-            onClick={() => {
-              setShowQuestionForm(false);
-              setQuestionText("");
-            }}
-            text="Отмена"
-          />
+        <div>
+          <Button variant="danger" onClick={() => setQuestionText("")} text="Очистить" />
           <Button
             variant="secondary"
             type="submit"
-            disabled={isSubmitting || !questionText.trim()}
-            text={isSubmitting ? "Отправка..." : "Отправить вопрос"}
+            disabled={!questionText.trim() || !email}
+            text="Подготовить письмо"
           />
         </div>
       </form>
