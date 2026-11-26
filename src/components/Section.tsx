@@ -11,15 +11,12 @@ interface SectionProps {
   controls?: {
     onPrevClick?: () => void;
     onNextClick?: () => void;
+    prevDisabled?: boolean;
+    nextDisabled?: boolean;
   };
 }
 
-export default function Section({
-  title,
-  id,
-  children,
-  controls,
-}: SectionProps) {
+export default function Section({ title, id, children, controls }: SectionProps) {
   return (
     <section className="section" id={id}>
       <div className="section__container">
@@ -29,26 +26,10 @@ export default function Section({
             <div className="section__options">
               {controls && (
                 <>
-                  <Button
-                    variant="outline"
-                    shape="circle"
-                    lifted
-                    aria-label="Листать назад"
-                    onClick={controls.onPrevClick}
-                  >
-                    <SvgIcon
-                      name="shevron"
-                      rotateAngle="-180"
-                      aria-hidden
-                    />
+                  <Button variant="outline" shape="circle" lifted aria-label="Листать назад" onClick={controls.onPrevClick} disabled={controls.prevDisabled}>
+                    <SvgIcon name="shevron" rotateAngle="-180" aria-hidden />
                   </Button>
-                  <Button
-                    variant="outline"
-                    shape="circle"
-                    lifted
-                    aria-label="Листать вперед"
-                    onClick={controls.onNextClick}
-                  >
+                  <Button variant="outline" shape="circle" lifted aria-label="Листать вперед" onClick={controls.onNextClick} disabled={controls.nextDisabled}>
                     <SvgIcon name="shevron" aria-hidden />
                   </Button>
                 </>

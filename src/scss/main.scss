@@ -1,7 +1,10 @@
+@charset "UTF-8";
+
 // core
-@import "../scss/global/reset";
-@import "../scss/global/fonts";
 @import "../scss/global/variables";
+@import "../scss/tokens/index";
+@import "../scss/global/fonts";
+@import "../scss/global/reset";
 
 // base
 @import "./blocks/page";
@@ -9,6 +12,7 @@
 @import "./blocks/section";
 @import "./blocks/text";
 @import "./blocks/footer";
+@import "./blocks/breadcrumbs";
 
 // swiper
 @import "swiper/css";

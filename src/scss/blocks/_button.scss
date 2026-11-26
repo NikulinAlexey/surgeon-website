@@ -1,33 +1,34 @@
 .button {
-  @include font(16px, 16px, 400, $basic-family);
-
   display: inline-flex;
   aspect-ratio: var(--button-aspect-ratio, auto);
   justify-content: center;
   align-items: center;
-  gap: 4px;
+  gap: var(--spacing-8);
   width: var(--button-width, fit-content);
   max-width: 100%;
-  height: fit-content;
+  min-height: 44px;
   padding: var(--button-padding);
   color: var(--button-color);
   flex-shrink: 0;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
   text-align: center;
   text-wrap: pretty;
   background-color: var(--button-bg-color);
-  border: var(--button-border-width, 1px) var(--button-border-style, solid) var(--button-border-color, transparent);
-  border-radius: var(--button-border-radius, 0);
+  border: var(--button-border-width, var(--stroke-sm)) solid var(--button-border-color, transparent);
+  border-radius: var(--button-border-radius, var(--radius-md));
   cursor: pointer;
   box-shadow: var(--button-box-shadow);
-  transition-property: transform, opacity, color, background-color, border-color,
-    fill, stroke, box-shadow, padding;
+  transition-property: transform, opacity, color, background-color, border-color, box-shadow;
   transition-duration: $animation-speed;
-  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition-timing-function: $animation-timing-function;
 
   &:disabled,
   &._disabled {
     cursor: not-allowed;
-    opacity: 0.6;
+    opacity: 0.55;
   }
 
   &__text {
@@ -40,128 +41,108 @@
   &__icon {
     display: var(--button-icon-display, block);
     width: var(--button-icon-width);
-    width: var(--button-icon-height);
+    height: var(--button-icon-height);
   }
 
-  &._loading {
-    cursor: wait;
-  }
+  &._loading { cursor: wait; }
 
   &--lifted {
     @include hover {
-      --button-box-shadow: var(--c-shadow-4);
-
-      transform: scale(1.03);
+      --button-box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
     }
 
-    &:active {
-      transform: scale(0.97);
-      --button-box-shadow: var(--c-shadow-4) inset;
-    }
+    &:active { transform: translateY(0); }
   }
 
   &--size-sm {
-    --button-padding: 8px 16px;
-    --button-border-radius: 4px;
-    --button-border-width: 1px;
-
-    @include font(14px, 14px, 400, $basic-family);
+    --button-padding: var(--spacing-8) var(--spacing-16);
+    --button-border-radius: var(--radius-md);
+    min-height: 40px;
+    font-size: var(--font-size-sm);
   }
 
   &--size-md {
-    --button-padding: 12px 24px;
-    --button-border-radius: 6px;
-    --button-border-width: 1px;
-
-    @include font(16px, 16px, 400, $basic-family);
+    --button-padding: var(--spacing-12) var(--spacing-24);
+    --button-border-radius: var(--radius-md);
   }
 
   &--size-lg {
-    --button-padding: 16px 32px;
-    --button-border-radius: 12px;
-    --button-border-width: 2px;
-
-    @include font(18px, 18px, 400, $basic-family);
+    --button-padding: var(--spacing-16) var(--spacing-32);
+    --button-border-radius: var(--radius-lg);
+    --button-border-width: var(--stroke-sm);
+    font-size: var(--font-size-lg);
   }
 
   &--theme-primary {
-    --button-bg-color: var(--c-bg-color-4);
-    --button-color: var(--c-text-color-1);
-    --button-border-color: var(--c-bg-color-4);
+    --button-bg-color: var(--color-action-primary);
+    --button-color: var(--color-action-text);
+    --button-border-color: var(--color-action-primary);
   }
 
   &--theme-secondary {
-    --button-bg-color: var(--c-bg-color-7);
-    --button-color: var(--c-text-color-1);
-    --button-border-color: var(--c-bg-color-7);
+    --button-bg-color: var(--color-action-secondary);
+    --button-color: var(--color-action-text);
+    --button-border-color: var(--color-action-secondary);
   }
 
   &--theme-danger {
-    --button-bg-color: var(--c-error-color);
-    --button-color: var(--c-text-color-1);
-    --button-border-color: var(--c-error-color);
+    --button-bg-color: var(--color-error-text);
+    --button-color: var(--color-action-text);
+    --button-border-color: var(--color-error-text);
   }
 
   &--theme-outline {
-    --button-bg-color: transparent;
-    --button-color: var(--c-text-color-1);
-    --button-border-color: var(--c-border-color-9);
+    --button-bg-color: var(--color-bg-surface);
+    --button-color: var(--color-text-primary);
+    --button-border-color: var(--color-border-strong);
   }
 
   &--theme-outline-inverted {
-    --button-bg-color: var(--c-bg-color-1);
-    --button-color: var(--c-text-color-10);
-    --button-border-color: var(--c-border-color-8);
+    --button-bg-color: var(--color-bg-surface);
+    --button-color: var(--color-text-brand);
+    --button-border-color: var(--color-border-default);
   }
 
   &--theme-ghost {
     --button-bg-color: transparent;
-    --button-color: var(--c-text-color-10);
+    --button-color: var(--color-text-primary);
     --button-border-color: transparent;
   }
 
   &--shape-circle {
-    border-radius: 50%;
-    padding: 0;
+    border-radius: var(--radius-full);
+    padding: var(--spacing-0);
     width: 44px;
     height: 44px;
   }
 
-  &--wide {
-    --button-width: 100%;
-  }
+  &--wide { --button-width: 100%; }
 
   &--close {
     --button-aspect-ratio: 1 / 1;
-    --button-width: 32px;
-    --button-bg-pseudo-color: var(--c-bg-color-9);
-    --button-bg-color: var(--c-bg-color-1);
-    --button-padding: 0;
+    --button-width: 40px;
+    --button-bg-pseudo-color: var(--color-text-primary);
+    --button-bg-color: var(--color-bg-surface);
+    --button-padding: var(--spacing-0);
 
     position: relative;
-    border-radius: 30%;
+    border-radius: var(--radius-full);
 
     &::before,
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 80%;
-      border-radius: max(1px, calc(var(--button-width) * 0.06 / 2));
-      height: max(1px, calc(var(--button-width) * 0.06));
+      width: 50%;
+      height: var(--stroke-md);
+      border-radius: var(--radius-full);
       background-color: var(--button-bg-pseudo-color);
-      transition-duration: $animation-speed;
-      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
-    &::before {
-      transform: translate(-50%, -50%) rotate(45deg);
-    }
-
-    &::after {
-      transform: translate(-50%, -50%) rotate(-45deg);
-    }
+    &::before { transform: translate(-50%, -50%) rotate(45deg); }
+    &::after { transform: translate(-50%, -50%) rotate(-45deg); }
   }
 
   &--lk {

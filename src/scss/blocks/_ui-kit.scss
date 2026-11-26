@@ -1,8 +1,7 @@
 .ui-kit {
-  --ui-kit-bg-color: var(--c-bg-color-11);
-  padding-block: 40px;
+  padding-block: var(--spacing-40);
   display: grid;
-  grid-template-columns: 100%;
-  gap: 24px;
-  background-color: var(--ui-kit-bg-color);
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--spacing-24);
+  background-color: var(--color-bg-page);
 }

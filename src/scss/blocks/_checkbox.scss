@@ -1,27 +1,27 @@
 .checkbox {
-  --checkbox-label-color: var(--c-text-color-1);
-
-  // link
-  --checkbox-link-color: var(--c-text-color-9);
-
   display: flex;
-  gap: 8px;
+  align-items: flex-start;
+  gap: var(--spacing-12);
+  color: var(--color-text-secondary);
   cursor: pointer;
 
-  &__label {
-    @include font(14px, 18px);
+  input {
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    accent-color: var(--color-action-primary);
+  }
 
-    color: var(--checkbox-label-color);
+  &__label {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
   }
 
   &__link {
-    @include font(14px, 18px);
-
-    color: var(--checkbox-link-color);
-    transition: opacity $animation-speed $animation-timing-function;
-
-    @include hover {
-      opacity: 0.8;
-    }
+    color: var(--color-text-link);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 }

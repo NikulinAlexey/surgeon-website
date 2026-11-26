@@ -1,103 +1,84 @@
 .cms {
-  --cms-color: var(--c-text-color-1);
-  --cms-max-width: 800px;
-
   display: grid;
-  grid-template-columns: 100%;
-  gap: 16px;
-  font-family: $basic-family;
-  line-height: 1.5;
-  color: var(--cms-color);
-  max-width: var(--cms-max-width);
-  transition-property: font-size, color;
-  transition-duration: $animation-speed;
-  transition-timing-function: $animation-timing-function;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--spacing-16);
+  max-width: var(--content-measure);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
 
-  & h1 {
-    @include font(24px, 28px, 700, $basic-family);
-
-    @include media-breakpoint-up(lg) {
-      @include font(28px, 32px, 700, $basic-family);
-    }
-
-    @include media-breakpoint-up(xl) {
-      @include font(32px, 36px, 700, $basic-family);
-    }
-  }
-
-  & h2 {
-    @include font(20px, 24px, 700, $basic-family);
-
-    @include media-breakpoint-up(lg) {
-      @include font(22px, 26px, 700, $basic-family);
-    }
-
-    @include media-breakpoint-up(xl) {
-      @include font(24px, 28px, 700, $basic-family);
-    }
-  }
-
-  & h3 {
-    @include font(18px, 22px, 700, $basic-family);
-
-    @include media-breakpoint-up(lg) {
-      @include font(20px, 24px, 700, $basic-family);
-    }
-
-    @include media-breakpoint-up(xl) {
-      @include font(22px, 26px, 700, $basic-family);
-    }
-  }
-
+  & h1,
+  & h2,
+  & h3,
   & h4 {
-    @include font(16px, 20px, 700, $basic-family);
-
-    @include media-breakpoint-up(lg) {
-      @include font(18px, 22px, 700, $basic-family);
-    }
-
-    @include media-breakpoint-up(xl) {
-      @include font(20px, 24px, 700, $basic-family);
-    }
+    margin-top: var(--spacing-16);
+    color: var(--color-text-primary);
+    font-family: var(--font-family-primary);
+    font-weight: var(--font-weight-bold);
+    text-wrap: balance;
   }
+
+  & h1 { font-size: var(--font-size-heading-lg); line-height: var(--line-height-tight); }
+  & h2 { font-size: var(--font-size-heading-md); line-height: var(--line-height-snug); }
+  & h3 { font-size: var(--font-size-heading-sm); line-height: var(--line-height-snug); }
+  & h4 { font-size: var(--font-size-md); line-height: var(--line-height-normal); }
 
   & ol,
-  & ul {
-    padding-left: revert;
-  }
-
-  & ol {
-    list-style-type: decimal;
-  }
-
-  & ul {
-    list-style-type: disc;
-  }
+  & ul { padding-left: var(--spacing-24); }
+  & ol { list-style-type: decimal; }
+  & ul { list-style-type: disc; }
+  & li + li { margin-top: var(--spacing-8); }
 
   & a {
-    color: inherit;
+    color: var(--color-text-link);
     text-decoration: underline;
-    text-underline-offset: 2px;
-    transition-property: opacity;
-    transition-duration: $animation-speed;
-    transition-timing-function: $animation-timing-function;
-
-    @include hover {
-      opacity: 0.8;
-    }
+    text-underline-offset: 3px;
+    text-decoration-thickness: var(--stroke-sm);
   }
 
   & img {
     max-width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: var(--radius-lg);
   }
 
   & blockquote {
-    border-left: 4px solid #e5e7eb;
-    padding-left: 1.5rem;
-    margin: 1.5rem 0;
-    font-style: italic;
-    color: #6b7280;
+    border-left: var(--stroke-lg) solid var(--color-border-brand);
+    padding: var(--spacing-4) var(--spacing-24);
+    margin: var(--spacing-24) 0;
+    color: var(--color-text-secondary);
+    background: var(--color-info-bg);
+    font-style: normal;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
   }
+
+  & table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+  }
+
+  & th,
+  & td {
+    padding: var(--spacing-12) var(--spacing-16);
+    border: var(--stroke-sm) solid var(--color-border-default);
+    text-align: left;
+  }
+
+  & th {
+    background: var(--color-bg-surface-muted);
+    font-family: var(--font-family-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+}
+
+.empty-state {
+  padding: var(--spacing-32);
+  border: var(--stroke-sm) dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-muted);
+  background: var(--color-bg-surface);
+  text-align: center;
 }

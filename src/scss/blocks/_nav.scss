@@ -1,25 +1,21 @@
 .nav {
-  --nav-link-color: var(--c-bg-color-1);
-
   display: flex;
   justify-content: center;
 
-  @include media-breakpoint-up(xl) {
-    justify-content: flex-end;
-  }
+  @include media-breakpoint-up(xl) { justify-content: flex-end; }
 
   &__body {
     width: 100%;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 16px;
+    gap: var(--spacing-8);
+    padding: var(--spacing-16);
     cursor: default;
 
     @include media-breakpoint-up(xl) {
-      padding: 0;
-      gap: 16px;
+      padding: var(--spacing-0);
+      gap: var(--spacing-8);
       overflow-y: visible;
       flex-direction: row;
       align-items: center;
@@ -28,19 +24,16 @@
 
   &__list {
     display: flex;
-    gap: 8px;
+    gap: var(--spacing-4);
     flex-direction: column;
     margin-bottom: auto;
 
     @include media-breakpoint-up(xl) {
       flex-flow: row wrap;
       justify-content: center;
-      flex-shrink: 1;
-      flex-grow: 1;
+      flex: 1 1 auto;
       margin-bottom: 0;
-      column-gap: 16px;
-      column-gap: 8px;
-      padding-inline: 40px;
+      padding-inline: var(--spacing-8);
     }
   }
 
@@ -50,38 +43,51 @@
   }
 
   &__link {
-    color: var(--nav-link-color);
+    position: relative;
+    color: var(--color-slate-200);
     display: flex;
     text-align: center;
     justify-content: center;
+    align-items: center;
     flex-shrink: 0;
-    gap: 8px;
-    padding: 16px;
-    transition-property: opacity;
-    transition-duration: $animation-speed;
-    transition-timing-function: $animation-timing-function;
-
-    @include media-breakpoint-up(xl) {
-      align-items: center;
-      padding: 12px;
-    }
+    gap: var(--spacing-8);
+    min-height: 44px;
+    padding: var(--spacing-12) var(--spacing-16);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    transition: color $animation-speed, background-color $animation-speed;
 
     @include hover {
-      opacity: 0.75;
+      color: var(--color-text-inverse);
+      background-color: color-mix(in srgb, var(--color-white) 8%, transparent);
     }
 
     &._active {
-      --nav-link-color: red;
+      color: var(--color-text-inverse);
+      background-color: color-mix(in srgb, var(--color-blue-500) 22%, transparent);
+    }
+
+    @include media-breakpoint-up(xl) {
+      padding: var(--spacing-8) var(--spacing-12);
+
+      &._active::after {
+        content: "";
+        position: absolute;
+        inset: auto var(--spacing-12) 2px;
+        height: var(--stroke-md);
+        border-radius: var(--radius-full);
+        background: var(--color-blue-300);
+      }
     }
   }
 
-  &__icon {
-    @include block-size(24px);
-  }
+  &__phone { white-space: nowrap; }
+  &__icon { @include block-size(22px); }
 
   &__profile {
-    flex-shrink: 0;
     display: flex;
     justify-content: center;
+    flex-shrink: 0;
   }
 }

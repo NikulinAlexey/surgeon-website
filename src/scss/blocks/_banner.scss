@@ -1,43 +1,41 @@
 .banner {
-  --banner-container-title-color: var(--c-bg-color-10);
-  --banner-container-subtitle-color: var(--c-bg-color-10);
-  --banner-container-bg-color: var(--c-bg-color-1);
-  --banner-container-offset-y: var(--c-section-offset-block);
-  --banner-container-padding: 20px;
-  --banner-container-max-width: var(--c-container-max-width);
-  --banner-container-border-radius: 12px;
+  --banner-container-padding: var(--spacing-24);
+  --banner-container-max-width: var(--container-max-width);
 
-  @include media-breakpoint-up(lg) {
-    --banner-container-padding: 40px;
-  }
+  background: var(--color-bg-surface);
+  border-bottom: var(--stroke-sm) solid var(--color-border-default);
+
+  @include media-breakpoint-up(lg) { --banner-container-padding: var(--spacing-40); }
 
   &__container {
     padding-block: var(--banner-container-padding);
-    background-image: url('/images/pattern.svg');
-    background-color: var(--banner-container-bg-color);
-    background-size: 45px;
+    background-image: linear-gradient(color-mix(in srgb, var(--color-bg-surface) 94%, transparent), color-mix(in srgb, var(--color-bg-surface) 94%, transparent)), url("/images/pattern.svg");
+    background-size: auto, 45px;
     margin: 0 auto;
-    padding-inline: var(--c-container-offset-inline);
+    padding-inline: var(--container-padding-inline);
     max-width: var(--banner-container-max-width);
-    border-bottom-left-radius: var(--banner-container-border-radius);
-    border-bottom-right-radius: var(--banner-container-border-radius);
   }
 
+  &__body { max-width: 900px; }
+
   &__title {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-heading-lg);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.025em;
     text-wrap: balance;
-    color: var(--banner-container-title-color);
   }
 
   &__subtitle {
-    opacity: 0.9;
-    color: var(--banner-container-subtitle-color);
+    max-width: var(--content-measure);
+    margin-top: var(--spacing-16);
+    color: var(--color-text-secondary);
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
   }
 
-  &--offset-top {
-    margin-top: var(--banner-container-offset-y);
-  }
-
-  &--offset-bottom {
-    margin-bottom: var(--banner-container-offset-y);
-  }
+  &--offset-top { margin-top: var(--section-padding-block); }
+  &--offset-bottom { margin-bottom: var(--section-padding-block); }
 }

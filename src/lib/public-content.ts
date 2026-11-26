@@ -6,6 +6,7 @@ export interface PublicContentCard {
   description: string;
   slug: string;
   date: string;
+  dateTime: string;
   img?: string;
   imageAlt: string;
   kind: ContentKind;
@@ -36,6 +37,7 @@ export function toPublicContentCard(item: ContentWithCover): PublicContentCard {
       month: "long",
       year: "numeric",
     }).format(date),
+    dateTime: date.toISOString(),
     img: item.coverMedia ? `/api/media/${item.coverMedia.id}` : undefined,
     imageAlt: item.coverAlt || item.title,
   };

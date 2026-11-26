@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Header } from "@/components/header/Header";
 import AskQuestion from "@/components/AskQuestion";
 import Banner from "@/components/Banner";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQ from "@/components/FAQ";
 import Section from "@/components/Section";
 import { getPublishedContent, safeBody } from "@/lib/content";
@@ -28,7 +29,7 @@ export default async function SpecialistPage() {
     <>
       <Header phone={settings.phone || undefined} />
       <main className="layout__main">
-        <Banner title={page?.title || "Специалистам"} subtitle={page?.subtitle || undefined} />
+        <Banner title={page?.title || "Специалистам"} subtitle={page?.subtitle || undefined} breadcrumbs={<Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: page?.title || "Специалистам" }]} />} />
         {page?.body && (
           <Section id="specialists-information">
             <div className="cms" dangerouslySetInnerHTML={{ __html: safeBody(page.body) }} />
@@ -38,7 +39,7 @@ export default async function SpecialistPage() {
         {page && page.faq.length > 0 && <FAQ id="specialists-faq" faqData={page.faq} />}
         {settings.email && <AskQuestion email={settings.email} />}
       </main>
-      <Footer />
+      <Footer phone={settings.phone || undefined} email={settings.email || undefined} address={settings.address || undefined} workHours={settings.workHours || undefined} />
     </>
   );
 }

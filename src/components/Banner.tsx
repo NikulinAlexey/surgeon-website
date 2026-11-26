@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { cn } from "@/lib/clsx";
 
 interface BannerProps {
@@ -7,6 +8,7 @@ interface BannerProps {
   offsetTop?: boolean;
   offsetBottom?: boolean;
   className?: string;
+  breadcrumbs?: ReactNode;
 }
 
 export default function Banner({
@@ -16,14 +18,13 @@ export default function Banner({
   offsetBottom,
   backgroundImage,
   className = "",
+  breadcrumbs,
 }: BannerProps) {
-  const style = backgroundImage
-    ? { backgroundImage: `url(${backgroundImage})` }
-    : {};
+  const style = backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : {};
 
   return (
     <div
-      className={cn(className, `banner`, {
+      className={cn(className, "banner", {
         "banner--offset-top": offsetTop,
         "banner--offset-bottom": offsetBottom,
       })}
@@ -31,12 +32,9 @@ export default function Banner({
     >
       <div className="banner__container container">
         <div className="banner__body">
-          <h1 className="banner__title text text--xxl">{title}</h1>
-          {subtitle && (
-            <p className="banner__subtitle text text--sm text--regular">
-              {subtitle}
-            </p>
-          )}
+          {breadcrumbs}
+          <h1 className="banner__title">{title}</h1>
+          {subtitle && <p className="banner__subtitle">{subtitle}</p>}
         </div>
       </div>
     </div>

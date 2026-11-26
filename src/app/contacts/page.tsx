@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Banner from "@/components/Banner";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Footer from "@/components/Footer";
 import { Header } from "@/components/header/Header";
 import Section from "@/components/Section";
@@ -29,7 +30,7 @@ export default async function ContactsPage() {
     <>
       <Header phone={settings.phone || undefined} />
       <main className="layout__main">
-        <Banner title={page?.title || "Контакты"} subtitle={page?.subtitle || undefined} />
+        <Banner title={page?.title || "Контакты"} subtitle={page?.subtitle || undefined} breadcrumbs={<Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: page?.title || "Контакты" }]} />} />
         {page?.body && (
           <Section id="contacts-details">
             <div className="cms" dangerouslySetInnerHTML={{ __html: safeBody(page.body) }} />
@@ -49,7 +50,7 @@ export default async function ContactsPage() {
           </div>
         </Section>
       </main>
-      <Footer />
+      <Footer phone={settings.phone || undefined} email={settings.email || undefined} address={settings.address || undefined} workHours={settings.workHours || undefined} />
     </>
   );
 }

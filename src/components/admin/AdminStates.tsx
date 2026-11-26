@@ -1,5 +1,9 @@
 export function AdminLoading() {
-  return <p className="admin__muted" role="status">Загрузка данных…</p>;
+  return (
+    <div className="admin-skeleton" role="status" aria-label="Загрузка данных">
+      <span /><span /><span />
+    </div>
+  );
 }
 
 export function AdminError({ children }: { children: React.ReactNode }) {

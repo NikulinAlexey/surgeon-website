@@ -1,34 +1,43 @@
 .tile {
-  --tile-bg-color: var(--c-bg-color-1);
-  --tile-title-color: var(--c-text-color-10);
-  --tile-description-color: var(--c-text-color-10);
-
   display: inline-flex;
   width: 100%;
   height: 100%;
 
   &__container {
     display: flex;
-    gap: 8px;
+    gap: var(--spacing-12);
     width: 100%;
     height: 100%;
     flex-direction: column;
-    background-color: var(--tile-bg-color);
-    padding: 16px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: var(--spacing-24);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-surface);
+    border: var(--stroke-sm) solid var(--color-border-default);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xs);
+    transition: border-color $animation-speed, box-shadow $animation-speed, transform $animation-speed;
+  }
 
-    @include media-breakpoint-up(lg) {
-      padding: 24px;
+  a &__container,
+  &__container[href] {
+    @include hover {
+      border-color: var(--color-border-brand);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
     }
   }
 
   &__title {
-    color: var(--tile-title-color);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-snug);
   }
 
   &__description {
-    color: var(--tile-description-color);
+    color: var(--color-text-secondary);
+    font-family: var(--font-family-secondary);
+    line-height: var(--line-height-relaxed);
     text-wrap: pretty;
   }
 }

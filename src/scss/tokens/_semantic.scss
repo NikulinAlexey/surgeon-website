@@ -1,0 +1,61 @@
+:root {
+  --color-text-primary: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-700);
+  --color-text-muted: var(--color-slate-500);
+  --color-text-subtle: var(--color-slate-400);
+  --color-text-inverse: var(--color-white);
+  --color-text-link: var(--color-blue-700);
+  --color-text-brand: var(--color-blue-800);
+
+  --color-bg-page: var(--color-slate-50);
+  --color-bg-surface: var(--color-white);
+  --color-bg-surface-muted: var(--color-slate-100);
+  --color-bg-surface-subtle: var(--color-slate-25);
+  --color-bg-brand: var(--color-blue-900);
+  --color-bg-brand-strong: var(--color-blue-950);
+  --color-bg-inverse: var(--color-slate-900);
+  --color-bg-backdrop: rgb(var(--color-shadow) / 0.48);
+
+  --color-border-default: var(--color-slate-200);
+  --color-border-strong: var(--color-slate-300);
+  --color-border-muted: var(--color-slate-100);
+  --color-border-focus: var(--color-blue-500);
+  --color-border-brand: var(--color-blue-700);
+  --color-border-inverse: var(--color-slate-700);
+
+  --color-action-primary: var(--color-blue-700);
+  --color-action-primary-hover: var(--color-blue-800);
+  --color-action-primary-pressed: var(--color-blue-900);
+  --color-action-secondary: var(--color-teal-700);
+  --color-action-secondary-hover: var(--color-teal-800);
+  --color-action-text: var(--color-white);
+  --color-action-disabled: var(--color-slate-300);
+
+  --color-success-text: var(--color-green-700);
+  --color-success-bg: var(--color-green-50);
+  --color-success-border: var(--color-green-200);
+  --color-warning-text: var(--color-amber-700);
+  --color-warning-bg: var(--color-amber-50);
+  --color-warning-border: var(--color-amber-200);
+  --color-error-text: var(--color-red-700);
+  --color-error-strong: var(--color-red-800);
+  --color-error-bg: var(--color-red-50);
+  --color-error-border: var(--color-red-200);
+  --color-info-text: var(--color-blue-700);
+  --color-info-bg: var(--color-blue-50);
+  --color-info-border: var(--color-blue-200);
+
+  --container-max-width: 1296px;
+  --content-measure: 76ch;
+  --container-padding-inline: var(--spacing-16);
+  --section-padding-block: var(--spacing-20);
+  --header-height: 68px;
+  --admin-sidebar-width: 248px;
+  --admin-mobile-header-height: 64px;
+
+  @include media-breakpoint-up(lg) {
+    --container-padding-inline: var(--spacing-40);
+    --section-padding-block: var(--spacing-40);
+    --header-height: 88px;
+  }
+}

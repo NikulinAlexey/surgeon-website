@@ -1,12 +1,9 @@
 .layout {
-  --layout-bg-color: var(--c-bg-color-9);
-  --layout-color: var(--c-text-color-1);
-
-  color: var(--layout-color);
-  background-color: var(--layout-bg-color);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-page);
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100dvh;
 
   &__main {
     flex-grow: 1;

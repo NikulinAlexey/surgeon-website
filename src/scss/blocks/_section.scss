@@ -1,26 +1,25 @@
 .section {
-  --section-bg-color: var(--c-bg-color-9);
-  --section-padding-block: var(--c-section-offset-block);
-  --section-container-max-width: var(--c-container-max-width);
+  --section-container-max-width: var(--container-max-width);
 
-  padding-block: var(--c-section-offset-block);
+  padding-block: var(--section-padding-block);
 
   &__container {
     display: grid;
-    grid-template-columns: 100%;
-    gap: 20px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spacing-20);
     margin: 0 auto;
-    padding-inline: var(--c-container-offset-inline);
+    padding-inline: var(--container-padding-inline);
     max-width: var(--section-container-max-width);
 
     @include media-breakpoint-up(xl) {
-      gap: 28px;
+      gap: var(--spacing-28);
     }
   }
 
   &__top {
     display: flex;
     align-items: center;
+    gap: var(--spacing-16);
 
     @include media-breakpoint-up(xl) {
       align-items: flex-start;
@@ -29,15 +28,14 @@
 
   &__options {
     margin-left: auto;
-    padding-left: 20px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: var(--spacing-12);
   }
 
   &__body {
     display: grid;
-    grid-template-columns: 100%;
-    gap: 20px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spacing-20);
   }
 }

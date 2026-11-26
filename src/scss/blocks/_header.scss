@@ -1,51 +1,46 @@
 .header {
-  --header-z-index: 100;
-  --header-color: var(--c-text-color-1);
-  --header-bg-color: var(--c-bg-color-9);
-
-  // logo
   --header-logo-size: 44px;
-
-  // menu
   --header-menu-transform: none;
-
-  // nav
-  --header-nav-bg-color: var(--c-bg-color-10);
   --header-nav-translate-x: 100%;
 
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: var(--header-z-index);
-  color: var(--header-color);
-  padding-block: 12px;
-  background-color: var(--header-bg-color);
-  box-shadow: var(--c-shadow-3);
+  z-index: var(--z-header);
+  color: var(--color-text-inverse);
+  padding-block: var(--spacing-12);
+  background-color: color-mix(in srgb, var(--color-bg-brand-strong) 96%, transparent);
+  border-bottom: var(--stroke-sm) solid color-mix(in srgb, var(--color-white) 10%, transparent);
+  backdrop-filter: blur(16px);
+  transition: padding $animation-speed, box-shadow $animation-speed;
 
-  @include media-breakpoint-up(lg) {
-    padding-block: 20px;
+  &._scrolled {
+    padding-block: var(--spacing-8);
+    box-shadow: var(--shadow-md);
   }
+
+  @include media-breakpoint-up(lg) { padding-block: var(--spacing-16); }
+  @include media-breakpoint-up(lg) { &._scrolled { padding-block: var(--spacing-12); } }
 
   &__container {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: var(--spacing-24);
     margin: 0 auto;
-    padding-inline: var(--c-container-offset-inline);
-    max-width: var(--c-container-max-width);
+    padding-inline: var(--container-padding-inline);
+    max-width: var(--container-max-width);
   }
 
   &__logo {
     @include block-size(var(--header-logo-size));
+    flex: 0 0 auto;
+    border-radius: var(--radius-md);
   }
 
   &__burger {
     margin-left: auto;
     flex-shrink: 0;
-
-    @include media-breakpoint-up(xl) {
-      display: none;
-    }
+    @include media-breakpoint-up(xl) { display: none; }
   }
 
   &__menu {
@@ -59,24 +54,20 @@
     opacity: 0;
     cursor: pointer;
     visibility: hidden;
+    pointer-events: none;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    background-color: transparent;
+    background-color: var(--color-bg-backdrop);
     backdrop-filter: blur(10px);
-    transition-property: visibility, opacity;
-    transition-duration: $animation-speed;
-    transition-timing-function: $animation-timing-function;
+    overflow: hidden;
+    transition: visibility $animation-speed, opacity $animation-speed;
 
     &._active {
       --header-nav-translate-x: 0;
-
       opacity: 1;
       visibility: visible;
-
-      @include media-breakpoint-up(xl) {
-        --header-nav-translate-x: none;
-      }
+      pointer-events: auto;
     }
 
     @include media-breakpoint-up(xl) {
@@ -84,39 +75,32 @@
       inset: auto;
       opacity: 1;
       flex-grow: 1;
-      flex-shrink: auto;
-      width: fit-content;
+      width: auto;
       visibility: visible;
+      pointer-events: auto;
       justify-content: flex-end;
       background-color: transparent;
+      backdrop-filter: none;
     }
   }
 
   &__nav {
     width: 100%;
-    max-width: 396px;
-    background-color: var(--header-nav-bg-color);
+    max-width: 400px;
+    background-color: var(--color-bg-brand-strong);
     height: 100%;
-    border-radius: 24px 0 0 24px;
+    border-radius: var(--radius-2xl) 0 0 var(--radius-2xl);
     transform: translateX(var(--header-nav-translate-x));
-    transition-property: transform, visibility, opacity;
-    transition-duration: $animation-speed;
-    transition-timing-function: $animation-timing-function;
+    transition: transform $animation-speed;
 
     @include media-breakpoint-up(xl) {
       background-color: transparent;
       transform: none;
       max-width: none;
-      border-radius: 0;
+      border-radius: var(--radius-none);
       height: auto;
     }
   }
 
-  &--compact {
-    --header-logo-size: 30px;
-
-    @include media-breakpoint-up(lg) {
-      --header-logo-size: 40px;
-    }
-  }
+  &--compact { --header-logo-size: 36px; }
 }

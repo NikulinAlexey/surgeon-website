@@ -1,14 +1,8 @@
 .about {
   display: grid;
-  grid-template-columns: 100%;
-  gap: 16px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--spacing-16);
 
-  &__picture {
-    display: flex;
-    justify-content: center;
-  }
-
-  &__image {
-    object-fit: cover;
-  }
+  &__picture { display: flex; justify-content: center; }
+  &__image { object-fit: cover; border-radius: var(--radius-xl); }
 }

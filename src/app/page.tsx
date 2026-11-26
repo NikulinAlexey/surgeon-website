@@ -45,7 +45,7 @@ export default async function Home() {
           <FAQ id="faq-main" title="Часто задаваемые вопросы" faqData={page.faq} />
         )}
       </main>
-      <Footer />
+      <Footer phone={settings.phone || undefined} email={settings.email || undefined} address={settings.address || undefined} workHours={settings.workHours || undefined} />
     </>
   );
 }

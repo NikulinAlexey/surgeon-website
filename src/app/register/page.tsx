@@ -131,18 +131,18 @@ export default function RegisterPage() {
                             <h2 className="form__title text text--lg">{steps[step]}</h2>
                             <fieldset className="form__fieldset" disabled={isLoading}>
                               {step === 0 && <>
-                                <Field label="Имя" id="firstName" name="firstName" type="text" value={formData.firstName} onChange={handleInputChange} error={errors.firstName} disabled={isLoading} />
-                                <Field label="Фамилия" id="lastName" name="lastName" type="text" value={formData.lastName} onChange={handleInputChange} error={errors.lastName} disabled={isLoading} />
-                                <Field label="Отчество (необязательно)" id="patronymic" name="patronymic" type="text" value={formData.patronymic} onChange={handleInputChange} disabled={isLoading} />
+                                <Field label="Имя" id="firstName" name="firstName" type="text" value={formData.firstName} onChange={handleInputChange} error={errors.firstName} disabled={isLoading} required autoComplete="given-name" />
+                                <Field label="Фамилия" id="lastName" name="lastName" type="text" value={formData.lastName} onChange={handleInputChange} error={errors.lastName} disabled={isLoading} required autoComplete="family-name" />
+                                <Field label="Отчество (необязательно)" id="patronymic" name="patronymic" type="text" value={formData.patronymic} onChange={handleInputChange} disabled={isLoading} autoComplete="additional-name" />
                               </>}
                               {step === 1 && <>
-                                <Field label="Email" id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} error={errors.email} disabled={isLoading} />
-                                <Field label="Телефон" id="phone" name="phone" type="tel" value={formData.phone} onChange={handleInputChange} error={errors.phone} disabled={isLoading} />
+                                <Field label="Email" id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} error={errors.email} disabled={isLoading} required autoComplete="email" />
+                                <Field label="Телефон" id="phone" name="phone" type="tel" value={formData.phone} onChange={handleInputChange} error={errors.phone} disabled={isLoading} required autoComplete="tel" />
                               </>}
                               {step === 2 && <>
-                                <Field label="Пароль (от 12 символов)" id="password" name="password" type="password" value={formData.password} onChange={handleInputChange} error={errors.password} disabled={isLoading} />
-                                <Field label="Подтвердите пароль" id="confirmPassword" name="confirmPassword" type="password" value={formData.confirmPassword} onChange={handleInputChange} error={errors.confirmPassword} disabled={isLoading} />
-                                <Field label="Дата рождения (необязательно)" id="birthDate" name="birthDate" type="date" value={formData.birthDate} onChange={handleInputChange} error={errors.birthDate} disabled={isLoading} />
+                                <Field label="Пароль (от 12 символов)" id="password" name="password" type="password" value={formData.password} onChange={handleInputChange} error={errors.password} disabled={isLoading} required autoComplete="new-password" message={!errors.password ? "Используйте от 12 до 72 символов" : undefined} />
+                                <Field label="Подтвердите пароль" id="confirmPassword" name="confirmPassword" type="password" value={formData.confirmPassword} onChange={handleInputChange} error={errors.confirmPassword} disabled={isLoading} required autoComplete="new-password" />
+                                <Field label="Дата рождения (необязательно)" id="birthDate" name="birthDate" type="date" value={formData.birthDate} onChange={handleInputChange} error={errors.birthDate} disabled={isLoading} autoComplete="bday" />
                                 <div className="form__checkboxes">
                                   <Checkbox
                                     required

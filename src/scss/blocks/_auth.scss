@@ -1,8 +1,17 @@
 .auth {
-  --auth-container-max-width: 500px;
-  --auth-color: var(--c-text-color-1);
-  --c-auth-text-color: var(--c-text-color-2);
-  --auth-link-color: var(--c-text-color-1);
+  --auth-container-max-width: 520px;
+
+  width: 100%;
+  max-width: calc(var(--auth-container-max-width) + var(--spacing-64));
+  margin: auto;
+  padding: var(--spacing-24);
+  border: var(--stroke-sm) solid var(--color-border-default);
+  border-radius: var(--radius-xl);
+  background: var(--color-bg-surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-primary);
+
+  @include media-breakpoint-up(lg) { padding: var(--spacing-32); }
 
   &__container {
     max-width: var(--auth-container-max-width);
@@ -11,52 +20,40 @@
 
   &__layout {
     display: grid;
-    grid-template-columns: 100%;
-    gap: 10px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spacing-20);
     margin: auto;
-
-    @include media-breakpoint-up(lg) {
-      gap: 28px;
-    }
+    @include media-breakpoint-up(lg) { gap: var(--spacing-28); }
   }
 
-  &__form {
-    width: 100%;
-  }
+  &__form { width: 100%; }
 
   &__footer {
     display: grid;
-    grid-template-columns: 100%;
-    gap: 10px;
+    gap: var(--spacing-12);
     justify-content: center;
   }
 
   &__actions {
     display: grid;
-    grid-template-columns: 100%;
-    gap: 10px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spacing-12);
     width: 100%;
-    max-width: 100%;
-
-    @include media-breakpoint-up(lg) {
-      grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-    }
+    @include media-breakpoint-up(lg) { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); }
   }
 
   &__text {
-    @include font(14px, 14px);
-
+    color: var(--color-text-muted);
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
     text-align: center;
-    color: var(--c-auth-text-color);
   }
 
   &__link {
-    color: var(--auth-link-color);
+    color: var(--color-text-link);
     cursor: pointer;
-    transition: opacity $animation-speed $animation-timing-function;
-
-    @include hover {
-      opacity: 0.8;
-    }
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 }

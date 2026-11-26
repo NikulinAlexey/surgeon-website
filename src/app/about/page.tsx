@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Section from "@/components/Section";
 import Tile from "@/components/ui/Tile";
 import Banner from "@/components/Banner";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQ from "@/components/FAQ";
 import { getCmsPage, getSiteSettings } from "@/lib/pages";
 import { safeBody } from "@/lib/content";
@@ -32,7 +33,7 @@ export default async function AboutPage() {
     <>
       <Header phone={settings.phone || undefined} />
       <main className="layout__main">
-        <Banner title={page?.title || "О нас"} subtitle={page?.subtitle || undefined} />
+        <Banner title={page?.title || "О нас"} subtitle={page?.subtitle || undefined} breadcrumbs={<Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: page?.title || "О нас" }]} />} />
         {page?.body && (
           <Section id="about-content">
             <div className="cms" dangerouslySetInnerHTML={{ __html: safeBody(page.body) }} />
@@ -49,7 +50,7 @@ export default async function AboutPage() {
         </Section>
         {page && page.faq.length > 0 && <FAQ id="about-faq" faqData={page.faq} />}
       </main>
-      <Footer />
+      <Footer phone={settings.phone || undefined} email={settings.email || undefined} address={settings.address || undefined} workHours={settings.workHours || undefined} />
     </>
   );
 }

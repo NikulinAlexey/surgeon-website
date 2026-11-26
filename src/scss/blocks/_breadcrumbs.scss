@@ -1,0 +1,47 @@
+.breadcrumbs {
+  margin-bottom: var(--spacing-24);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-8);
+    list-style: none;
+  }
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-8);
+    min-width: 0;
+
+    &:not(:last-child)::after {
+      content: "/";
+      color: var(--color-text-subtle);
+    }
+
+    &:last-child {
+      color: var(--color-text-secondary);
+      font-weight: var(--font-weight-medium);
+    }
+  }
+
+  &__link {
+    border-radius: var(--radius-xs);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+    transition: color $animation-speed, text-decoration-color $animation-speed;
+
+    @include hover {
+      color: var(--color-text-link);
+      text-decoration-color: currentColor;
+    }
+  }
+}
+
+.layout__main > .section > .section__container > .breadcrumbs {
+  margin-bottom: var(--spacing-0);
+}

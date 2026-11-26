@@ -1,0 +1,10 @@
+:root {
+  --stroke-none: 0;
+  --stroke-sm: 1px;
+  --stroke-md: 2px;
+  --stroke-lg: 4px;
+
+  --border-width-default: var(--stroke-sm);
+  --border-width-active: var(--stroke-md);
+  --focus-ring-width: var(--stroke-md);
+}

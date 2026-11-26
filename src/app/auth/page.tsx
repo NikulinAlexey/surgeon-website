@@ -108,6 +108,8 @@ export default function AuthPage() {
                               error={errors.email}
                               placeholder="your@email.com"
                               disabled={isLoading}
+                              required
+                              autoComplete="email"
                               onReset={() => setFormData((current) => ({ ...current, email: "" }))}
                             />
                             {mode === "login" && (
@@ -121,6 +123,8 @@ export default function AuthPage() {
                                 error={errors.password}
                                 placeholder="Введите пароль"
                                 disabled={isLoading}
+                                required
+                                autoComplete="current-password"
                               />
                             )}
                           </fieldset>

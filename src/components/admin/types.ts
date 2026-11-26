@@ -109,7 +109,7 @@ export interface AuditItem {
   action: string;
   entityType: string;
   entityId: string;
-  metadata: unknown;
+  metadata: Record<string, unknown> | null;
   createdAt: string;
   actor: { email: string; firstName: string; lastName: string } | null;
 }

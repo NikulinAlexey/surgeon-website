@@ -49,8 +49,8 @@ export function ResetPasswordForm({ token }: { token: string }) {
       ) : (
         <form className="form" onSubmit={submit} noValidate>
           <fieldset className="form__fieldset" disabled={isLoading || !token}>
-            <Field label="Новый пароль (от 12 символов)" id="new-password" name="password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} disabled={isLoading} />
-            <Field label="Повторите пароль" id="confirm-new-password" name="confirmation" type="password" value={confirmation} onChange={(event) => setConfirmation(event.target.value)} disabled={isLoading} />
+            <Field label="Новый пароль (от 12 символов)" id="new-password" name="password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} disabled={isLoading} required autoComplete="new-password" message="Используйте от 12 до 72 символов" />
+            <Field label="Повторите пароль" id="confirm-new-password" name="confirmation" type="password" value={confirmation} onChange={(event) => setConfirmation(event.target.value)} disabled={isLoading} required autoComplete="new-password" />
           </fieldset>
           {error && <p className="form__error" role="alert">{error}</p>}
           <Button type="submit" size="lg" wide variant="secondary" disabled={isLoading || !token}>

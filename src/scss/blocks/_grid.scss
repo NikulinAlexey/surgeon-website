@@ -1,70 +1,43 @@
 .grid {
   --grid-cols-repeat: 1;
   --grid-col-size: minmax(0, 1fr);
-  --grid--template-columns: repeat(var(--grid-cols-repeat),
-      var(--grid-col-size));
-  --grid-gap: 16px;
+  --grid-template: repeat(var(--grid-cols-repeat), var(--grid-col-size));
+  --grid-gap: var(--spacing-16);
 
-  @include media-breakpoint-up(md) {
-    --grid-cols-repeat: 2;
-  }
-
-  @include media-breakpoint-up(lg) {
-    --grid-cols-repeat: 3;
-  }
+  @include media-breakpoint-up(md) { --grid-cols-repeat: 2; }
+  @include media-breakpoint-up(lg) { --grid-cols-repeat: 3; }
 
   display: grid;
-  grid-template-columns: var(--grid--template-columns);
+  grid-template-columns: var(--grid-template);
   gap: var(--grid-gap);
 
   &__item {
     display: flex;
     height: 100%;
     width: 100%;
+    min-width: 0;
   }
 
   &--wrap {
     --grid-cols-repeat: auto-fit;
-    --grid-col-size: minmax(250px, 1fr);
+    --grid-col-size: minmax(min(250px, 100%), 1fr);
   }
 
-  &--wrap-fit {
-    // --grid-cols-repeat: auto;
-    --grid-col-size: minmax(min-content, max-content);
-  }
+  &--wrap-fit { --grid-col-size: minmax(min-content, max-content); }
 
   &--col {
-    @include media-breakpoint-up(md) {
-      --grid-cols-repeat: 1;
-    }
-
-    @include media-breakpoint-up(lg) {
-      --grid-cols-repeat: 1;
-    }
+    @include media-breakpoint-up(md) { --grid-cols-repeat: 1; }
+    @include media-breakpoint-up(lg) { --grid-cols-repeat: 1; }
   }
 
   &--cols-primary {
     --grid-cols-repeat: auto-fit;
     --grid-col-size: 100px 1fr;
-
-    @include media-breakpoint-up(md) {
-      --grid-cols-repeat: 1;
-    }
-
-    @include media-breakpoint-up(lg) {
-      --grid-cols-repeat: 1;
-    }
+    @include media-breakpoint-up(md) { --grid-cols-repeat: 1; }
+    @include media-breakpoint-up(lg) { --grid-cols-repeat: 1; }
   }
 
-  &--gap-sm {
-    --grid-gap: 8px;
-  }
-
-  &--gap-md {
-    --grid-gap: 24px;
-  }
-
-  &--gap-lg {
-    --grid-gap: 36px;
-  }
+  &--gap-sm { --grid-gap: var(--spacing-8); }
+  &--gap-md { --grid-gap: var(--spacing-24); }
+  &--gap-lg { --grid-gap: var(--spacing-36); }
 }
