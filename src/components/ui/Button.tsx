@@ -10,7 +10,6 @@ export const buttonVariants = cva("button", {
       outline: "button--theme-outline",
       "outline-inverted": "button--theme-outline-inverted",
       close: "button--close",
-      lk: "button--lk",
     },
     size: {
       sm: "button--size-sm",

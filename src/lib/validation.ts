@@ -36,7 +36,7 @@ export const profileSchema = z.object({
   firstName: nameSchema,
   lastName: nameSchema,
   patronymic: z.string().trim().max(80).optional().default(""),
-  phone: phoneSchema,
+  phone: z.union([z.literal(""), phoneSchema]),
   birthDate: birthDateSchema,
 });
 

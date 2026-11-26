@@ -1,48 +1,76 @@
 .hero {
-  position: relative;
-  min-height: min(680px, calc(100dvh - var(--header-height)));
-  background-image: url("https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=2070&q=82");
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
+  padding: var(--spacing-24) var(--container-padding-inline);
   color: var(--color-text-inverse);
+  background: var(--color-bg-page);
 
-  &::before {
+  &__container {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+    align-items: center;
+    gap: var(--spacing-32);
+    width: 100%;
+    max-width: var(--container-max-width);
+    min-height: 460px;
+    margin: 0 auto;
+    padding: clamp(24px, 5vw, 56px);
+    overflow: hidden;
+    border: var(--stroke-sm) solid color-mix(in srgb, var(--color-blue-700) 55%, transparent);
+    border-radius: var(--radius-2xl);
+    background: linear-gradient(125deg, var(--color-blue-950) 0%, var(--color-blue-900) 48%, var(--color-blue-700) 100%);
+    box-shadow: var(--shadow-md);
+  }
+
+  &__container::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, var(--color-bg-brand-strong) 0%, color-mix(in srgb, var(--color-bg-brand-strong) 86%, transparent) 45%, color-mix(in srgb, var(--color-bg-brand-strong) 30%, transparent) 100%);
+    z-index: -1;
+    background-image: linear-gradient(color-mix(in srgb, var(--color-white) 4%, transparent) var(--stroke-sm), transparent var(--stroke-sm)), linear-gradient(90deg, color-mix(in srgb, var(--color-white) 4%, transparent) var(--stroke-sm), transparent var(--stroke-sm));
+    background-size: 44px 44px;
+    mask-image: linear-gradient(to right, transparent, var(--color-black));
   }
 
-  &__container { position: relative; width: 100%; }
-  &__body { max-width: 760px; }
+  &__container::after {
+    content: "";
+    position: absolute;
+    top: -140px;
+    right: -100px;
+    z-index: -1;
+    width: 440px;
+    height: 440px;
+    border-radius: var(--radius-full);
+    background: color-mix(in srgb, var(--color-teal-500) 22%, transparent);
+    filter: blur(4px);
+  }
+
+  &__body { position: relative; z-index: 1; max-width: 660px; }
 
   &__eyebrow {
-    margin-bottom: var(--spacing-20);
+    margin-bottom: var(--spacing-16);
     color: var(--color-blue-200);
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
   &__title {
-    max-width: 16ch;
-    margin-bottom: var(--spacing-24);
-    font-size: var(--font-size-display);
+    max-width: 18ch;
+    margin-bottom: var(--spacing-20);
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: var(--font-weight-bold);
-    line-height: var(--line-height-tight);
+    line-height: 1.1;
     letter-spacing: -0.035em;
     text-wrap: balance;
   }
 
   &__description {
-    max-width: 58ch;
+    max-width: 54ch;
     color: var(--color-slate-200);
     font-family: var(--font-family-secondary);
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-md);
     line-height: var(--line-height-relaxed);
   }
 
@@ -50,7 +78,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-12);
-    margin-top: var(--spacing-32);
+    margin-top: var(--spacing-24);
   }
 
   .button--theme-outline {
@@ -58,9 +86,116 @@
     --button-color: var(--color-text-inverse);
     --button-border-color: var(--color-slate-300);
   }
+
+  &__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-16) var(--spacing-32);
+    margin-top: var(--spacing-32);
+    padding-top: var(--spacing-20);
+    border-top: var(--stroke-sm) solid color-mix(in srgb, var(--color-white) 16%, transparent);
+  }
+
+  &__facts div { display: grid; gap: var(--spacing-4); }
+  &__facts strong { font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); }
+  &__facts span { color: var(--color-slate-300); font-family: var(--font-family-secondary); font-size: var(--font-size-xs); }
+
+  &__visual {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+  }
+
+  &__medical-card {
+    width: min(100%, 340px);
+    padding: var(--spacing-24);
+    border: var(--stroke-sm) solid color-mix(in srgb, var(--color-white) 70%, transparent);
+    border-radius: var(--radius-xl);
+    color: var(--color-text-primary);
+    background: color-mix(in srgb, var(--color-bg-surface) 96%, transparent);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(12px);
+  }
+
+  &__medical-top {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-12);
+    color: var(--color-text-brand);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  &__medical-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    color: var(--color-action-primary);
+    background: var(--color-info-bg);
+  }
+
+  &__medical-icon svg { width: 22px; height: 22px; }
+
+  &__pulse {
+    width: 100%;
+    height: 100px;
+    margin-block: var(--spacing-16);
+    color: var(--color-teal-600);
+  }
+
+  &__medical-caption { display: grid; gap: var(--spacing-4); }
+  &__medical-caption strong { font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); }
+  &__medical-caption span { color: var(--color-text-muted); font-family: var(--font-family-secondary); font-size: var(--font-size-xs); }
+
+  &__floating-card {
+    position: absolute;
+    right: calc(var(--spacing-16) * -1);
+    bottom: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-12);
+    max-width: 300px;
+    padding: var(--spacing-16);
+    border: var(--stroke-sm) solid var(--color-border-default);
+    border-radius: var(--radius-lg);
+    color: var(--color-text-primary);
+    background: var(--color-bg-surface);
+    box-shadow: var(--shadow-md);
+  }
+
+  &__floating-card div { display: grid; gap: var(--spacing-4); }
+  &__floating-card strong { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); }
+  &__floating-card span { color: var(--color-text-muted); font-family: var(--font-family-secondary); font-size: var(--font-size-xs); }
+  &__floating-dot { flex: 0 0 auto; width: 10px; height: 10px; margin-top: var(--spacing-4); border-radius: var(--radius-full); background: var(--color-success-text); }
+}
+
+@media (max-width: 1100px) {
+  .hero__container { grid-template-columns: minmax(0, 1fr) minmax(280px, 0.75fr); }
+  .hero__floating-card { right: 0; }
+}
+
+@media (max-width: 860px) {
+  .hero__container { grid-template-columns: minmax(0, 1fr); min-height: auto; }
+  .hero__body { max-width: 720px; }
+  .hero__visual { min-height: 260px; }
+  .hero__medical-card { width: min(100%, 420px); }
 }
 
 @media (max-width: 679px) {
+  .hero { padding: var(--spacing-16) var(--container-padding-inline); }
+  .hero__container { gap: var(--spacing-24); padding: var(--spacing-24); border-radius: var(--radius-xl); }
+  .hero__title { font-size: clamp(1.875rem, 9vw, 2.5rem); }
   .hero__actions { flex-direction: column; }
   .hero__actions .button { width: 100%; }
+  .hero__facts { display: grid; gap: var(--spacing-16); margin-top: var(--spacing-24); }
+  .hero__visual { min-height: 240px; }
+  .hero__medical-card { padding: var(--spacing-20); }
+  .hero__pulse { height: 72px; }
+  .hero__floating-card { display: none; }
 }

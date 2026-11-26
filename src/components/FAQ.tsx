@@ -35,7 +35,7 @@ export default function FAQ({ faqData, title, id }: FAQProps) {
                 className={cn("faq__item", { _active: openItems.has(item.id) })}
               >
                 <button
-                  className="faq__trigger btn"
+                  className="faq__trigger"
                   onClick={() => toggleItem(item.id)}
                   aria-expanded={openItems.has(item.id)}
                 >

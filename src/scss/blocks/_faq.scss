@@ -25,7 +25,7 @@
     gap: var(--spacing-16);
     width: 100%;
     min-height: 64px;
-    padding: var(--spacing-20) var(--spacing-24);
+    padding: var(--spacing-16) var(--spacing-20);
     border: none;
     color: var(--color-text-primary);
     background: var(--color-bg-surface);
@@ -51,7 +51,7 @@
   }
 
   &__answer {
-    padding: var(--spacing-20) var(--spacing-24);
+    padding: var(--spacing-16) var(--spacing-20);
     border-top: var(--stroke-sm) solid var(--color-border-default);
     color: var(--color-text-secondary);
     background: var(--color-bg-surface-subtle);

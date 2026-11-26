@@ -1,8 +1,8 @@
 .auth {
-  --auth-container-max-width: 520px;
+  --auth-container-max-width: 480px;
 
   width: 100%;
-  max-width: calc(var(--auth-container-max-width) + var(--spacing-64));
+  max-width: calc(var(--auth-container-max-width) + var(--spacing-48));
   margin: auto;
   padding: var(--spacing-24);
   border: var(--stroke-sm) solid var(--color-border-default);
@@ -10,8 +10,6 @@
   background: var(--color-bg-surface);
   box-shadow: var(--shadow-sm);
   color: var(--color-text-primary);
-
-  @include media-breakpoint-up(lg) { padding: var(--spacing-32); }
 
   &__container {
     max-width: var(--auth-container-max-width);
@@ -23,7 +21,6 @@
     grid-template-columns: minmax(0, 1fr);
     gap: var(--spacing-20);
     margin: auto;
-    @include media-breakpoint-up(lg) { gap: var(--spacing-28); }
   }
 
   &__form { width: 100%; }

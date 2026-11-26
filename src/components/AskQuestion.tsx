@@ -33,10 +33,11 @@ export default function AskQuestion({ email }: { email: string }) {
           maxLength={5000}
           required
         />
-        <div>
-          <Button variant="danger" onClick={() => setQuestionText("")} text="Очистить" />
+        <div className="form-actions">
+          <Button variant="outline" size="md" onClick={() => setQuestionText("")} text="Очистить" disabled={!questionText.trim()} />
           <Button
             variant="secondary"
+            size="md"
             type="submit"
             disabled={!questionText.trim() || !email}
             text="Подготовить письмо"

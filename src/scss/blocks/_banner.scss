@@ -5,7 +5,7 @@
   background: var(--color-bg-surface);
   border-bottom: var(--stroke-sm) solid var(--color-border-default);
 
-  @include media-breakpoint-up(lg) { --banner-container-padding: var(--spacing-40); }
+  @include media-breakpoint-up(lg) { --banner-container-padding: var(--spacing-32); }
 
   &__container {
     padding-block: var(--banner-container-padding);

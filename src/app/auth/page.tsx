@@ -141,7 +141,7 @@ export default function AuthPage() {
                   </div>
                   <div className="auth__footer">
                     <div className="auth__text">
-                      <Button type="button" className="auth__action" onClick={() => changeMode(mode === "login" ? "forgot-password" : "login")}>
+                      <Button type="button" variant="ghost" size="sm" className="auth__action" onClick={() => changeMode(mode === "login" ? "forgot-password" : "login")}>
                         {mode === "login" ? "Забыли пароль?" : "Вернуться ко входу"}
                       </Button>
                     </div>

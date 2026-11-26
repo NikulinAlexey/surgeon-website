@@ -55,7 +55,7 @@
 
   @include media-breakpoint-up(lg) {
     --container-padding-inline: var(--spacing-40);
-    --section-padding-block: var(--spacing-40);
+    --section-padding-block: var(--spacing-32);
     --header-height: 88px;
   }
 }

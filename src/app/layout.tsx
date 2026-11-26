@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ToastProvider } from "@/components/ui/Toast";
 
 import "../scss/main.scss";
 
@@ -19,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="ru" data-scroll-behavior="smooth">
       <body className="page">
-        <div className="layout">{children}</div>
+        <ToastProvider><div className="layout">{children}</div></ToastProvider>
       </body>
     </html>
   );

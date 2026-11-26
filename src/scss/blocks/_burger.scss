@@ -12,9 +12,15 @@
   width: var(--burger-size);
   height: var(--burger-size);
   padding: var(--spacing-0);
-  background-color: transparent;
-  border: none;
+  background-color: color-mix(in srgb, var(--color-white) 7%, transparent);
+  border: var(--stroke-sm) solid color-mix(in srgb, var(--color-white) 18%, transparent);
   border-radius: var(--radius-md);
+  transition: background-color $animation-speed, border-color $animation-speed;
+
+  @include hover {
+    background-color: color-mix(in srgb, var(--color-white) 14%, transparent);
+    border-color: color-mix(in srgb, var(--color-white) 32%, transparent);
+  }
 
   &::before,
   &::after { content: ""; }

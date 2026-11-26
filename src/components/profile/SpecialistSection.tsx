@@ -1,3 +1,4 @@
+import Button from "../ui/Button";
 import { SpecialistForm } from "./SpecialistForm";
 
 interface SpecialistFormData { specialization: string; experience: string; description: string }
@@ -20,7 +21,7 @@ export function SpecialistSection(props: SpecialistSectionProps) {
         <h2>Подтверждение профиля специалиста</h2>
         <p>Заполните профессиональные данные и прикрепите документы. Решение администратора появится в личном кабинете.</p>
         {!props.showSpecialistForm ? (
-          <button type="button" className="btn btn--primary" onClick={props.onShowForm}>Подать заявку</button>
+          <Button type="button" variant="primary" size="md" onClick={props.onShowForm}>Подать заявку</Button>
         ) : <SpecialistForm {...props} />}
       </div>
     </section>

@@ -1,3 +1,5 @@
+import Button from "../ui/Button";
+
 interface SpecialistFormData {
   specialization: string;
   experience: string;
@@ -37,26 +39,12 @@ export function SpecialistForm({ formData, onFormDataChange, documents, onDocume
       </div>
       <div className="form-field">
         <label htmlFor="documents" className="form-label">Документы об образовании и квалификации *</label>
-        <input
-          type="file"
-          id="documents"
-          name="documents"
-          multiple
-          onChange={(event) => onDocumentsChange(Array.from(event.target.files || []).slice(0, 3))}
-          className="form-file"
-          accept=".jpg,.jpeg,.png,.webp,.pdf"
-          required
-          disabled={isLoading}
-        />
-        <div className="form-file-info">
-          {documents.length ? `${documents.map((file) => file.name).join(", ")}` : "PDF, JPG, PNG или WebP; до 3 файлов, каждый не больше 8 МБ"}
-        </div>
+        <input type="file" id="documents" name="documents" multiple onChange={(event) => onDocumentsChange(Array.from(event.target.files || []).slice(0, 3))} className="form-file" accept=".jpg,.jpeg,.png,.webp,.pdf" required disabled={isLoading} />
+        <div className="form-file-info">{documents.length ? documents.map((file) => file.name).join(", ") : "PDF, JPG, PNG или WebP; до 3 файлов, каждый не больше 8 МБ"}</div>
       </div>
       <div className="form-actions">
-        <button type="submit" className="btn btn--primary" disabled={isLoading || documents.length === 0}>
-          {isLoading ? "Отправка…" : "Отправить на проверку"}
-        </button>
-        <button type="button" className="btn btn--secondary" onClick={onCancel} disabled={isLoading}>Отмена</button>
+        <Button type="submit" variant="primary" size="md" disabled={isLoading || documents.length === 0}>{isLoading ? "Отправка…" : "Отправить на проверку"}</Button>
+        <Button type="button" variant="outline" size="md" onClick={onCancel} disabled={isLoading}>Отмена</Button>
       </div>
     </form>
   );

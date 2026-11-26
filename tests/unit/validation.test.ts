@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { contentSchema, pageSchema, passwordSchema } from "../../src/lib/validation";
+import { contentSchema, pageSchema, passwordSchema, profileSchema } from "../../src/lib/validation";
 
 const validContent = {
   kind: "ARTICLE",
@@ -9,6 +9,14 @@ const validContent = {
   body: "<p>Текст</p>",
   status: "DRAFT",
   publishedAt: null,
+};
+
+const validProfile = {
+  firstName: "Иван",
+  lastName: "Иванов",
+  patronymic: "",
+  phone: "",
+  birthDate: "",
 };
 
 describe("server validation", () => {
@@ -36,5 +44,11 @@ describe("server validation", () => {
     const page = { title: "Пациентам", subtitle: "", body: "", faq: [{ id: "one", question: "Вопрос?", answer: "Ответ" }] };
     expect(pageSchema.parse(page)).toMatchObject({ title: "Пациентам" });
     expect(pageSchema.safeParse({ ...page, restoreRevisionId: "not-a-uuid" }).success).toBe(false);
+  });
+
+  it("allows an empty optional profile phone and validates a provided one", () => {
+    expect(profileSchema.safeParse(validProfile).success).toBe(true);
+    expect(profileSchema.safeParse({ ...validProfile, phone: "+79990000000" }).success).toBe(true);
+    expect(profileSchema.safeParse({ ...validProfile, phone: "1" }).success).toBe(false);
   });
 });

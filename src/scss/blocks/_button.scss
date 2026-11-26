@@ -6,12 +6,12 @@
   gap: var(--spacing-8);
   width: var(--button-width, fit-content);
   max-width: 100%;
-  min-height: 44px;
+  min-height: 40px;
   padding: var(--button-padding);
   color: var(--button-color);
   flex-shrink: 0;
   font-family: var(--font-family-primary);
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-normal);
   text-align: center;
@@ -51,27 +51,28 @@
       --button-box-shadow: var(--shadow-md);
       transform: translateY(-2px);
     }
-
     &:active { transform: translateY(0); }
   }
 
   &--size-sm {
-    --button-padding: var(--spacing-8) var(--spacing-16);
+    --button-padding: var(--spacing-4) var(--spacing-12);
     --button-border-radius: var(--radius-md);
-    min-height: 40px;
-    font-size: var(--font-size-sm);
+    min-height: 36px;
+    font-size: var(--font-size-xs);
   }
 
   &--size-md {
-    --button-padding: var(--spacing-12) var(--spacing-24);
+    --button-padding: var(--spacing-8) var(--spacing-16);
     --button-border-radius: var(--radius-md);
+    min-height: 40px;
   }
 
   &--size-lg {
-    --button-padding: var(--spacing-16) var(--spacing-32);
+    --button-padding: var(--spacing-12) var(--spacing-20);
     --button-border-radius: var(--radius-lg);
     --button-border-width: var(--stroke-sm);
-    font-size: var(--font-size-lg);
+    min-height: 44px;
+    font-size: var(--font-size-md);
   }
 
   &--theme-primary {
@@ -110,6 +111,12 @@
     --button-border-color: transparent;
   }
 
+  @media (pointer: coarse) { min-height: 44px; }
+
+  @media (max-width: 679px) {
+    &__text { white-space: normal; }
+  }
+
   &--shape-circle {
     border-radius: var(--radius-full);
     padding: var(--spacing-0);
@@ -143,14 +150,5 @@
 
     &::before { transform: translate(-50%, -50%) rotate(45deg); }
     &::after { transform: translate(-50%, -50%) rotate(-45deg); }
-  }
-
-  &--lk {
-    --button-width: 100%;
-
-    @include media-breakpoint-up(xl) {
-      --button-text-display: none;
-      --button-width: fit-content;
-    }
   }
 }

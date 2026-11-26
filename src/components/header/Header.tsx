@@ -24,7 +24,7 @@ interface HeaderProps {
 function HeaderComponent({ compact, phone }: HeaderProps) {
   const pathname = usePathname();
   const [isBurgerClicked, setIsBurgerClicked] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -149,13 +149,19 @@ function HeaderComponent({ compact, phone }: HeaderProps) {
                     </Link>
                   )}
                   <div className="nav__profile" suppressHydrationWarning>
-                    {isLoggedIn ? (
-                      <ButtonLink variant="lk" href="/profile" aria-label="Открыть личный кабинет">
-                        <SvgIcon className="button__icon" name="user" size="24" />
-                        <span className="button__text">Личный кабинет</span>
-                      </ButtonLink>
+                    {isLoggedIn === null ? (
+                      <span className="nav__profile-placeholder" aria-hidden="true" />
                     ) : (
-                      <ButtonLink variant="outline-inverted" size="md" text="Войти в профиль" href="/auth" />
+                      <ButtonLink
+                        className="nav__profile-button"
+                        variant="outline-inverted"
+                        size="md"
+                        href={isLoggedIn ? "/profile" : "/auth"}
+                        aria-label={isLoggedIn ? "Открыть личный кабинет" : "Войти в профиль"}
+                      >
+                        <SvgIcon className="button__icon" name="user" size="24" aria-hidden />
+                        <span className="button__text">{isLoggedIn ? "Личный кабинет" : "Войти в профиль"}</span>
+                      </ButtonLink>
                     )}
                   </div>
                 </div>
