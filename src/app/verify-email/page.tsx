@@ -12,7 +12,7 @@ export default async function VerifyEmailPage({
   return (
     <>
       <Header compact />
-      <main className="layout__main">
+      <main className="layout__main" id="main-content">
         <div className="section">
           <div className="section__container">
             <div className="auth">

@@ -28,7 +28,7 @@ export default async function Home() {
   return (
     <>
       <Header phone={settings.phone || undefined} />
-      <main className="layout__main">
+      <main className="layout__main" id="main-content">
         <Hero
           title={page?.title || "Архангельский региональный урологический центр"}
           description={page?.subtitle || "Первый урологический центр Поморья."}

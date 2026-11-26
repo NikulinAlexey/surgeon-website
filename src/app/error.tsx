@@ -13,7 +13,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
   }, [error]);
 
   return (
-    <main className="layout__main">
+    <main className="layout__main" id="main-content">
       <div className="error-page">
         <div className="error-page__container">
           <h1 className="error-page__title">500</h1>

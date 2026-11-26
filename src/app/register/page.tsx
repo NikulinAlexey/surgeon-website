@@ -20,6 +20,7 @@ interface RegisterFormData {
   birthDate: string;
   agreePersonalData: boolean;
   agreeCommunication: boolean;
+  ageConfirmed: boolean;
 }
 
 type Errors = Partial<Record<keyof RegisterFormData, string>>;
@@ -27,7 +28,7 @@ const steps = ["Личные данные", "Контакты", "Пароль и
 const initialData: RegisterFormData = {
   firstName: "", lastName: "", patronymic: "", phone: "", email: "",
   password: "", confirmPassword: "", birthDate: "",
-  agreePersonalData: false, agreeCommunication: false,
+  agreePersonalData: false, agreeCommunication: false, ageConfirmed: false,
 };
 
 export default function RegisterPage() {
@@ -53,7 +54,7 @@ export default function RegisterPage() {
       if (formData.password.length > 72) next.password = "Пароль должен содержать не более 72 символов";
       if (formData.password !== formData.confirmPassword) next.confirmPassword = "Пароли не совпадают";
       if (!formData.agreePersonalData) next.agreePersonalData = "Необходимо согласие на обработку персональных данных";
-      if (!formData.agreeCommunication) next.agreeCommunication = "Необходимо согласие на цифровую коммуникацию";
+      if (!formData.ageConfirmed) next.ageConfirmed = "Подтвердите совершеннолетие";
     }
     setErrors(next);
     return !Object.keys(next).length;
@@ -83,6 +84,7 @@ export default function RegisterPage() {
           birthDate: formData.birthDate,
           agreePersonalData: formData.agreePersonalData,
           agreeCommunication: formData.agreeCommunication,
+          ageConfirmed: formData.ageConfirmed,
         }),
       });
       setSuccessMessage(result.message);
@@ -101,7 +103,7 @@ export default function RegisterPage() {
     setErrors((current) => ({ ...current, [name]: undefined }));
   };
 
-  const setConsent = (name: "agreePersonalData" | "agreeCommunication", checked: boolean) => {
+  const setConsent = (name: "agreePersonalData" | "agreeCommunication" | "ageConfirmed", checked: boolean) => {
     setFormData((current) => ({ ...current, [name]: checked }));
     setErrors((current) => ({ ...current, [name]: undefined }));
   };
@@ -109,7 +111,7 @@ export default function RegisterPage() {
   return (
     <>
       <Header compact />
-      <main className="layout__main">
+      <main className="layout__main" id="main-content">
         <div className="section">
           <div className="section__container">
             <div className="auth">
@@ -144,33 +146,18 @@ export default function RegisterPage() {
                                 <Field label="Подтвердите пароль" id="confirmPassword" name="confirmPassword" type="password" value={formData.confirmPassword} onChange={handleInputChange} error={errors.confirmPassword} disabled={isLoading} required autoComplete="new-password" />
                                 <Field label="Дата рождения (необязательно)" id="birthDate" name="birthDate" type="date" value={formData.birthDate} onChange={handleInputChange} error={errors.birthDate} disabled={isLoading} autoComplete="bday" />
                                 <div className="form__checkboxes">
-                                  <Checkbox
-                                    required
-                                    label={<>Я согласен на обработку <Link className="checkbox__link" href="/privacy" target="_blank">персональных данных</Link></>}
-                                    name="agreePersonalData"
-                                    checked={formData.agreePersonalData}
-                                    onChange={(checked) => setConsent("agreePersonalData", checked)}
-                                    disabled={isLoading}
-                                  />
+                                  <Checkbox required label={<>Принимаю <Link className="checkbox__link" href="/consent" target="_blank">согласие на обработку персональных данных</Link></>} name="agreePersonalData" checked={formData.agreePersonalData} onChange={(checked) => setConsent("agreePersonalData", checked)} disabled={isLoading} />
                                   {errors.agreePersonalData && <p className="form__error">{errors.agreePersonalData}</p>}
-                                  <Checkbox
-                                    required
-                                    label="Я согласен на коммуникацию посредством цифровых способов связи"
-                                    name="agreeCommunication"
-                                    checked={formData.agreeCommunication}
-                                    onChange={(checked) => setConsent("agreeCommunication", checked)}
-                                    disabled={isLoading}
-                                  />
-                                  {errors.agreeCommunication && <p className="form__error">{errors.agreeCommunication}</p>}
+                                  <Checkbox required label="Подтверждаю, что мне исполнилось 18 лет" name="ageConfirmed" checked={formData.ageConfirmed} onChange={(checked) => setConsent("ageConfirmed", checked)} disabled={isLoading} />
+                                  {errors.ageConfirmed && <p className="form__error">{errors.ageConfirmed}</p>}
+                                  <Checkbox label={<>По желанию: согласен получать необязательные информационные сообщения по <Link className="checkbox__link" href="/terms#communication" target="_blank">условиям коммуникации</Link>. Согласие можно отозвать в профиле.</>} name="agreeCommunication" checked={formData.agreeCommunication} onChange={(checked) => setConsent("agreeCommunication", checked)} disabled={isLoading} />
                                 </div>
                               </>}
                             </fieldset>
                             {requestError && <p className="form__error" role="alert">{requestError}</p>}
                             <div className="auth__actions">
                               {step > 0 && <Button type="button" size="lg" wide variant="primary" onClick={() => setStep((current) => current - 1)} disabled={isLoading}>Назад</Button>}
-                              <Button type="submit" size="lg" wide variant="secondary" disabled={isLoading}>
-                                {isLoading ? "Отправка…" : step === steps.length - 1 ? "Зарегистрироваться" : "Далее"}
-                              </Button>
+                              <Button type="submit" size="lg" wide variant="secondary" disabled={isLoading}>{isLoading ? "Отправка…" : step === steps.length - 1 ? "Зарегистрироваться" : "Далее"}</Button>
                             </div>
                           </div></div>
                         </form>

@@ -24,7 +24,8 @@ export const registerSchema = z.object({
   password: passwordSchema,
   birthDate: birthDateSchema,
   agreePersonalData: z.literal(true),
-  agreeCommunication: z.literal(true),
+  agreeCommunication: z.boolean().optional().default(false),
+  ageConfirmed: z.literal(true),
 });
 
 export const loginSchema = z.object({ email: emailSchema, password: z.string().min(1).max(72) });
@@ -94,3 +95,41 @@ export const settingsSchema = z.object({
   address: z.string().trim().max(400),
   workHours: z.string().trim().max(200),
 });
+
+export const organizationInfoSchema = z.object({
+  fullName: z.string().trim().max(400).default(""),
+  shortName: z.string().trim().max(200).default(""),
+  legalAddress: z.string().trim().max(500).default(""),
+  actualAddress: z.string().trim().max(500).default(""),
+  licenseNumber: z.string().trim().max(120).default(""),
+  licenseIssuedBy: z.string().trim().max(400).default(""),
+  licenseIssueDate: z.string().trim().max(40).default(""),
+  licenseValidUntil: z.string().trim().max(40).default(""),
+  licenseActivities: z.string().trim().max(10_000).default(""),
+  stateGuaranteeInfo: z.string().trim().max(10_000).default(""),
+  appointmentInfo: z.string().trim().max(10_000).default(""),
+  insuranceInfo: z.string().trim().max(10_000).default(""),
+});
+
+export const doctorSchema = z.object({
+  fullName: z.string().trim().min(2).max(200),
+  position: z.string().trim().min(2).max(200),
+  specialization: z.string().trim().min(2).max(200),
+  education: z.string().trim().min(2).max(10_000),
+  qualification: z.string().trim().min(2).max(10_000),
+  sortOrder: z.coerce.number().int().min(0).max(10_000).default(0),
+  isPublished: z.boolean().default(true),
+});
+
+export const medicalServiceSchema = z.object({
+  title: z.string().trim().min(2).max(300),
+  description: z.string().trim().max(10_000).default(""),
+  price: z.string().trim().max(200).default(""),
+  duration: z.string().trim().max(200).default(""),
+  isPaid: z.boolean().default(false),
+  sortOrder: z.coerce.number().int().min(0).max(10_000).default(0),
+  isPublished: z.boolean().default(true),
+});
+
+export const consentRevokeSchema = z.object({ document: z.literal("communication") });
+export const deleteAccountSchema = z.object({ password: z.string().min(1).max(72) });

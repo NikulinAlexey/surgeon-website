@@ -14,6 +14,13 @@ const actionLabels: Record<string, string> = {
   PAGE_UPDATED: "Изменена страница",
   PAGE_REVISION_RESTORED: "Восстановлена версия страницы",
   SETTINGS_UPDATED: "Обновлены контакты",
+  ORGANIZATION_UPDATED: "Обновлены данные организации",
+  DOCTOR_CREATED: "Добавлен врач",
+  DOCTOR_UPDATED: "Изменён врач",
+  DOCTOR_DELETED: "Удалён врач",
+  SERVICE_CREATED: "Добавлена услуга",
+  SERVICE_UPDATED: "Изменена услуга",
+  SERVICE_DELETED: "Удалена услуга",
   PROFILE_UPDATED: "Изменён профиль",
   VERIFICATION_SUBMITTED: "Подана заявка на верификацию",
   VERIFICATION_APPROVED: "Верификация подтверждена",
@@ -34,6 +41,7 @@ function entityLink(log: AuditItem) {
   if (log.entityType === "User") return `/admin/users/${log.entityId}`;
   if (log.entityType === "Page" && typeof log.metadata?.slug === "string") return `/admin/pages/${log.metadata.slug}`;
   if (log.entityType === "SiteSettings") return "/admin/settings";
+  if (["OrganizationInfo", "Doctor", "MedicalService"].includes(log.entityType)) return "/admin/organization";
   return "";
 }
 

@@ -1,7 +1,7 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
-import { GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { DeleteObjectCommand, GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { env, hasS3Storage } from "./env";
 import { HttpError } from "./api";
 
@@ -72,4 +72,17 @@ export async function readStoredFile(storageKey: string) {
   }
   const directory = path.resolve(env.LOCAL_STORAGE_DIR);
   return readFile(path.join(directory, storageKey));
+}
+
+export async function deleteStoredFile(storageKey: string) {
+  if (!/^[a-f0-9-]+\.(pdf|jpg|png|webp)$/.test(storageKey)) return;
+  if (hasS3Storage()) {
+    await s3Client().send(new DeleteObjectCommand({ Bucket: env.S3_BUCKET, Key: storageKey }));
+    return;
+  }
+  try {
+    await unlink(path.join(path.resolve(env.LOCAL_STORAGE_DIR), storageKey));
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+  }
 }

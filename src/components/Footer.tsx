@@ -32,6 +32,16 @@ export default function Footer({ phone, email, address, workHours }: FooterProps
               <li><Link href="/contacts" className="footer__link">Контакты</Link></li>
             </ul>
           </nav>
+          <nav className="footer__section" aria-label="Юридическая информация">
+            <h2 className="footer__section-title">Сведения</h2>
+            <ul className="footer__links">
+              <li><Link href="/license" className="footer__link">Лицензия</Link></li>
+              <li><Link href="/doctors" className="footer__link">Врачи</Link></li>
+              <li><Link href="/services" className="footer__link">Услуги и цены</Link></li>
+              <li><Link href="/accessibility" className="footer__link">Доступность</Link></li>
+              <li><Link href="/consent" className="footer__link">Согласие на обработку данных</Link></li>
+            </ul>
+          </nav>
           {(phone || email || address || workHours) && (
             <div className="footer__section">
               <h2 className="footer__section-title">Контакты</h2>

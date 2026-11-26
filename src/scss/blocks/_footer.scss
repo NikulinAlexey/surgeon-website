@@ -16,7 +16,7 @@
     gap: var(--spacing-32);
 
     @include media-breakpoint-up(md) { grid-template-columns: 1fr 1fr; }
-    @include media-breakpoint-up(lg) { grid-template-columns: 2fr 1fr 1.5fr; }
+    @include media-breakpoint-up(lg) { grid-template-columns: 1.5fr 1fr 1fr 1.5fr; }
   }
 
   &__brand { max-width: 380px; }

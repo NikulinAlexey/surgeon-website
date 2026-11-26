@@ -29,7 +29,7 @@ export default async function ContactsPage() {
   return (
     <>
       <Header phone={settings.phone || undefined} />
-      <main className="layout__main">
+      <main className="layout__main" id="main-content">
         <Banner title={page?.title || "Контакты"} subtitle={page?.subtitle || undefined} breadcrumbs={<Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: page?.title || "Контакты" }]} />} />
         {page?.body && (
           <Section id="contacts-details">

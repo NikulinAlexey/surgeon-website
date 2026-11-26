@@ -163,6 +163,15 @@
 
 .admin-alert { margin: 0 0 var(--spacing-20); padding: var(--spacing-12) var(--spacing-16); border: var(--stroke-sm) solid; border-radius: var(--radius-md); background: var(--color-bg-surface); }
 .admin-alert--error { border-color: var(--color-error-border); color: var(--color-error-text); background: var(--color-error-bg); }
+.admin-alert--warning { border-color: var(--color-warning-border); color: var(--color-warning-text); background: var(--color-warning-bg); }
+.admin-checklist { display: grid; gap: var(--spacing-4); margin-top: var(--spacing-8); padding-left: var(--spacing-20); list-style: disc; }
+.admin-tabs { display: flex; flex-wrap: wrap; gap: var(--spacing-8); margin-bottom: var(--spacing-24); border-bottom: var(--stroke-sm) solid var(--color-border-default); }
+.admin-tabs button { min-height: 44px; padding: var(--spacing-8) var(--spacing-16); border: 0; border-bottom: var(--stroke-md) solid transparent; color: var(--color-text-secondary); background: transparent; font-weight: var(--font-weight-semibold); }
+.admin-tabs button._active { border-bottom-color: var(--color-action-primary); color: var(--color-text-link); }
+.admin-resource-grid { display: grid; gap: var(--spacing-24); align-items: start; }
+@include media-breakpoint-up(xl) {
+  .admin-resource-grid { grid-template-columns: minmax(320px, 0.8fr) minmax(0, 1.2fr); }
+}
 .admin-alert--success { position: fixed; right: var(--spacing-24); bottom: var(--spacing-24); z-index: 50; max-width: 420px; margin: 0; border-color: var(--color-success-border); color: var(--color-success-text); background: var(--color-success-bg); box-shadow: var(--shadow-md); }
 .admin-skeleton { display: grid; gap: var(--spacing-12); padding: var(--spacing-24); border: var(--stroke-sm) solid var(--color-border-default); border-radius: var(--radius-lg); background: var(--color-bg-surface); }
 .admin-skeleton span { display: block; height: 56px; border-radius: var(--radius-md); background: linear-gradient(90deg, var(--color-bg-surface-muted), var(--color-bg-surface-subtle), var(--color-bg-surface-muted)); background-size: 200% 100%; animation: admin-skeleton 1.4s linear infinite; }

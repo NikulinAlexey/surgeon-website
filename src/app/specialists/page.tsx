@@ -28,7 +28,7 @@ export default async function SpecialistPage() {
   return (
     <>
       <Header phone={settings.phone || undefined} />
-      <main className="layout__main">
+      <main className="layout__main" id="main-content">
         <Banner title={page?.title || "Специалистам"} subtitle={page?.subtitle || undefined} breadcrumbs={<Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: page?.title || "Специалистам" }]} />} />
         {page?.body && (
           <Section id="specialists-information">

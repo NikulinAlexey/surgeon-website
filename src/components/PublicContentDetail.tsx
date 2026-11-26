@@ -19,7 +19,7 @@ export async function PublicContentDetail({ slug, kind }: { slug: string; kind: 
   return (
     <>
       <Header phone={settings.phone || undefined} />
-      <main className="layout__main">
+      <main className="layout__main" id="main-content">
         <article className="section">
           <div className="section__container container">
             <Breadcrumbs items={[{ label: "Главная", href: "/" }, parent, { label: item.title }]} />

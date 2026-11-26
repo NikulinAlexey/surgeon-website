@@ -25,7 +25,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           <Link href="/">Вернуться на сайт</Link>
         </div>
       </aside>
-      <main className="admin__main">{children}</main>
+      <main className="admin__main" id="main-content">{children}</main>
     </div>
   );
 }

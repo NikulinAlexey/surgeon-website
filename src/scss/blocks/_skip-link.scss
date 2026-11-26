@@ -1,0 +1,18 @@
+.skip-link {
+  position: fixed;
+  top: var(--spacing-8);
+  left: var(--spacing-8);
+  z-index: calc(var(--z-modal) + 100);
+  padding: var(--spacing-12) var(--spacing-16);
+  border-radius: var(--radius-md);
+  color: var(--color-action-text);
+  background: var(--color-action-primary);
+  font-weight: var(--font-weight-semibold);
+  transform: translateY(calc(-100% - var(--spacing-24)));
+  transition: transform $animation-speed;
+}
+
+.skip-link:focus {
+  color: var(--color-action-text);
+  transform: translateY(0);
+}

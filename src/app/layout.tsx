@@ -20,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="ru" data-scroll-behavior="smooth">
       <body className="page">
+        <a href="#main-content" className="skip-link">Перейти к содержимому</a>
         <ToastProvider><div className="layout">{children}</div></ToastProvider>
       </body>
     </html>

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { contentSchema, pageSchema, passwordSchema, profileSchema } from "../../src/lib/validation";
+import { contentSchema, doctorSchema, organizationInfoSchema, pageSchema, passwordSchema, profileSchema, registerSchema } from "../../src/lib/validation";
 
 const validContent = {
   kind: "ARTICLE",
@@ -17,6 +17,16 @@ const validProfile = {
   patronymic: "",
   phone: "",
   birthDate: "",
+};
+
+const validRegistration = {
+  ...validProfile,
+  phone: "+79990000000",
+  email: "user@example.com",
+  password: "strong-password-123",
+  agreePersonalData: true,
+  agreeCommunication: false,
+  ageConfirmed: true,
 };
 
 describe("server validation", () => {
@@ -50,5 +60,24 @@ describe("server validation", () => {
     expect(profileSchema.safeParse(validProfile).success).toBe(true);
     expect(profileSchema.safeParse({ ...validProfile, phone: "+79990000000" }).success).toBe(true);
     expect(profileSchema.safeParse({ ...validProfile, phone: "1" }).success).toBe(false);
+  });
+
+  it("keeps communication optional but requires privacy consent and adulthood", () => {
+    expect(registerSchema.parse(validRegistration).agreeCommunication).toBe(false);
+    expect(registerSchema.parse({ ...validRegistration, agreeCommunication: true }).agreeCommunication).toBe(true);
+    expect(registerSchema.safeParse({ ...validRegistration, agreePersonalData: false }).success).toBe(false);
+    expect(registerSchema.safeParse({ ...validRegistration, ageConfirmed: false }).success).toBe(false);
+  });
+
+  it("allows partial organization data for the compliance checklist", () => {
+    expect(organizationInfoSchema.parse({}).fullName).toBe("");
+    expect(organizationInfoSchema.parse({ licenseNumber: "ЛО-01-001234" }).licenseNumber).toBe("ЛО-01-001234");
+  });
+
+  it("requires education and qualification for every published doctor", () => {
+    const doctor = { fullName: "Иван Иванов", position: "Врач", specialization: "Уролог", education: "Медицинский вуз", qualification: "Первая категория" };
+    expect(doctorSchema.parse(doctor)).toMatchObject({ isPublished: true, sortOrder: 0 });
+    expect(doctorSchema.safeParse({ ...doctor, education: "" }).success).toBe(false);
+    expect(doctorSchema.safeParse({ ...doctor, qualification: "" }).success).toBe(false);
   });
 });

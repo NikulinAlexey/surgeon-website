@@ -33,7 +33,7 @@ export async function CmsTextPage({ slug, showFaq = true }: { slug: string; show
   return (
     <>
       <Header phone={settings.phone || undefined} />
-      <main className="layout__main">
+      <main className="layout__main" id="main-content">
         <Banner title={page.title} subtitle={page.subtitle || undefined} breadcrumbs={<Breadcrumbs items={breadcrumbs} />} />
         {page.body ? (
           <Section id="page-content">

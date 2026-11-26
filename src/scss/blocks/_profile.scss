@@ -139,6 +139,20 @@
   margin-top: var(--spacing-24);
 }
 
+.account-rights > p { color: var(--color-text-secondary); font-family: var(--font-family-secondary); line-height: var(--line-height-relaxed); }
+.account-rights__export { margin-top: var(--spacing-16); }
+.account-rights__consents { display: grid; gap: var(--spacing-12); margin-top: var(--spacing-20); }
+.account-rights__consents > div { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-16); padding: var(--spacing-12) 0; border-bottom: var(--stroke-sm) solid var(--color-border-default); }
+.account-rights__consents > div > div { display: grid; gap: var(--spacing-4); }
+.account-rights__consents small { color: var(--color-text-muted); }
+.account-rights__danger { margin-top: var(--spacing-24); padding-top: var(--spacing-20); border-top: var(--stroke-sm) solid var(--color-error-border); }
+.account-rights__danger h3 { margin-bottom: var(--spacing-8); color: var(--color-error-text); }
+.account-rights__danger p { margin-bottom: var(--spacing-16); color: var(--color-text-secondary); }
+.account-rights__notice { margin-top: var(--spacing-20); color: var(--color-text-muted) !important; }
+.account-delete-form { display: grid; gap: var(--spacing-16); }
+.account-delete-form > p { color: var(--color-text-secondary); font-family: var(--font-family-secondary); line-height: var(--line-height-relaxed); }
+.account-delete-form label { color: var(--color-text-primary); font-weight: var(--font-weight-semibold); }
+
 @media (max-width: 680px) {
   .dashboard__role-badge { margin-left: 0; }
   .dashboard__section { padding: var(--spacing-20); }

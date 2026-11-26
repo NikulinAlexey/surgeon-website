@@ -32,13 +32,24 @@ export default async function AboutPage() {
   return (
     <>
       <Header phone={settings.phone || undefined} />
-      <main className="layout__main">
+      <main className="layout__main" id="main-content">
         <Banner title={page?.title || "О нас"} subtitle={page?.subtitle || undefined} breadcrumbs={<Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: page?.title || "О нас" }]} />} />
         {page?.body && (
           <Section id="about-content">
             <div className="cms" dangerouslySetInnerHTML={{ __html: safeBody(page.body) }} />
           </Section>
         )}
+        <Section id="organization" title="Сведения об организации">
+          <ul className="grid">
+            {[
+              ["Лицензия и регистрация", "/license", "Сведения о лицензии, порядке записи и программе гарантий"],
+              ["Врачи и специалисты", "/doctors", "Образование и квалификация медицинских работников"],
+              ["Медицинские услуги", "/services", "Перечень и описание услуг"],
+              ["Цены", "/price", "Стоимость платных услуг"],
+              ["Доступность сайта", "/accessibility", "Возможности сайта для людей с ограничениями здоровья"],
+            ].map(([title, href, description]) => <li className="grid__item" key={href}><Tile title={title} href={href} description={description} /></li>)}
+          </ul>
+        </Section>
         <Section id="departments" title="Подразделения">
           <ul className="grid">
             {links.filter(([, item]) => item).map(([slug, item]) => (

@@ -226,6 +226,60 @@ model SiteSettings {
   updatedAt DateTime @updatedAt
 }
 
+model OrganizationInfo {
+  id                 Int      @id @default(1)
+  fullName           String   @default("")
+  shortName          String   @default("")
+  legalAddress       String   @default("")
+  actualAddress      String   @default("")
+  licenseNumber      String   @default("")
+  licenseIssuedBy    String   @default("")
+  licenseIssueDate   String   @default("")
+  licenseValidUntil  String   @default("")
+  licenseActivities  String   @db.Text @default("")
+  stateGuaranteeInfo String   @db.Text @default("")
+  appointmentInfo    String   @db.Text @default("")
+  insuranceInfo      String   @db.Text @default("")
+  updatedAt          DateTime @updatedAt
+
+  doctors            Doctor[]
+  services           MedicalService[]
+}
+
+model Doctor {
+  id             String   @id @default(uuid())
+  organizationId Int
+  organization   OrganizationInfo @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  fullName       String
+  position       String
+  specialization String
+  education      String   @db.Text
+  qualification  String   @db.Text
+  sortOrder      Int      @default(0)
+  isPublished    Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([organizationId, isPublished, sortOrder])
+}
+
+model MedicalService {
+  id             String   @id @default(uuid())
+  organizationId Int
+  organization   OrganizationInfo @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  title          String
+  description    String   @db.Text
+  price          String   @default("")
+  duration       String   @default("")
+  isPaid         Boolean  @default(false)
+  sortOrder      Int      @default(0)
+  isPublished    Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([organizationId, isPublished, sortOrder])
+}
+
 model Consent {
   id             String   @id @default(uuid())
   userId         String
@@ -233,6 +287,7 @@ model Consent {
   document       String
   documentVersion String
   acceptedAt     DateTime @default(now())
+  revokedAt      DateTime?
 
   @@index([userId, document])
 }

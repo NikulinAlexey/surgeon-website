@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
           consents: {
             create: [
               { document: "privacy", documentVersion: env.PRIVACY_VERSION },
-              { document: "communication", documentVersion: env.TERMS_VERSION },
+              ...(input.agreeCommunication ? [{ document: "communication", documentVersion: env.TERMS_VERSION }] : []),
             ],
           },
         },

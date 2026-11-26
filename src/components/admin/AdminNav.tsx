@@ -9,6 +9,7 @@ const editorLinks = [
   { href: "/admin", label: "Обзор" },
   { href: "/admin/content", label: "Материалы" },
   { href: "/admin/pages", label: "Страницы и FAQ" },
+  { href: "/admin/organization", label: "Организация" },
   { href: "/admin/settings", label: "Контакты" },
 ];
 const adminLinks = [

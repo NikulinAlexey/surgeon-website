@@ -10,6 +10,7 @@ import { useToast } from "@/components/ui/Toast";
 import { ProfileForm } from "./ProfileForm";
 import { SpecialistInfo } from "./SpecialistInfo";
 import { SpecialistSection } from "./SpecialistSection";
+import { AccountSettings } from "./AccountSettings";
 import { ClientUser } from "@/types/user";
 import { apiRequest } from "@/lib/client-api";
 
@@ -98,7 +99,7 @@ export function ProfileView({ initialUser }: { initialUser: ClientUser }) {
   return (
     <>
       <Header />
-      <main className="layout__main">
+      <main className="layout__main" id="main-content">
         <div className="section__container">
           <div className="dashboard">
             <div className="dashboard__header">
@@ -123,6 +124,7 @@ export function ProfileView({ initialUser }: { initialUser: ClientUser }) {
                 onSubmit={handleSubmitSpecialist}
                 onCancel={() => { setShowSpecialistForm(false); setDocuments([]); }}
               />}
+              <AccountSettings role={user.role} />
               <div className="dashboard__actions">
                 {(user.role === "ADMIN" || user.role === "EDITOR") && <ButtonLink variant="outline" size="md" href="/admin" text="Открыть административную панель" />}
                 <Button size="md" variant="danger" onClick={handleLogout}>Выйти</Button>
