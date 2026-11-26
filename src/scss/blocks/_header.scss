@@ -9,9 +9,8 @@
   z-index: var(--z-header);
   color: var(--color-text-inverse);
   padding-block: var(--spacing-12);
-  background-color: color-mix(in srgb, var(--color-bg-brand-strong) 96%, transparent);
+  background-color: var(--color-bg-brand-strong);
   border-bottom: var(--stroke-sm) solid color-mix(in srgb, var(--color-white) 10%, transparent);
-  backdrop-filter: blur(16px);
   transition: padding $animation-speed, box-shadow $animation-speed;
 
   &._scrolled {
@@ -44,9 +43,10 @@
   }
 
   &__menu {
-    position: fixed;
+    position: absolute;
     inset-inline: 0;
-    inset-block: var(--header-height) 0;
+    inset-block: 100% auto;
+    height: calc(100dvh - 100%);
     width: 100%;
     transform: var(--header-menu-transform);
     max-width: 100vw;
